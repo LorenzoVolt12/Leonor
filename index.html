@@ -45,10 +45,7 @@
             aria-label="Abrir carta"
         ></div>
 
-
-        <!-- Mensagem dentro da carta -->
-
-        <div id="mensagemCarta">
+        <div id="mensagemCarta" aria-hidden="true">
 
             <h1>Para ti, Leonor :3</h1>
 
@@ -67,31 +64,37 @@
 </section>
 
 
-
 <!-- ========================= -->
-<!-- CONTEÚDO DA PÁGINA -->
+<!-- CONTEÚDO -->
 <!-- ========================= -->
 
 <main id="conteudo">
 
 
+    <!-- ========================= -->
     <!-- INTRODUÇÃO -->
+    <!-- ========================= -->
 
     <section class="secao aparecer">
 
-        <p class="pequeno">uma pequena coisa para ti...</p>
+        <p class="pequeno">
+            uma pequena coisa para ti...
+        </p>
 
-        <h2>Fiz isto pensando em ti. ♡</h2>
+        <h2>
+            Fiz isto pensando em ti. ♡
+        </h2>
 
         <p>
             Desce pela página.
             Existem algumas coisinhas escondidas por aqui.
         </p>
 
-        <div class="seta">↓</div>
+        <div class="seta">
+            ↓
+        </div>
 
     </section>
-
 
 
     <!-- ========================= -->
@@ -100,14 +103,17 @@
 
     <section class="secao">
 
-        <p class="pequeno">talvez encontres alguma coisa...</p>
+        <p class="pequeno">
+            talvez encontres alguma coisa...
+        </p>
 
-        <h2>Há algumas coisas escondidas aqui 👀</h2>
+        <h2>
+            Há algumas coisas escondidas aqui 👀
+        </h2>
 
         <p>
             Tenta tocar nos corações.
         </p>
-
 
         <div class="coracoes">
 
@@ -134,11 +140,9 @@
 
         </div>
 
-
         <div id="mensagemCoracao"></div>
 
     </section>
-
 
 
     <!-- ========================= -->
@@ -147,44 +151,60 @@
 
     <section class="secao">
 
-        <p class="pequeno">olha com atenção...</p>
+        <p class="pequeno">
+            olha com atenção...
+        </p>
 
-        <h2>✨</h2>
+        <h2>
+            ✨
+        </h2>
 
         <p>
             Algumas estrelas não são apenas decoração.
         </p>
 
-
         <div class="estrelas">
 
-            <button class="estrela" data-mensagem="✨">
+            <button
+                class="estrela"
+                data-mensagem="✨"
+            >
                 ✦
             </button>
 
-            <button class="estrela" data-mensagem="♡">
+            <button
+                class="estrela"
+                data-mensagem="♡"
+            >
                 ✧
             </button>
 
-            <button class="estrela" data-mensagem="🌸">
+            <button
+                class="estrela"
+                data-mensagem="🌸"
+            >
                 ✦
             </button>
 
-            <button class="estrela" data-mensagem="💗">
+            <button
+                class="estrela"
+                data-mensagem="💗"
+            >
                 ✧
             </button>
 
-            <button class="estrela" data-mensagem="✨">
+            <button
+                class="estrela"
+                data-mensagem="✨"
+            >
                 ✦
             </button>
 
         </div>
 
-
         <div id="efeitoEstrela"></div>
 
     </section>
-
 
 
     <!-- ========================= -->
@@ -193,14 +213,19 @@
 
     <section class="secao foto-secao">
 
-        <p class="pequeno">uma memória</p>
+        <p class="pequeno">
+            uma memória
+        </p>
 
-        <h2>♡</h2>
+        <h2>
+            ♡
+        </h2>
 
         <!--
         IMPORTANTE:
-        Troca "FOTO.jpg" pelo nome EXATO
-        do ficheiro que colocares no GitHub.
+        Depois de colocares a foto no GitHub,
+        troca apenas "FOTO.jpg" pelo nome
+        EXATO do teu ficheiro.
         -->
 
         <img
@@ -212,16 +237,19 @@
     </section>
 
 
-
     <!-- ========================= -->
     <!-- FINAL -->
     <!-- ========================= -->
 
     <section class="secao final">
 
-        <div class="coracao-final">♡</div>
+        <div class="coracao-final">
+            ♡
+        </div>
 
-        <h2>Chegaste ao fim.</h2>
+        <h2>
+            Chegaste ao fim.
+        </h2>
 
         <p>
             Mas ainda há muito mais que eu quero viver contigo.
@@ -237,17 +265,28 @@
 </main>
 
 
-
 <!-- ========================= -->
 <!-- JAVASCRIPT -->
 <!-- ========================= -->
 
 <script>
 
-    const carta = document.getElementById("carta");
-    const botao = document.getElementById("botaoAbrir");
-    const mensagemCarta = document.getElementById("mensagemCarta");
-    const musica = document.getElementById("musica");
+    /* ========================= */
+    /* ELEMENTOS */
+    /* ========================= */
+
+    const carta =
+        document.getElementById("carta");
+
+    const botao =
+        document.getElementById("botaoAbrir");
+
+    const mensagemCarta =
+        document.getElementById("mensagemCarta");
+
+    const musica =
+        document.getElementById("musica");
+
 
     let abriu = false;
 
@@ -265,21 +304,36 @@
 
         abriu = true;
 
+
+        /* Animação da carta */
+
         carta.classList.add("abrindo");
 
-        botao.setAttribute("aria-hidden", "true");
+
+        /* Esconde o botão */
+
+        botao.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
 
-        /* Começa a música depois do toque */
+        /* ========================= */
+        /* MÚSICA */
+        /* ========================= */
 
         musica.volume = 0.35;
 
         musica.play().catch(() => {
-            console.log("A música não pôde começar automaticamente.");
+            console.log(
+                "A música não pôde começar."
+            );
         });
 
 
-        /* Mostra a mensagem */
+        /* ========================= */
+        /* MOSTRAR MENSAGEM */
+        /* ========================= */
 
         setTimeout(() => {
 
@@ -293,16 +347,35 @@
         }, 900);
 
 
-        /* Liberta o scroll */
+        /* ========================= */
+        /* LIBERTAR SCROLL */
+        /* ========================= */
 
         setTimeout(() => {
 
             document.body.classList.add("scroll");
 
+            /*
+            Garante que a primeira secção
+            está visível.
+            */
+
+            const primeiraSecao =
+                document.querySelector(
+                    ".secao.aparecer"
+                );
+
+            if (primeiraSecao) {
+
+                primeiraSecao.classList.add(
+                    "visivel"
+                );
+
+            }
+
         }, 1300);
 
     }
-
 
 
     /* ========================= */
@@ -313,36 +386,55 @@
         document.querySelectorAll(".coracao");
 
     const mensagemCoracao =
-        document.getElementById("mensagemCoracao");
+        document.getElementById(
+            "mensagemCoracao"
+        );
 
 
     coracoes.forEach(coracao => {
 
-        coracao.addEventListener("click", () => {
+        coracao.addEventListener(
+            "click",
+            () => {
 
-            const texto =
-                coracao.dataset.mensagem;
-
-            mensagemCoracao.textContent = texto;
-
-            mensagemCoracao.classList.remove("mostrar");
-
-            void mensagemCoracao.offsetWidth;
-
-            mensagemCoracao.classList.add("mostrar");
+                const texto =
+                    coracao.dataset.mensagem;
 
 
-            coracao.classList.add("clicado");
+                mensagemCoracao.textContent =
+                    texto;
 
 
-            setTimeout(() => {
-                coracao.classList.remove("clicado");
-            }, 500);
+                mensagemCoracao.classList.remove(
+                    "mostrar"
+                );
 
-        });
+
+                void mensagemCoracao.offsetWidth;
+
+
+                mensagemCoracao.classList.add(
+                    "mostrar"
+                );
+
+
+                coracao.classList.add(
+                    "clicado"
+                );
+
+
+                setTimeout(() => {
+
+                    coracao.classList.remove(
+                        "clicado"
+                    );
+
+                }, 500);
+
+            }
+        );
 
     });
-
 
 
     /* ========================= */
@@ -353,31 +445,44 @@
         document.querySelectorAll(".estrela");
 
     const efeitoEstrela =
-        document.getElementById("efeitoEstrela");
+        document.getElementById(
+            "efeitoEstrela"
+        );
 
 
     estrelas.forEach(estrela => {
 
-        estrela.addEventListener("click", () => {
+        estrela.addEventListener(
+            "click",
+            () => {
 
-            const texto =
-                estrela.dataset.mensagem;
-
-            efeitoEstrela.textContent = texto;
-
-            efeitoEstrela.classList.remove("mostrar");
-
-            void efeitoEstrela.offsetWidth;
-
-            efeitoEstrela.classList.add("mostrar");
+                const texto =
+                    estrela.dataset.mensagem;
 
 
-            criarParticulas(estrela);
+                efeitoEstrela.textContent =
+                    texto;
 
-        });
+
+                efeitoEstrela.classList.remove(
+                    "mostrar"
+                );
+
+
+                void efeitoEstrela.offsetWidth;
+
+
+                efeitoEstrela.classList.add(
+                    "mostrar"
+                );
+
+
+                criarParticulas(estrela);
+
+            }
+        );
 
     });
-
 
 
     /* ========================= */
@@ -391,25 +496,36 @@
             const particula =
                 document.createElement("span");
 
-            particula.classList.add("particula");
+
+            particula.classList.add(
+                "particula"
+            );
+
 
             particula.textContent = "✦";
+
 
             particula.style.setProperty(
                 "--x",
                 `${(Math.random() - 0.5) * 180}px`
             );
 
+
             particula.style.setProperty(
                 "--y",
                 `${(Math.random() - 0.5) * 180}px`
             );
 
-            elemento.appendChild(particula);
+
+            elemento.appendChild(
+                particula
+            );
 
 
             setTimeout(() => {
+
                 particula.remove();
+
             }, 900);
 
         }
@@ -417,13 +533,14 @@
     }
 
 
-
     /* ========================= */
     /* ANIMAÇÕES AO DESCER */
     /* ========================= */
 
     const elementos =
-        document.querySelectorAll(".secao");
+        document.querySelectorAll(
+            ".secao:not(.aparecer)"
+        );
 
 
     const observador =
@@ -431,17 +548,21 @@
 
             (entradas) => {
 
-                entradas.forEach(entrada => {
+                entradas.forEach(
+                    entrada => {
 
-                    if (entrada.isIntersecting) {
+                        if (
+                            entrada.isIntersecting
+                        ) {
 
-                        entrada.target.classList.add(
-                            "visivel"
-                        );
+                            entrada.target.classList.add(
+                                "visivel"
+                            );
+
+                        }
 
                     }
-
-                });
+                );
 
             },
 
