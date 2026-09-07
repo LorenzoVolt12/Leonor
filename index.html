@@ -30,18 +30,76 @@
             align-items: center;
         }
 
-        #envelope {
+        #carta {
+            position: relative;
             width: 80%;
             max-width: 700px;
+        }
+
+        #envelope {
+            width: 100%;
             height: auto;
             display: block;
+        }
+
+        /* Ponto de interação */
+        #botaoAbrir {
+            position: absolute;
+
+            /* posição do círculo */
+            left: 50%;
+            top: 60%;
+
+            transform: translate(-50%, -50%);
+
+            width: 55px;
+            height: 55px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.35);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+
+            cursor: pointer;
+
+            animation: pulsar 1.8s infinite;
+        }
+
+        @keyframes pulsar {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <img src="Carta%20(fechada).jpg" id="envelope" alt="Carta fechada">
+    <div id="carta">
+
+        <img 
+            src="Carta%20(fechada).jpg" 
+            id="envelope" 
+            alt="Carta fechada"
+        >
+
+        <div id="botaoAbrir"></div>
+
+    </div>
+
+    <script>
+        const botao = document.getElementById("botaoAbrir");
+
+        botao.addEventListener("click", function() {
+            alert("A carta foi aberta! :3");
+        });
+    </script>
 
 </body>
 </html>
