@@ -6,99 +6,79 @@
 
     <title>Presentinho :3</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        body {
-            background-image: url("Fundo.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #carta {
-            position: relative;
-            width: 80%;
-            max-width: 700px;
-        }
-
-        #envelope {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Ponto de interação */
-        #botaoAbrir {
-            position: absolute;
-
-            /* posição do círculo */
-            left: 50%;
-            top: 68%;
-
-            transform: translate(-50%, -50%);
-
-            width: 55px;
-            height: 55px;
-
-            border-radius: 50%;
-
-            background: rgba(255, 255, 255, 0.35);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-
-            cursor: pointer;
-
-            animation: pulsar 1.8s infinite;
-        }
-
-        @keyframes pulsar {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.7;
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(1.15);
-                opacity: 1;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <div id="carta">
 
-        <img 
-            src="Carta%20(fechada).jpg" 
-            id="envelope" 
+        <!-- Carta fechada -->
+        <img
+            src="Carta%20(fechada).jpg"
+            id="envelope"
             alt="Carta fechada"
         >
 
-        <div id="botaoAbrir"></div>
+        <!-- Círculo para abrir -->
+        <div
+            id="botaoAbrir"
+            role="button"
+            aria-label="Abrir carta"
+        ></div>
+
+        <!-- Mensagem -->
+        <div id="mensagem" aria-hidden="true">
+
+            <h1>Para ti, Leonor :3</h1>
+
+            <p>
+                Eu fiz este presentinho especialmente para ti. 💗
+            </p>
+
+            <p>
+                Espero que gostes muito! :D
+            </p>
+
+            <p>
+                ❤️
+            </p>
+
+        </div>
 
     </div>
 
-    <script>
-        const botao = document.getElementById("botaoAbrir");
 
-        botao.addEventListener("click", function() {
-            alert("A carta foi aberta! :3");
-        });
+    <script>
+
+        const carta = document.getElementById("carta");
+        const botao = document.getElementById("botaoAbrir");
+        const mensagem = document.getElementById("mensagem");
+
+        let abriu = false;
+
+        botao.addEventListener("click", abrirCarta);
+
+        function abrirCarta() {
+
+            if (abriu) return;
+
+            abriu = true;
+
+            // Começa a animação
+            carta.classList.add("abrindo");
+
+            // Depois da animação, mostra a mensagem
+            setTimeout(() => {
+
+                mensagem.setAttribute("aria-hidden", "false");
+
+                carta.classList.add("aberta");
+
+            }, 900);
+
+        }
+
     </script>
 
 </body>
