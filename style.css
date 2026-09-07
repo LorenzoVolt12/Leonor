@@ -14,11 +14,17 @@ min-height: 100dvh;
 
 ```
 background-image: url("Fundo.png");
+
 background-size: cover;
+
 background-position: center;
+
 background-attachment: fixed;
 
-font-family: Georgia, "Times New Roman", serif;
+font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
 color: #71394d;
 
@@ -26,6 +32,10 @@ overflow: hidden;
 ```
 
 }
+
+/* ============================= */
+/* SCROLL */
+/* ============================= */
 
 body.scroll {
 overflow-x: hidden;
@@ -41,7 +51,9 @@ min-height: 100dvh;
 
 ```
 display: flex;
+
 justify-content: center;
+
 align-items: center;
 
 padding: 30px;
@@ -55,16 +67,18 @@ position: relative;
 ```
 width: min(80vw, 700px);
 
-transition: transform 0.9s ease;
+transition:
+    transform 0.9s ease;
 ```
 
 }
 
 #envelope {
 width: 100%;
-height: auto;
 
 ```
+height: auto;
+
 display: block;
 
 transform-origin: center;
@@ -78,7 +92,7 @@ transition:
 }
 
 /* ============================= */
-/* BOTÃO */
+/* BOTÃO DE ABRIR */
 /* ============================= */
 
 #botaoAbrir {
@@ -86,41 +100,56 @@ position: absolute;
 
 ```
 left: 50%;
+
 top: 68%;
 
 width: 55px;
+
 height: 55px;
 
-transform: translate(-50%, -50%);
+transform:
+    translate(-50%, -50%);
 
 border-radius: 50%;
 
-background: rgba(255,255,255,.55);
+background:
+    rgba(255,255,255,.6);
 
-border: 2px solid rgba(255,255,255,.95);
+border:
+    2px solid rgba(255,255,255,.95);
 
 cursor: pointer;
 
 z-index: 20;
 
-animation: pulsar 1.8s infinite;
+animation:
+    pulsar 1.8s infinite;
 
 touch-action: manipulation;
 
--webkit-tap-highlight-color: transparent;
+-webkit-tap-highlight-color:
+    transparent;
 ```
 
 }
 
 @keyframes pulsar {
-0%, 100% {
-transform: translate(-50%, -50%) scale(1);
-opacity: .7;
-}
 
 ```
+0%,
+100% {
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    opacity: .7;
+}
+
 50% {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform:
+        translate(-50%, -50%)
+        scale(1.15);
+
     opacity: 1;
 }
 ```
@@ -132,66 +161,86 @@ opacity: .7;
 /* ============================= */
 
 #carta.abrindo {
-transform: translateY(-15px);
+transform:
+translateY(-15px);
 }
 
 #carta.abrindo #botaoAbrir {
-animation: desaparecer .45s forwards;
+
+```
+animation:
+    desaparecer .45s forwards;
+
 pointer-events: none;
+```
+
 }
 
 @keyframes desaparecer {
-from {
-opacity: 1;
-transform: translate(-50%, -50%) scale(1);
-}
 
 ```
+from {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
 to {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(.2);
+
+    transform:
+        translate(-50%, -50%)
+        scale(.2);
 }
 ```
 
 }
 
 #carta.abrindo #envelope {
-transform:
-perspective(1000px)
-rotateX(8deg)
-translateY(-20px)
-scale(1.03);
 
 ```
-filter: brightness(1.08);
+transform:
+    perspective(1000px)
+    rotateX(8deg)
+    translateY(-20px)
+    scale(1.03);
+
+filter:
+    brightness(1.08);
 ```
 
 }
 
 #carta.aberta #envelope {
-transform:
-perspective(1000px)
-rotateX(12deg)
-translateY(-25px)
-scale(1.04);
 
 ```
+transform:
+    perspective(1000px)
+    rotateX(12deg)
+    translateY(-25px)
+    scale(1.04);
+
 opacity: .12;
 
-filter: blur(3px);
+filter:
+    blur(3px);
 ```
 
 }
 
 /* ============================= */
-/* TEXTO DA CARTA */
+/* TEXTO DENTRO DA CARTA */
 /* ============================= */
 
 #mensagemCarta {
-position: absolute;
 
 ```
+position: absolute;
+
 left: 50%;
+
 top: 50%;
 
 width: 75%;
@@ -216,9 +265,10 @@ pointer-events: none;
 }
 
 #mensagemCarta[aria-hidden="false"] {
-opacity: 1;
 
 ```
+opacity: 1;
+
 transform:
     translate(-50%, -50%)
     scale(1);
@@ -227,31 +277,39 @@ transform:
 }
 
 #mensagemCarta h1 {
-font-size: clamp(25px, 5vw, 40px);
 
 ```
+font-size:
+    clamp(25px, 5vw, 40px);
+
 margin-bottom: 20px;
 
-color: #6b3046;
+color: #5f2940;
+
+font-weight: bold;
 
 text-shadow:
-    0 2px 5px rgba(255,255,255,.95);
+    0 2px 6px rgba(255,255,255,.95);
 ```
 
 }
 
 #mensagemCarta p {
-font-size: clamp(16px, 3vw, 21px);
 
 ```
+font-size:
+    clamp(16px, 3vw, 21px);
+
 line-height: 1.6;
 
 margin-bottom: 12px;
 
 color: #71394d;
 
+font-weight: 500;
+
 text-shadow:
-    0 1px 5px rgba(255,255,255,.95);
+    0 1px 6px rgba(255,255,255,.95);
 ```
 
 }
@@ -261,9 +319,10 @@ text-shadow:
 /* ============================= */
 
 #conteudo {
-position: relative;
 
 ```
+position: relative;
+
 width: 100%;
 
 padding-bottom: 100px;
@@ -271,25 +330,34 @@ padding-bottom: 100px;
 
 }
 
+/* ============================= */
+/* SECÇÕES */
+/* ============================= */
+
 .secao {
-min-height: 100vh;
 
 ```
+min-height: 100vh;
+
 width: 100%;
 
-padding: 100px 25px;
+padding:
+    100px 25px;
 
 display: flex;
+
 flex-direction: column;
 
 justify-content: center;
+
 align-items: center;
 
 text-align: center;
 
 opacity: 0;
 
-transform: translateY(50px);
+transform:
+    translateY(50px);
 
 transition:
     opacity 1s ease,
@@ -298,64 +366,94 @@ transition:
 
 }
 
-.secao.visivel {
-opacity: 1;
+/* PRIMEIRA SECÇÃO */
+
+.secao.aparecer {
 
 ```
-transform: translateY(0);
+opacity: 1;
+
+transform:
+    translateY(0);
+```
+
+}
+
+/* SECÇÕES AO FAZER SCROLL */
+
+.secao.visivel {
+
+```
+opacity: 1;
+
+transform:
+    translateY(0);
 ```
 
 }
 
 /* ============================= */
-/* TEXTO DAS SECÇÕES */
+/* TÍTULOS */
 /* ============================= */
 
 .secao h2 {
-font-size: clamp(28px, 6vw, 45px);
 
 ```
-font-weight: normal;
+font-size:
+    clamp(28px, 6vw, 45px);
 
-margin: 15px 0 25px;
+font-weight: bold;
 
-color: #6b3046;
+margin:
+    15px 0 25px;
+
+color: #642d45;
 
 text-shadow:
-    0 2px 5px rgba(255,255,255,.95);
+    0 2px 7px rgba(255,255,255,.95);
 ```
 
 }
 
+/* ============================= */
+/* TEXTO */
+/* ============================= */
+
 .secao p {
-max-width: 600px;
 
 ```
-font-size: clamp(17px, 3.5vw, 21px);
+max-width: 600px;
+
+font-size:
+    clamp(17px, 3.5vw, 21px);
 
 line-height: 1.8;
 
 color: #71394d;
 
+font-weight: 500;
+
 text-shadow:
-    0 1px 5px rgba(255,255,255,.95);
+    0 1px 6px rgba(255,255,255,.95);
 ```
 
 }
 
-/* Pequeno texto */
+/* TEXTO PEQUENO */
 
 .pequeno {
-font-size: 14px !important;
 
 ```
+font-size:
+    14px !important;
+
 letter-spacing: 3px;
 
 text-transform: uppercase;
 
-opacity: .9;
+opacity: .95;
 
-color: #7c3d54 !important;
+color: #75374f !important;
 ```
 
 }
@@ -365,26 +463,32 @@ color: #7c3d54 !important;
 /* ============================= */
 
 .seta {
-margin-top: 50px;
 
 ```
+margin-top: 50px;
+
 font-size: 35px;
 
-color: #7c3d54;
+color: #7b3c56;
 
-animation: flutuar 2s infinite ease-in-out;
+animation:
+    flutuar 2s infinite ease-in-out;
 ```
 
 }
 
 @keyframes flutuar {
-0%, 100% {
-transform: translateY(0);
-}
 
 ```
+0%,
+100% {
+    transform:
+        translateY(0);
+}
+
 50% {
-    transform: translateY(10px);
+    transform:
+        translateY(10px);
 }
 ```
 
@@ -395,10 +499,12 @@ transform: translateY(0);
 /* ============================= */
 
 .coracoes {
-display: flex;
 
 ```
+display: flex;
+
 justify-content: center;
+
 align-items: center;
 
 gap: 40px;
@@ -411,16 +517,17 @@ flex-wrap: wrap;
 }
 
 .coracao {
-position: relative;
 
 ```
+position: relative;
+
 border: none;
 
 background: none;
 
 font-size: 65px;
 
-color: #a34767;
+color: #9f3f61;
 
 cursor: pointer;
 
@@ -433,52 +540,69 @@ touch-action: manipulation;
 }
 
 .coracao:hover {
-transform: scale(1.2);
+
+```
+transform:
+    scale(1.2);
+```
+
 }
 
 .coracao.clicado {
-animation: coracaoClique .5s ease;
+
+```
+animation:
+    coracaoClique .5s ease;
+```
+
 }
 
 @keyframes coracaoClique {
-0% {
-transform: scale(1);
-}
 
 ```
+0% {
+    transform:
+        scale(1);
+}
+
 50% {
-    transform: scale(1.5);
+    transform:
+        scale(1.5);
 }
 
 100% {
-    transform: scale(1);
+    transform:
+        scale(1);
 }
 ```
 
 }
 
 /* ============================= */
-/* MENSAGEM ESCONDIDA */
+/* MENSAGEM DO CORAÇÃO */
 /* ============================= */
 
 #mensagemCoracao {
-min-height: 35px;
 
 ```
+min-height: 35px;
+
 margin-top: 40px;
 
-font-size: clamp(17px, 4vw, 23px);
+font-size:
+    clamp(17px, 4vw, 23px);
 
-color: #6b3046;
+color: #642d45;
 
 font-weight: bold;
 
 text-shadow:
-    0 1px 5px rgba(255,255,255,.95);
+    0 1px 6px rgba(255,255,255,.95);
 
 opacity: 0;
 
-transform: translateY(10px);
+transform:
+    translateY(10px);
 
 transition:
     opacity .5s ease,
@@ -488,10 +612,12 @@ transition:
 }
 
 #mensagemCoracao.mostrar {
-opacity: 1;
 
 ```
-transform: translateY(0);
+opacity: 1;
+
+transform:
+    translateY(0);
 ```
 
 }
@@ -501,10 +627,12 @@ transform: translateY(0);
 /* ============================= */
 
 .estrelas {
-position: relative;
 
 ```
-width: min(500px, 90vw);
+position: relative;
+
+width:
+    min(500px, 90vw);
 
 min-height: 250px;
 
@@ -514,16 +642,17 @@ margin-top: 40px;
 }
 
 .estrela {
-position: absolute;
 
 ```
+position: absolute;
+
 border: none;
 
 background: none;
 
 font-size: 40px;
 
-color: #a34767;
+color: #9f3f61;
 
 cursor: pointer;
 
@@ -559,15 +688,20 @@ bottom: 5%;
 }
 
 .estrela:hover {
+
+```
 transform:
-scale(1.4)
-rotate(15deg);
+    scale(1.4)
+    rotate(15deg);
+```
+
 }
 
 #efeitoEstrela {
-min-height: 45px;
 
 ```
+min-height: 45px;
+
 margin-top: 20px;
 
 font-size: 35px;
@@ -578,22 +712,29 @@ opacity: 0;
 }
 
 #efeitoEstrela.mostrar {
+
+```
 animation:
-aparecerEstrela .7s ease forwards;
+    aparecerEstrela .7s ease forwards;
+```
+
 }
 
 @keyframes aparecerEstrela {
-from {
-opacity: 0;
 
 ```
-    transform: scale(.4);
+from {
+    opacity: 0;
+
+    transform:
+        scale(.4);
 }
 
 to {
     opacity: 1;
 
-    transform: scale(1);
+    transform:
+        scale(1);
 }
 ```
 
@@ -604,10 +745,12 @@ to {
 /* ============================= */
 
 .particula {
-position: absolute;
 
 ```
+position: absolute;
+
 left: 50%;
+
 top: 50%;
 
 pointer-events: none;
@@ -619,10 +762,11 @@ animation:
 }
 
 @keyframes particula {
-from {
-opacity: 1;
 
 ```
+from {
+    opacity: 1;
+
     transform:
         translate(0,0)
         scale(1);
@@ -644,9 +788,11 @@ to {
 /* ============================= */
 
 .foto {
-width: min(500px, 90vw);
 
 ```
+width:
+    min(500px, 90vw);
+
 max-height: 600px;
 
 object-fit: cover;
@@ -656,10 +802,10 @@ margin-top: 30px;
 border-radius: 18px;
 
 border:
-    6px solid rgba(255,255,255,.85);
+    6px solid rgba(255,255,255,.9);
 
 box-shadow:
-    0 10px 35px rgba(80,40,55,.3);
+    0 10px 35px rgba(80,40,55,.35);
 
 transition:
     transform .4s ease,
@@ -669,13 +815,14 @@ transition:
 }
 
 .foto:hover {
-transform:
-scale(1.02)
-rotate(-1deg);
 
 ```
+transform:
+    scale(1.02)
+    rotate(-1deg);
+
 box-shadow:
-    0 15px 40px rgba(80,40,55,.4);
+    0 15px 40px rgba(80,40,55,.45);
 ```
 
 }
@@ -685,14 +832,19 @@ box-shadow:
 /* ============================= */
 
 .final {
+
+```
 min-height: 80vh;
+```
+
 }
 
 .coracao-final {
-font-size: 90px;
 
 ```
-color: #a34767;
+font-size: 90px;
+
+color: #9f3f61;
 
 animation:
     respirar 3s infinite ease-in-out;
@@ -701,22 +853,27 @@ animation:
 }
 
 @keyframes respirar {
-0%, 100% {
-transform: scale(1);
-}
 
 ```
+0%,
+100% {
+    transform:
+        scale(1);
+}
+
 50% {
-    transform: scale(1.12);
+    transform:
+        scale(1.12);
 }
 ```
 
 }
 
 .assinatura {
-margin-top: 40px;
 
 ```
+margin-top: 40px;
+
 font-style: italic;
 ```
 
@@ -733,32 +890,42 @@ font-style: italic;
     padding: 15px;
 }
 
+
 #carta {
     width: 92vw;
 }
 
+
 #botaoAbrir {
     width: 50px;
+
     height: 50px;
 }
 
+
 .secao {
-    padding: 80px 20px;
+    padding:
+        80px 20px;
 }
+
 
 .coracoes {
     gap: 20px;
 }
 
+
 .coracao {
     font-size: 55px;
 }
+
 
 .estrelas {
     min-height: 220px;
 }
 
+
 .foto {
+
     width: 90vw;
 
     max-height: 500px;
