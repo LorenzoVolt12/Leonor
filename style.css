@@ -1,1 +1,310 @@
+/* ============================= */
+/* RESET */
+/* ============================= */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ============================= */
+/* PÁGINA */
+/* ============================= */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100dvh;
+
+    background-image: url("Fundo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* ============================= */
+/* CARTA */
+/* ============================= */
+
+#carta {
+    position: relative;
+
+    width: 80%;
+    max-width: 700px;
+
+    transition:
+        transform 0.8s ease,
+        filter 0.8s ease;
+}
+
+
+/* Imagem da carta */
+
+#envelope {
+    width: 100%;
+    height: auto;
+
+    display: block;
+
+    transform-origin: center center;
+
+    transition:
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.8s ease,
+        filter 1s ease;
+}
+
+
+/* ============================= */
+/* CÍRCULO */
+/* ============================= */
+
+#botaoAbrir {
+    position: absolute;
+
+    left: 50%;
+    top: 68%;
+
+    width: 55px;
+    height: 55px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    animation: pulsar 1.8s infinite;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+
+/* Pulsação do círculo */
+
+@keyframes pulsar {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 1;
+    }
+
+}
+
+
+/* ============================= */
+/* ANIMAÇÃO DE ABERTURA */
+/* ============================= */
+
+
+/* A carta dá uma pequena levantada */
+
+#carta.abrindo {
+    transform: translateY(-12px);
+}
+
+
+/* Círculo desaparece */
+
+#carta.abrindo #botaoAbrir {
+    animation: desaparecer 0.45s forwards;
+    pointer-events: none;
+}
+
+
+@keyframes desaparecer {
+
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+
+}
+
+
+/* ============================= */
+/* EFEITO DE "ABRIR" */
+/* ============================= */
+
+#carta.abrindo #envelope {
+
+    transform:
+        perspective(1000px)
+        rotateX(8deg)
+        translateY(-18px)
+        scale(1.03);
+
+    filter: brightness(1.08);
+
+}
+
+
+/* Depois da abertura */
+
+#carta.aberta #envelope {
+
+    transform:
+        perspective(1000px)
+        rotateX(12deg)
+        translateY(-25px)
+        scale(1.04);
+
+    opacity: 0.18;
+
+    filter: blur(2px) brightness(1.15);
+
+}
+
+
+/* ============================= */
+/* MENSAGEM */
+/* ============================= */
+
+#mensagem {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 82%;
+    max-height: 75%;
+
+    padding: 30px 25px;
+
+    transform:
+        translate(-50%, -42%)
+        scale(0.85);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    overflow-y: auto;
+
+    background: rgba(255, 250, 245, 0.96);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+
+    z-index: 5;
+}
+
+
+/* Mensagem aparece */
+
+#mensagem[aria-hidden="false"] {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    pointer-events: auto;
+
+}
+
+
+/* Título */
+
+#mensagem h1 {
+
+    margin-bottom: 20px;
+
+    font-size: clamp(24px, 5vw, 38px);
+
+    color: #333;
+
+}
+
+
+/* Texto */
+
+#mensagem p {
+
+    margin-bottom: 15px;
+
+    font-size: clamp(16px, 3.5vw, 21px);
+
+    line-height: 1.6;
+
+    color: #444;
+
+}
+
+
+/* ============================= */
+/* CELULAR */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+    #carta {
+        width: 92%;
+    }
+
+    #botaoAbrir {
+        width: 50px;
+        height: 50px;
+    }
+
+    #mensagem {
+        width: 88%;
+
+        padding: 25px 20px;
+
+        max-height: 78%;
+    }
+
+}
+
+
+/* ============================= */
+/* TOQUE NO CELULAR */
+/* ============================= */
+
+#botaoAbrir {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
