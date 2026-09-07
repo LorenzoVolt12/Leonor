@@ -14,17 +14,11 @@ min-height: 100dvh;
 
 ```
 background-image: url("Fundo.png");
-
 background-size: cover;
-
 background-position: center;
-
 background-attachment: fixed;
 
-font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+font-family: Georgia, "Times New Roman", serif;
 
 color: #71394d;
 
@@ -32,10 +26,6 @@ overflow: hidden;
 ```
 
 }
-
-/* ============================= */
-/* SCROLL */
-/* ============================= */
 
 body.scroll {
 overflow-x: hidden;
@@ -51,9 +41,7 @@ min-height: 100dvh;
 
 ```
 display: flex;
-
 justify-content: center;
-
 align-items: center;
 
 padding: 30px;
@@ -75,10 +63,9 @@ transition:
 
 #envelope {
 width: 100%;
-
-```
 height: auto;
 
+```
 display: block;
 
 transform-origin: center;
@@ -92,7 +79,7 @@ transition:
 }
 
 /* ============================= */
-/* BOTÃO DE ABRIR */
+/* BOTÃO */
 /* ============================= */
 
 #botaoAbrir {
@@ -100,11 +87,9 @@ position: absolute;
 
 ```
 left: 50%;
-
 top: 68%;
 
 width: 55px;
-
 height: 55px;
 
 transform:
@@ -113,22 +98,20 @@ transform:
 border-radius: 50%;
 
 background:
-    rgba(255,255,255,.6);
+    rgba(255,255,255,.35);
 
 border:
-    2px solid rgba(255,255,255,.95);
+    2px solid rgba(255,255,255,.8);
 
 cursor: pointer;
 
 z-index: 20;
 
-animation:
-    pulsar 1.8s infinite;
+animation: pulsar 1.8s infinite;
 
 touch-action: manipulation;
 
--webkit-tap-highlight-color:
-    transparent;
+-webkit-tap-highlight-color: transparent;
 ```
 
 }
@@ -136,8 +119,7 @@ touch-action: manipulation;
 @keyframes pulsar {
 
 ```
-0%,
-100% {
+0%, 100% {
     transform:
         translate(-50%, -50%)
         scale(1);
@@ -157,7 +139,7 @@ touch-action: manipulation;
 }
 
 /* ============================= */
-/* ABERTURA */
+/* ABERTURA — ORIGINAL */
 /* ============================= */
 
 #carta.abrindo {
@@ -231,7 +213,7 @@ filter:
 }
 
 /* ============================= */
-/* TEXTO DENTRO DA CARTA */
+/* MENSAGEM DA CARTA */
 /* ============================= */
 
 #mensagemCarta {
@@ -240,7 +222,6 @@ filter:
 position: absolute;
 
 left: 50%;
-
 top: 50%;
 
 width: 75%;
@@ -260,6 +241,27 @@ transition:
     transform .9s cubic-bezier(.22,1,.36,1);
 
 pointer-events: none;
+
+/*
+FUNDO NOVO:
+um rosa muito clarinho atrás do texto
+para ficar mais fácil de ler.
+*/
+
+background:
+    rgba(255, 238, 244, 0.82);
+
+padding:
+    22px 28px;
+
+border-radius:
+    18px;
+
+box-shadow:
+    0 8px 25px rgba(90, 40, 60, 0.12);
+
+border:
+    1px solid rgba(255,255,255,.75);
 ```
 
 }
@@ -284,12 +286,12 @@ font-size:
 
 margin-bottom: 20px;
 
-color: #5f2940;
+color: #692d46;
 
 font-weight: bold;
 
 text-shadow:
-    0 2px 6px rgba(255,255,255,.95);
+    0 1px 3px rgba(255,255,255,.9);
 ```
 
 }
@@ -309,7 +311,7 @@ color: #71394d;
 font-weight: 500;
 
 text-shadow:
-    0 1px 6px rgba(255,255,255,.95);
+    0 1px 3px rgba(255,255,255,.9);
 ```
 
 }
@@ -329,10 +331,6 @@ padding-bottom: 100px;
 ```
 
 }
-
-/* ============================= */
-/* SECÇÕES */
-/* ============================= */
 
 .secao {
 
@@ -366,21 +364,6 @@ transition:
 
 }
 
-/* PRIMEIRA SECÇÃO */
-
-.secao.aparecer {
-
-```
-opacity: 1;
-
-transform:
-    translateY(0);
-```
-
-}
-
-/* SECÇÕES AO FAZER SCROLL */
-
 .secao.visivel {
 
 ```
@@ -392,32 +375,24 @@ transform:
 
 }
 
-/* ============================= */
-/* TÍTULOS */
-/* ============================= */
-
 .secao h2 {
 
 ```
 font-size:
     clamp(28px, 6vw, 45px);
 
-font-weight: bold;
+font-weight: normal;
 
 margin:
     15px 0 25px;
 
-color: #642d45;
+color: #692d46;
 
 text-shadow:
-    0 2px 7px rgba(255,255,255,.95);
+    0 2px 5px rgba(255,255,255,.9);
 ```
 
 }
-
-/* ============================= */
-/* TEXTO */
-/* ============================= */
 
 .secao p {
 
@@ -434,12 +409,10 @@ color: #71394d;
 font-weight: 500;
 
 text-shadow:
-    0 1px 6px rgba(255,255,255,.95);
+    0 1px 4px rgba(255,255,255,.9);
 ```
 
 }
-
-/* TEXTO PEQUENO */
 
 .pequeno {
 
@@ -451,7 +424,7 @@ letter-spacing: 3px;
 
 text-transform: uppercase;
 
-opacity: .95;
+opacity: .9;
 
 color: #75374f !important;
 ```
@@ -480,8 +453,7 @@ animation:
 @keyframes flutuar {
 
 ```
-0%,
-100% {
+0%, 100% {
     transform:
         translateY(0);
 }
@@ -504,7 +476,6 @@ animation:
 display: flex;
 
 justify-content: center;
-
 align-items: center;
 
 gap: 40px;
@@ -527,7 +498,7 @@ background: none;
 
 font-size: 65px;
 
-color: #9f3f61;
+color: #a34767;
 
 cursor: pointer;
 
@@ -561,25 +532,22 @@ animation:
 
 ```
 0% {
-    transform:
-        scale(1);
+    transform: scale(1);
 }
 
 50% {
-    transform:
-        scale(1.5);
+    transform: scale(1.5);
 }
 
 100% {
-    transform:
-        scale(1);
+    transform: scale(1);
 }
 ```
 
 }
 
 /* ============================= */
-/* MENSAGEM DO CORAÇÃO */
+/* MENSAGEM ESCONDIDA */
 /* ============================= */
 
 #mensagemCoracao {
@@ -592,12 +560,12 @@ margin-top: 40px;
 font-size:
     clamp(17px, 4vw, 23px);
 
-color: #642d45;
+color: #692d46;
 
 font-weight: bold;
 
 text-shadow:
-    0 1px 6px rgba(255,255,255,.95);
+    0 1px 5px rgba(255,255,255,.9);
 
 opacity: 0;
 
@@ -652,7 +620,7 @@ background: none;
 
 font-size: 40px;
 
-color: #9f3f61;
+color: #a34767;
 
 cursor: pointer;
 
@@ -750,7 +718,6 @@ to {
 position: absolute;
 
 left: 50%;
-
 top: 50%;
 
 pointer-events: none;
@@ -844,7 +811,7 @@ min-height: 80vh;
 ```
 font-size: 90px;
 
-color: #9f3f61;
+color: #a34767;
 
 animation:
     respirar 3s infinite ease-in-out;
@@ -855,8 +822,7 @@ animation:
 @keyframes respirar {
 
 ```
-0%,
-100% {
+0%, 100% {
     transform:
         scale(1);
 }
@@ -897,6 +863,7 @@ font-style: italic;
 
 
 #botaoAbrir {
+
     width: 50px;
 
     height: 50px;
@@ -904,22 +871,26 @@ font-style: italic;
 
 
 .secao {
+
     padding:
         80px 20px;
 }
 
 
 .coracoes {
+
     gap: 20px;
 }
 
 
 .coracao {
+
     font-size: 55px;
 }
 
 
 .estrelas {
+
     min-height: 220px;
 }
 
@@ -929,6 +900,15 @@ font-style: italic;
     width: 90vw;
 
     max-height: 500px;
+}
+
+
+#mensagemCarta {
+
+    width: 82%;
+
+    padding:
+        18px 20px;
 }
 ```
 
