@@ -1,216 +1,235 @@
+/* ============================= */
+/* RESET */
+/* ============================= */
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 
 html {
-scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
 
 body {
-width: 100%;
-min-height: 100dvh;
+    width: 100%;
+    min-height: 100dvh;
 
-```
-background-image: url("Fundo.png");
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
+    background-image: url("Fundo.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
-font-family: Georgia, "Times New Roman", serif;
+    font-family: Georgia, "Times New Roman", serif;
 
-color: #71394d;
+    color: #4a4145;
 
-overflow: hidden;
-```
-
+    overflow: hidden;
 }
+
+
+/* Quando a carta abre */
 
 body.scroll {
-overflow-x: hidden;
-overflow-y: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
+
+
 
 /* ============================= */
 /* CARTA */
 /* ============================= */
 
 #inicio {
-min-height: 100dvh;
 
-```
-display: flex;
-justify-content: center;
-align-items: center;
+    min-height: 100dvh;
 
-padding: 30px;
-```
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px;
 
 }
+
 
 #carta {
-position: relative;
 
-```
-width: min(80vw, 700px);
+    position: relative;
 
-transition:
-    transform 0.9s ease;
-```
+    width: min(80vw, 700px);
+
+    transition:
+        transform 0.9s ease;
 
 }
+
 
 #envelope {
-width: 100%;
-height: auto;
 
-```
-display: block;
+    width: 100%;
+    height: auto;
 
-transform-origin: center;
+    display: block;
 
-transition:
-    transform 1.2s cubic-bezier(.22,1,.36,1),
-    opacity 1s ease,
-    filter 1s ease;
-```
+    transform-origin: center;
+
+    transition:
+        transform 1.2s cubic-bezier(.22,1,.36,1),
+        opacity 1s ease,
+        filter 1s ease;
 
 }
+
+
 
 /* ============================= */
 /* BOTÃO */
 /* ============================= */
 
 #botaoAbrir {
-position: absolute;
 
-```
-left: 50%;
-top: 68%;
+    position: absolute;
 
-width: 55px;
-height: 55px;
+    left: 50%;
+    top: 68%;
 
-transform:
-    translate(-50%, -50%);
+    width: 55px;
+    height: 55px;
 
-border-radius: 50%;
+    transform:
+        translate(-50%, -50%);
 
-background:
-    rgba(255,255,255,.35);
+    border-radius: 50%;
 
-border:
-    2px solid rgba(255,255,255,.8);
+    background:
+        rgba(255,255,255,.35);
 
-cursor: pointer;
+    border:
+        2px solid rgba(255,255,255,.8);
 
-z-index: 20;
+    cursor: pointer;
 
-animation: pulsar 1.8s infinite;
+    z-index: 20;
 
-touch-action: manipulation;
+    animation: pulsar 1.8s infinite;
 
--webkit-tap-highlight-color: transparent;
-```
+    touch-action: manipulation;
+
+    -webkit-tap-highlight-color: transparent;
 
 }
+
 
 @keyframes pulsar {
 
-```
-0%, 100% {
-    transform:
-        translate(-50%, -50%)
-        scale(1);
+    0%,
+    100% {
 
-    opacity: .7;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+        opacity: .7;
+
+    }
+
+    50% {
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+
+        opacity: 1;
+
+    }
+
 }
 
-50% {
-    transform:
-        translate(-50%, -50%)
-        scale(1.15);
 
-    opacity: 1;
-}
-```
-
-}
 
 /* ============================= */
-/* ABERTURA — ORIGINAL */
+/* ABERTURA */
 /* ============================= */
 
 #carta.abrindo {
-transform:
-translateY(-15px);
+
+    transform:
+        translateY(-15px);
+
 }
+
 
 #carta.abrindo #botaoAbrir {
 
-```
-animation:
-    desaparecer .45s forwards;
+    animation:
+        desaparecer .45s forwards;
 
-pointer-events: none;
-```
+    pointer-events: none;
 
 }
+
 
 @keyframes desaparecer {
 
-```
-from {
-    opacity: 1;
+    from {
 
-    transform:
-        translate(-50%, -50%)
-        scale(1);
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+
+    }
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.2);
+
+    }
+
 }
 
-to {
-    opacity: 0;
-
-    transform:
-        translate(-50%, -50%)
-        scale(.2);
-}
-```
-
-}
 
 #carta.abrindo #envelope {
 
-```
-transform:
-    perspective(1000px)
-    rotateX(8deg)
-    translateY(-20px)
-    scale(1.03);
+    transform:
+        perspective(1000px)
+        rotateX(8deg)
+        translateY(-20px)
+        scale(1.03);
 
-filter:
-    brightness(1.08);
-```
+    filter:
+        brightness(1.08);
 
 }
+
 
 #carta.aberta #envelope {
 
-```
-transform:
-    perspective(1000px)
-    rotateX(12deg)
-    translateY(-25px)
-    scale(1.04);
+    transform:
+        perspective(1000px)
+        rotateX(12deg)
+        translateY(-25px)
+        scale(1.04);
 
-opacity: .12;
+    opacity: .12;
 
-filter:
-    blur(3px);
-```
+    filter:
+        blur(3px);
 
 }
+
+
 
 /* ============================= */
 /* MENSAGEM DA CARTA */
@@ -218,103 +237,65 @@ filter:
 
 #mensagemCarta {
 
-```
-position: absolute;
+    position: absolute;
 
-left: 50%;
-top: 50%;
+    left: 50%;
+    top: 50%;
 
-width: 75%;
+    width: 75%;
 
-transform:
-    translate(-50%, -42%)
-    scale(.85);
+    transform:
+        translate(-50%, -42%)
+        scale(.85);
 
-opacity: 0;
+    opacity: 0;
 
-text-align: center;
+    text-align: center;
 
-z-index: 10;
+    z-index: 10;
 
-transition:
-    opacity .9s ease,
-    transform .9s cubic-bezier(.22,1,.36,1);
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.22,1,.36,1);
 
-pointer-events: none;
-
-/*
-FUNDO NOVO:
-um rosa muito clarinho atrás do texto
-para ficar mais fácil de ler.
-*/
-
-background:
-    rgba(255, 238, 244, 0.82);
-
-padding:
-    22px 28px;
-
-border-radius:
-    18px;
-
-box-shadow:
-    0 8px 25px rgba(90, 40, 60, 0.12);
-
-border:
-    1px solid rgba(255,255,255,.75);
-```
+    pointer-events: none;
 
 }
+
 
 #mensagemCarta[aria-hidden="false"] {
 
-```
-opacity: 1;
+    opacity: 1;
 
-transform:
-    translate(-50%, -50%)
-    scale(1);
-```
+    transform:
+        translate(-50%, -50%)
+        scale(1);
 
 }
+
 
 #mensagemCarta h1 {
 
-```
-font-size:
-    clamp(25px, 5vw, 40px);
+    font-size:
+        clamp(25px, 5vw, 40px);
 
-margin-bottom: 20px;
-
-color: #692d46;
-
-font-weight: bold;
-
-text-shadow:
-    0 1px 3px rgba(255,255,255,.9);
-```
+    margin-bottom: 20px;
 
 }
+
 
 #mensagemCarta p {
 
-```
-font-size:
-    clamp(16px, 3vw, 21px);
+    font-size:
+        clamp(16px, 3vw, 21px);
 
-line-height: 1.6;
+    line-height: 1.6;
 
-margin-bottom: 12px;
-
-color: #71394d;
-
-font-weight: 500;
-
-text-shadow:
-    0 1px 3px rgba(255,255,255,.9);
-```
+    margin-bottom: 12px;
 
 }
+
+
 
 /* ============================= */
 /* CONTEÚDO */
@@ -322,114 +303,94 @@ text-shadow:
 
 #conteudo {
 
-```
-position: relative;
+    position: relative;
 
-width: 100%;
+    width: 100%;
 
-padding-bottom: 100px;
-```
+    padding-bottom: 100px;
 
 }
+
 
 .secao {
 
-```
-min-height: 100vh;
+    min-height: 100vh;
 
-width: 100%;
+    width: 100%;
 
-padding:
-    100px 25px;
+    padding:
+        100px 25px;
 
-display: flex;
+    display: flex;
 
-flex-direction: column;
+    flex-direction: column;
 
-justify-content: center;
+    justify-content: center;
 
-align-items: center;
+    align-items: center;
 
-text-align: center;
+    text-align: center;
 
-opacity: 0;
+    opacity: 0;
 
-transform:
-    translateY(50px);
+    transform:
+        translateY(50px);
 
-transition:
-    opacity 1s ease,
-    transform 1s ease;
-```
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
 
 }
+
 
 .secao.visivel {
 
-```
-opacity: 1;
+    opacity: 1;
 
-transform:
-    translateY(0);
-```
+    transform:
+        translateY(0);
 
 }
+
 
 .secao h2 {
 
-```
-font-size:
-    clamp(28px, 6vw, 45px);
+    font-size:
+        clamp(28px, 6vw, 45px);
 
-font-weight: normal;
+    font-weight: normal;
 
-margin:
-    15px 0 25px;
-
-color: #692d46;
-
-text-shadow:
-    0 2px 5px rgba(255,255,255,.9);
-```
+    margin:
+        15px 0 25px;
 
 }
+
 
 .secao p {
 
-```
-max-width: 600px;
+    max-width: 600px;
 
-font-size:
-    clamp(17px, 3.5vw, 21px);
+    font-size:
+        clamp(17px, 3.5vw, 21px);
 
-line-height: 1.8;
-
-color: #71394d;
-
-font-weight: 500;
-
-text-shadow:
-    0 1px 4px rgba(255,255,255,.9);
-```
+    line-height: 1.8;
 
 }
+
 
 .pequeno {
 
-```
-font-size:
-    14px !important;
+    font-size: 14px !important;
 
-letter-spacing: 3px;
+    letter-spacing: 3px;
 
-text-transform: uppercase;
+    text-transform: uppercase;
 
-opacity: .9;
-
-color: #75374f !important;
-```
+    opacity: .65;
 
 }
+
+
 
 /* ============================= */
 /* SETA */
@@ -437,34 +398,36 @@ color: #75374f !important;
 
 .seta {
 
-```
-margin-top: 50px;
+    margin-top: 50px;
 
-font-size: 35px;
+    font-size: 35px;
 
-color: #7b3c56;
-
-animation:
-    flutuar 2s infinite ease-in-out;
-```
+    animation:
+        flutuar 2s infinite ease-in-out;
 
 }
+
 
 @keyframes flutuar {
 
-```
-0%, 100% {
-    transform:
-        translateY(0);
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(10px);
+
+    }
+
 }
 
-50% {
-    transform:
-        translateY(10px);
-}
-```
 
-}
 
 /* ============================= */
 /* CORAÇÕES */
@@ -472,79 +435,76 @@ animation:
 
 .coracoes {
 
-```
-display: flex;
+    display: flex;
 
-justify-content: center;
-align-items: center;
+    justify-content: center;
 
-gap: 40px;
+    align-items: center;
 
-margin-top: 50px;
+    gap: 40px;
 
-flex-wrap: wrap;
-```
+    margin-top: 50px;
+
+    flex-wrap: wrap;
 
 }
+
 
 .coracao {
 
-```
-position: relative;
+    position: relative;
 
-border: none;
+    border: none;
 
-background: none;
+    background: none;
 
-font-size: 65px;
+    font-size: 65px;
 
-color: #a34767;
+    color: #b7838c;
 
-cursor: pointer;
+    cursor: pointer;
 
-transition:
-    transform .3s ease;
+    transition:
+        transform .3s ease;
 
-touch-action: manipulation;
-```
+    touch-action: manipulation;
 
 }
+
 
 .coracao:hover {
 
-```
-transform:
-    scale(1.2);
-```
+    transform:
+        scale(1.2);
 
 }
+
 
 .coracao.clicado {
 
-```
-animation:
-    coracaoClique .5s ease;
-```
+    animation:
+        coracaoClique .5s ease;
 
 }
+
 
 @keyframes coracaoClique {
 
-```
-0% {
-    transform: scale(1);
-}
+    0% {
+        transform: scale(1);
+    }
 
-50% {
-    transform: scale(1.5);
-}
+    50% {
+        transform: scale(1.5);
+    }
 
-100% {
-    transform: scale(1);
-}
-```
+    100% {
+        transform: scale(1);
+    }
 
 }
+
+
 
 /* ============================= */
 /* MENSAGEM ESCONDIDA */
@@ -552,43 +512,35 @@ animation:
 
 #mensagemCoracao {
 
-```
-min-height: 35px;
+    min-height: 35px;
 
-margin-top: 40px;
+    margin-top: 40px;
 
-font-size:
-    clamp(17px, 4vw, 23px);
+    font-size:
+        clamp(17px, 4vw, 23px);
 
-color: #692d46;
+    opacity: 0;
 
-font-weight: bold;
+    transform:
+        translateY(10px);
 
-text-shadow:
-    0 1px 5px rgba(255,255,255,.9);
-
-opacity: 0;
-
-transform:
-    translateY(10px);
-
-transition:
-    opacity .5s ease,
-    transform .5s ease;
-```
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
 
 }
+
 
 #mensagemCoracao.mostrar {
 
-```
-opacity: 1;
+    opacity: 1;
 
-transform:
-    translateY(0);
-```
+    transform:
+        translateY(0);
 
 }
+
+
 
 /* ============================= */
 /* ESTRELAS */
@@ -596,117 +548,130 @@ transform:
 
 .estrelas {
 
-```
-position: relative;
+    position: relative;
 
-width:
-    min(500px, 90vw);
+    width: min(500px, 90vw);
 
-min-height: 250px;
+    min-height: 250px;
 
-margin-top: 40px;
-```
+    margin-top: 40px;
 
 }
+
 
 .estrela {
 
-```
-position: absolute;
+    position: absolute;
 
-border: none;
+    border: none;
 
-background: none;
+    background: none;
 
-font-size: 40px;
+    font-size: 40px;
 
-color: #a34767;
+    color: #b9a3a8;
 
-cursor: pointer;
+    cursor: pointer;
 
-transition:
-    transform .3s ease;
-```
+    transition:
+        transform .3s ease;
 
 }
+
 
 .estrela:nth-child(1) {
-left: 10%;
-top: 20%;
+
+    left: 10%;
+    top: 20%;
+
 }
+
 
 .estrela:nth-child(2) {
-left: 45%;
-top: 5%;
+
+    left: 45%;
+    top: 5%;
+
 }
+
 
 .estrela:nth-child(3) {
-right: 10%;
-top: 35%;
+
+    right: 10%;
+    top: 35%;
+
 }
+
 
 .estrela:nth-child(4) {
-left: 30%;
-bottom: 10%;
+
+    left: 30%;
+    bottom: 10%;
+
 }
 
+
 .estrela:nth-child(5) {
-right: 35%;
-bottom: 5%;
+
+    right: 35%;
+    bottom: 5%;
+
 }
+
 
 .estrela:hover {
 
-```
-transform:
-    scale(1.4)
-    rotate(15deg);
-```
+    transform:
+        scale(1.4)
+        rotate(15deg);
 
 }
+
 
 #efeitoEstrela {
 
-```
-min-height: 45px;
+    min-height: 45px;
 
-margin-top: 20px;
+    margin-top: 20px;
 
-font-size: 35px;
+    font-size: 35px;
 
-opacity: 0;
-```
+    opacity: 0;
 
 }
+
 
 #efeitoEstrela.mostrar {
 
-```
-animation:
-    aparecerEstrela .7s ease forwards;
-```
+    animation:
+        aparecerEstrela .7s ease forwards;
 
 }
+
 
 @keyframes aparecerEstrela {
 
-```
-from {
-    opacity: 0;
+    from {
 
-    transform:
-        scale(.4);
+        opacity: 0;
+
+        transform:
+            scale(.4);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
 }
 
-to {
-    opacity: 1;
 
-    transform:
-        scale(1);
-}
-```
-
-}
 
 /* ============================= */
 /* PARTÍCULAS */
@@ -714,85 +679,83 @@ to {
 
 .particula {
 
-```
-position: absolute;
+    position: absolute;
 
-left: 50%;
-top: 50%;
+    left: 50%;
+    top: 50%;
 
-pointer-events: none;
+    pointer-events: none;
 
-animation:
-    particula .9s ease forwards;
-```
+    animation:
+        particula .9s ease forwards;
 
 }
+
 
 @keyframes particula {
 
-```
-from {
-    opacity: 1;
+    from {
 
-    transform:
-        translate(0,0)
-        scale(1);
+        opacity: 1;
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    to {
+
+        opacity: 0;
+
+        transform:
+            translate(var(--x),var(--y))
+            scale(.2);
+
+    }
+
 }
 
-to {
-    opacity: 0;
 
-    transform:
-        translate(var(--x),var(--y))
-        scale(.2);
-}
-```
-
-}
 
 /* ============================= */
 /* FOTO */
 /* ============================= */
 
-.foto {
+.foto-placeholder {
 
-```
-width:
-    min(500px, 90vw);
+    width: min(500px, 90vw);
 
-max-height: 600px;
+    height: 300px;
 
-object-fit: cover;
+    margin-top: 30px;
 
-margin-top: 30px;
+    display: flex;
 
-border-radius: 18px;
+    justify-content: center;
 
-border:
-    6px solid rgba(255,255,255,.9);
+    align-items: center;
 
-box-shadow:
-    0 10px 35px rgba(80,40,55,.35);
+    border:
+        2px dashed rgba(100,80,85,.25);
 
-transition:
-    transform .4s ease,
-    box-shadow .4s ease;
-```
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,.15);
 
 }
 
-.foto:hover {
 
-```
-transform:
-    scale(1.02)
-    rotate(-1deg);
+.foto-placeholder p {
 
-box-shadow:
-    0 15px 40px rgba(80,40,55,.45);
-```
+    font-size: 17px;
+
+    opacity: .6;
 
 }
+
+
 
 /* ============================= */
 /* FINAL */
@@ -800,50 +763,50 @@ box-shadow:
 
 .final {
 
-```
-min-height: 80vh;
-```
+    min-height: 80vh;
 
 }
+
 
 .coracao-final {
 
-```
-font-size: 90px;
+    font-size: 90px;
 
-color: #a34767;
-
-animation:
-    respirar 3s infinite ease-in-out;
-```
+    animation:
+        respirar 3s infinite ease-in-out;
 
 }
+
 
 @keyframes respirar {
 
-```
-0%, 100% {
-    transform:
-        scale(1);
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.12);
+
+    }
+
 }
 
-50% {
-    transform:
-        scale(1.12);
-}
-```
-
-}
 
 .assinatura {
 
-```
-margin-top: 40px;
+    margin-top: 40px;
 
-font-style: italic;
-```
+    font-style: italic;
 
 }
+
+
 
 /* ============================= */
 /* CELULAR */
@@ -851,65 +814,61 @@ font-style: italic;
 
 @media (max-width: 600px) {
 
-```
-#inicio {
-    padding: 15px;
-}
+    #inicio {
+
+        padding: 15px;
+
+    }
 
 
-#carta {
-    width: 92vw;
-}
+    #carta {
+
+        width: 92vw;
+
+    }
 
 
-#botaoAbrir {
+    #botaoAbrir {
 
-    width: 50px;
+        width: 50px;
+        height: 50px;
 
-    height: 50px;
-}
-
-
-.secao {
-
-    padding:
-        80px 20px;
-}
+    }
 
 
-.coracoes {
+    .secao {
 
-    gap: 20px;
-}
+        padding:
+            80px 20px;
 
-
-.coracao {
-
-    font-size: 55px;
-}
+    }
 
 
-.estrelas {
+    .coracoes {
 
-    min-height: 220px;
-}
+        gap: 20px;
 
-
-.foto {
-
-    width: 90vw;
-
-    max-height: 500px;
-}
+    }
 
 
-#mensagemCarta {
+    .coracao {
 
-    width: 82%;
+        font-size: 55px;
 
-    padding:
-        18px 20px;
-}
-```
+    }
+
+
+    .estrelas {
+
+        min-height: 220px;
+
+    }
+
+
+    .foto-placeholder {
+
+        height: 250px;
+
+    }
 
 }
