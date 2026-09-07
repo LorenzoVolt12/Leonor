@@ -11,53 +11,244 @@
 
 <body>
 
-    <div id="carta">
+    <!-- ========================= -->
+    <!-- MÚSICA -->
+    <!-- ========================= -->
 
-        <!-- Carta fechada -->
-        <img
-            src="Carta%20(fechada).jpg"
-            id="envelope"
-            alt="Carta fechada"
-        >
+    <audio id="musica" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
 
-        <!-- Círculo para abrir -->
-        <div
-            id="botaoAbrir"
-            role="button"
-            aria-label="Abrir carta"
-        ></div>
 
-        <!-- Mensagem -->
-        <div id="mensagem" aria-hidden="true">
+    <!-- ========================= -->
+    <!-- CARTA -->
+    <!-- ========================= -->
 
-            <h1>Para ti, Leonor :3</h1>
+    <section id="inicio">
 
-            <p>
-                Eu fiz este presentinho especialmente para ti. 💗
-            </p>
+        <div id="carta">
 
-            <p>
-                Espero que gostes muito! :D
-            </p>
+            <img
+                src="Carta%20(fechada).jpg"
+                id="envelope"
+                alt="Carta fechada"
+            >
 
-            <p>
-                ❤️
-            </p>
+            <div
+                id="botaoAbrir"
+                role="button"
+                aria-label="Abrir carta"
+            ></div>
+
+
+            <!-- Mensagem dentro da carta -->
+
+            <div id="mensagemCarta">
+
+                <h1>Para ti, Leonor :3</h1>
+
+                <p>
+                    Eu fiz este presentinho especialmente para ti. 💗
+                </p>
+
+                <p>
+                    Espero que gostes.
+                </p>
+
+            </div>
 
         </div>
 
-    </div>
+    </section>
 
+
+
+    <!-- ========================= -->
+    <!-- CONTEÚDO DA PÁGINA -->
+    <!-- ========================= -->
+
+    <main id="conteudo">
+
+
+        <!-- Pequena introdução -->
+
+        <section class="secao aparecer">
+
+            <p class="pequeno">uma pequena coisa para ti...</p>
+
+            <h2>Fiz isto pensando em ti. ♡</h2>
+
+            <p>
+                Desce pela página.
+                Existem algumas coisinhas escondidas por aqui.
+            </p>
+
+            <div class="seta">↓</div>
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- CORAÇÕES -->
+        <!-- ========================= -->
+
+        <section class="secao">
+
+            <p class="pequeno">talvez encontres alguma coisa...</p>
+
+            <h2>Há algumas coisas escondidas aqui 👀</h2>
+
+            <p>
+                Tenta tocar nos corações.
+            </p>
+
+
+            <div class="coracoes">
+
+                <button
+                    class="coracao"
+                    data-mensagem="És uma pessoa muito especial para mim. ♡"
+                >
+                    ♡
+                </button>
+
+                <button
+                    class="coracao"
+                    data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3"
+                >
+                    ♡
+                </button>
+
+                <button
+                    class="coracao"
+                    data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div id="mensagemCoracao"></div>
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- EFEITO DE ESTRELAS -->
+        <!-- ========================= -->
+
+        <section class="secao">
+
+            <p class="pequeno">olha com atenção...</p>
+
+            <h2>✨</h2>
+
+            <p>
+                Algumas estrelas não são apenas decoração.
+            </p>
+
+
+            <div class="estrelas">
+
+                <button class="estrela" data-mensagem="✨">
+                    ✦
+                </button>
+
+                <button class="estrela" data-mensagem="♡">
+                    ✧
+                </button>
+
+                <button class="estrela" data-mensagem="🌸">
+                    ✦
+                </button>
+
+                <button class="estrela" data-mensagem="💗">
+                    ✧
+                </button>
+
+                <button class="estrela" data-mensagem="✨">
+                    ✦
+                </button>
+
+            </div>
+
+
+            <div id="efeitoEstrela"></div>
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- ESPAÇO PARA FOTO -->
+        <!-- ========================= -->
+
+        <section class="secao foto-secao">
+
+            <p class="pequeno">uma memória</p>
+
+            <h2>♡</h2>
+
+            <div class="foto-placeholder">
+
+                <p>
+                    Aqui vai uma foto nossa :3
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================= -->
+        <!-- FINAL -->
+        <!-- ========================= -->
+
+        <section class="secao final">
+
+            <div class="coracao-final">♡</div>
+
+            <h2>Chegaste ao fim.</h2>
+
+            <p>
+                Mas ainda há muito mais que eu quero viver contigo.
+            </p>
+
+            <p class="assinatura">
+                — Lorenzo ♡
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
 
     <script>
 
         const carta = document.getElementById("carta");
         const botao = document.getElementById("botaoAbrir");
-        const mensagem = document.getElementById("mensagem");
+        const mensagemCarta = document.getElementById("mensagemCarta");
+        const musica = document.getElementById("musica");
 
         let abriu = false;
 
+
+        /* ========================= */
+        /* ABRIR CARTA */
+        /* ========================= */
+
         botao.addEventListener("click", abrirCarta);
+
 
         function abrirCarta() {
 
@@ -65,19 +256,198 @@
 
             abriu = true;
 
-            // Começa a animação
             carta.classList.add("abrindo");
 
-            // Depois da animação, mostra a mensagem
+            botao.setAttribute("aria-hidden", "true");
+
+
+            /* Começa a música depois do toque */
+
+            musica.volume = 0.35;
+
+            musica.play().catch(() => {
+                console.log("A música não pôde começar automaticamente.");
+            });
+
+
+            /* Mostra a mensagem */
+
             setTimeout(() => {
 
-                mensagem.setAttribute("aria-hidden", "false");
+                mensagemCarta.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
 
                 carta.classList.add("aberta");
 
             }, 900);
 
+
+            /* Liberta o scroll depois da abertura */
+
+            setTimeout(() => {
+
+                document.body.classList.add("scroll");
+
+            }, 1300);
+
         }
+
+
+
+        /* ========================= */
+        /* CORAÇÕES */
+        /* ========================= */
+
+        const coracoes =
+            document.querySelectorAll(".coracao");
+
+        const mensagemCoracao =
+            document.getElementById("mensagemCoracao");
+
+
+        coracoes.forEach(coracao => {
+
+            coracao.addEventListener("click", () => {
+
+                const texto =
+                    coracao.dataset.mensagem;
+
+                mensagemCoracao.textContent = texto;
+
+                mensagemCoracao.classList.remove("mostrar");
+
+                void mensagemCoracao.offsetWidth;
+
+                mensagemCoracao.classList.add("mostrar");
+
+
+                coracao.classList.add("clicado");
+
+
+                setTimeout(() => {
+                    coracao.classList.remove("clicado");
+                }, 500);
+
+            });
+
+        });
+
+
+
+        /* ========================= */
+        /* ESTRELAS */
+        /* ========================= */
+
+        const estrelas =
+            document.querySelectorAll(".estrela");
+
+        const efeitoEstrela =
+            document.getElementById("efeitoEstrela");
+
+
+        estrelas.forEach(estrela => {
+
+            estrela.addEventListener("click", () => {
+
+                const texto =
+                    estrela.dataset.mensagem;
+
+                efeitoEstrela.textContent = texto;
+
+                efeitoEstrela.classList.remove("mostrar");
+
+                void efeitoEstrela.offsetWidth;
+
+                efeitoEstrela.classList.add("mostrar");
+
+
+                criarParticulas(estrela);
+
+            });
+
+        });
+
+
+
+        /* ========================= */
+        /* PARTÍCULAS */
+        /* ========================= */
+
+        function criarParticulas(elemento) {
+
+            for (let i = 0; i < 8; i++) {
+
+                const particula =
+                    document.createElement("span");
+
+                particula.classList.add("particula");
+
+                particula.textContent = "✦";
+
+                particula.style.setProperty(
+                    "--x",
+                    `${(Math.random() - 0.5) * 180}px`
+                );
+
+                particula.style.setProperty(
+                    "--y",
+                    `${(Math.random() - 0.5) * 180}px`
+                );
+
+                elemento.appendChild(particula);
+
+
+                setTimeout(() => {
+                    particula.remove();
+                }, 900);
+
+            }
+
+        }
+
+
+
+        /* ========================= */
+        /* ANIMAÇÕES AO DESCER */
+        /* ========================= */
+
+        const elementos =
+            document.querySelectorAll(".secao");
+
+
+        const observador =
+            new IntersectionObserver(
+
+                (entradas) => {
+
+                    entradas.forEach(entrada => {
+
+                        if (entrada.isIntersecting) {
+
+                            entrada.target.classList.add(
+                                "visivel"
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.15
+                }
+
+            );
+
+
+        elementos.forEach(elemento => {
+
+            observador.observe(elemento);
+
+        });
 
     </script>
 
