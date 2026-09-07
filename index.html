@@ -1,455 +1,465 @@
 <!DOCTYPE html>
+
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Presentinho :3</title>
+```
+<title>Presentinho :3</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
-    <!-- ========================= -->
-    <!-- MÚSICA -->
-    <!-- ========================= -->
+```
+<!-- ========================= -->
+<!-- MÚSICA -->
+<!-- ========================= -->
 
-    <audio id="musica" loop>
+<audio id="musica" loop>
     <source src="JVKE%20-%20golden%20hour%20%28official%20music%20video%29.mp3" type="audio/mpeg">
 </audio>
 
 
-    <!-- ========================= -->
-    <!-- CARTA -->
-    <!-- ========================= -->
+<!-- ========================= -->
+<!-- CARTA -->
+<!-- ========================= -->
 
-    <section id="inicio">
+<section id="inicio">
 
-        <div id="carta">
+    <div id="carta">
 
-            <img
-                src="Carta%20(fechada).jpg"
-                id="envelope"
-                alt="Carta fechada"
-            >
+        <img
+            src="Carta%20(fechada).jpg"
+            id="envelope"
+            alt="Carta fechada"
+        >
 
-            <div
-                id="botaoAbrir"
-                role="button"
-                aria-label="Abrir carta"
-            ></div>
+        <div
+            id="botaoAbrir"
+            role="button"
+            aria-label="Abrir carta"
+        ></div>
 
 
-            <!-- Mensagem dentro da carta -->
+        <!-- Mensagem dentro da carta -->
 
-            <div id="mensagemCarta">
+        <div id="mensagemCarta">
 
-                <h1>Para ti, Leonor :3</h1>
+            <h1>Para ti, Leonor :3</h1>
 
-                <p>
-                    Eu fiz este presentinho especialmente para ti. 💗
-                </p>
+            <p>
+                Eu fiz este presentinho especialmente para ti. 💗
+            </p>
 
-                <p>
-                    Espero que gostes.
-                </p>
-
-            </div>
+            <p>
+                Espero que gostes.
+            </p>
 
         </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- CONTEÚDO DA PÁGINA -->
+<!-- ========================= -->
+
+<main id="conteudo">
+
+
+    <!-- INTRODUÇÃO -->
+
+    <section class="secao aparecer">
+
+        <p class="pequeno">uma pequena coisa para ti...</p>
+
+        <h2>Fiz isto pensando em ti. ♡</h2>
+
+        <p>
+            Desce pela página.
+            Existem algumas coisinhas escondidas por aqui.
+        </p>
+
+        <div class="seta">↓</div>
 
     </section>
 
 
 
     <!-- ========================= -->
-    <!-- CONTEÚDO DA PÁGINA -->
+    <!-- CORAÇÕES -->
     <!-- ========================= -->
 
-    <main id="conteudo">
+    <section class="secao">
+
+        <p class="pequeno">talvez encontres alguma coisa...</p>
+
+        <h2>Há algumas coisas escondidas aqui 👀</h2>
+
+        <p>
+            Tenta tocar nos corações.
+        </p>
 
 
-        <!-- Pequena introdução -->
+        <div class="coracoes">
 
-        <section class="secao aparecer">
+            <button
+                class="coracao"
+                data-mensagem="És uma pessoa muito especial para mim. ♡"
+            >
+                ♡
+            </button>
 
-            <p class="pequeno">uma pequena coisa para ti...</p>
+            <button
+                class="coracao"
+                data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3"
+            >
+                ♡
+            </button>
 
-            <h2>Fiz isto pensando em ti. ♡</h2>
+            <button
+                class="coracao"
+                data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗"
+            >
+                ♡
+            </button>
 
-            <p>
-                Desce pela página.
-                Existem algumas coisinhas escondidas por aqui.
-            </p>
-
-            <div class="seta">↓</div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- CORAÇÕES -->
-        <!-- ========================= -->
-
-        <section class="secao">
-
-            <p class="pequeno">talvez encontres alguma coisa...</p>
-
-            <h2>Há algumas coisas escondidas aqui 👀</h2>
-
-            <p>
-                Tenta tocar nos corações.
-            </p>
+        </div>
 
 
-            <div class="coracoes">
+        <div id="mensagemCoracao"></div>
 
-                <button
-                    class="coracao"
-                    data-mensagem="És uma pessoa muito especial para mim. ♡"
-                >
-                    ♡
-                </button>
-
-                <button
-                    class="coracao"
-                    data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3"
-                >
-                    ♡
-                </button>
-
-                <button
-                    class="coracao"
-                    data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗"
-                >
-                    ♡
-                </button>
-
-            </div>
-
-
-            <div id="mensagemCoracao"></div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- EFEITO DE ESTRELAS -->
-        <!-- ========================= -->
-
-        <section class="secao">
-
-            <p class="pequeno">olha com atenção...</p>
-
-            <h2>✨</h2>
-
-            <p>
-                Algumas estrelas não são apenas decoração.
-            </p>
-
-
-            <div class="estrelas">
-
-                <button class="estrela" data-mensagem="✨">
-                    ✦
-                </button>
-
-                <button class="estrela" data-mensagem="♡">
-                    ✧
-                </button>
-
-                <button class="estrela" data-mensagem="🌸">
-                    ✦
-                </button>
-
-                <button class="estrela" data-mensagem="💗">
-                    ✧
-                </button>
-
-                <button class="estrela" data-mensagem="✨">
-                    ✦
-                </button>
-
-            </div>
-
-
-            <div id="efeitoEstrela"></div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- ESPAÇO PARA FOTO -->
-        <!-- ========================= -->
-
-        <section class="secao foto-secao">
-
-            <p class="pequeno">uma memória</p>
-
-            <h2>♡</h2>
-
-            <div class="foto-placeholder">
-
-                <p>
-                    Aqui vai uma foto nossa :3
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- FINAL -->
-        <!-- ========================= -->
-
-        <section class="secao final">
-
-            <div class="coracao-final">♡</div>
-
-            <h2>Chegaste ao fim.</h2>
-
-            <p>
-                Mas ainda há muito mais que eu quero viver contigo.
-            </p>
-
-            <p class="assinatura">
-                — Lorenzo ♡
-            </p>
-
-        </section>
-
-
-    </main>
+    </section>
 
 
 
     <!-- ========================= -->
-    <!-- JAVASCRIPT -->
+    <!-- ESTRELAS -->
     <!-- ========================= -->
 
-    <script>
+    <section class="secao">
 
-        const carta = document.getElementById("carta");
-        const botao = document.getElementById("botaoAbrir");
-        const mensagemCarta = document.getElementById("mensagemCarta");
-        const musica = document.getElementById("musica");
+        <p class="pequeno">olha com atenção...</p>
 
-        let abriu = false;
+        <h2>✨</h2>
 
-
-        /* ========================= */
-        /* ABRIR CARTA */
-        /* ========================= */
-
-        botao.addEventListener("click", abrirCarta);
+        <p>
+            Algumas estrelas não são apenas decoração.
+        </p>
 
 
-        function abrirCarta() {
+        <div class="estrelas">
 
-            if (abriu) return;
+            <button class="estrela" data-mensagem="✨">
+                ✦
+            </button>
 
-            abriu = true;
+            <button class="estrela" data-mensagem="♡">
+                ✧
+            </button>
 
-            carta.classList.add("abrindo");
+            <button class="estrela" data-mensagem="🌸">
+                ✦
+            </button>
 
-            botao.setAttribute("aria-hidden", "true");
+            <button class="estrela" data-mensagem="💗">
+                ✧
+            </button>
 
+            <button class="estrela" data-mensagem="✨">
+                ✦
+            </button>
 
-            /* Começa a música depois do toque */
-
-            musica.volume = 0.35;
-
-            musica.play().catch(() => {
-                console.log("A música não pôde começar automaticamente.");
-            });
-
-
-            /* Mostra a mensagem */
-
-            setTimeout(() => {
-
-                mensagemCarta.setAttribute(
-                    "aria-hidden",
-                    "false"
-                );
-
-                carta.classList.add("aberta");
-
-            }, 900);
+        </div>
 
 
-            /* Liberta o scroll depois da abertura */
+        <div id="efeitoEstrela"></div>
 
-            setTimeout(() => {
-
-                document.body.classList.add("scroll");
-
-            }, 1300);
-
-        }
+    </section>
 
 
 
-        /* ========================= */
-        /* CORAÇÕES */
-        /* ========================= */
+    <!-- ========================= -->
+    <!-- FOTO -->
+    <!-- ========================= -->
 
-        const coracoes =
-            document.querySelectorAll(".coracao");
+    <section class="secao foto-secao">
 
-        const mensagemCoracao =
-            document.getElementById("mensagemCoracao");
+        <p class="pequeno">uma memória</p>
 
+        <h2>♡</h2>
 
-        coracoes.forEach(coracao => {
+        <!--
+        IMPORTANTE:
+        Troca "FOTO.jpg" pelo nome EXATO
+        do ficheiro que colocares no GitHub.
+        -->
 
-            coracao.addEventListener("click", () => {
+        <img
+            src="FOTO.jpg"
+            class="foto"
+            alt="Uma memória nossa"
+        >
 
-                const texto =
-                    coracao.dataset.mensagem;
-
-                mensagemCoracao.textContent = texto;
-
-                mensagemCoracao.classList.remove("mostrar");
-
-                void mensagemCoracao.offsetWidth;
-
-                mensagemCoracao.classList.add("mostrar");
+    </section>
 
 
-                coracao.classList.add("clicado");
+
+    <!-- ========================= -->
+    <!-- FINAL -->
+    <!-- ========================= -->
+
+    <section class="secao final">
+
+        <div class="coracao-final">♡</div>
+
+        <h2>Chegaste ao fim.</h2>
+
+        <p>
+            Mas ainda há muito mais que eu quero viver contigo.
+        </p>
+
+        <p class="assinatura">
+            — Lorenzo ♡
+        </p>
+
+    </section>
 
 
-                setTimeout(() => {
-                    coracao.classList.remove("clicado");
-                }, 500);
+</main>
 
-            });
 
+
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
+
+<script>
+
+    const carta = document.getElementById("carta");
+    const botao = document.getElementById("botaoAbrir");
+    const mensagemCarta = document.getElementById("mensagemCarta");
+    const musica = document.getElementById("musica");
+
+    let abriu = false;
+
+
+    /* ========================= */
+    /* ABRIR CARTA */
+    /* ========================= */
+
+    botao.addEventListener("click", abrirCarta);
+
+
+    function abrirCarta() {
+
+        if (abriu) return;
+
+        abriu = true;
+
+        carta.classList.add("abrindo");
+
+        botao.setAttribute("aria-hidden", "true");
+
+
+        /* Começa a música depois do toque */
+
+        musica.volume = 0.35;
+
+        musica.play().catch(() => {
+            console.log("A música não pôde começar automaticamente.");
         });
 
 
+        /* Mostra a mensagem */
 
-        /* ========================= */
-        /* ESTRELAS */
-        /* ========================= */
+        setTimeout(() => {
 
-        const estrelas =
-            document.querySelectorAll(".estrela");
-
-        const efeitoEstrela =
-            document.getElementById("efeitoEstrela");
-
-
-        estrelas.forEach(estrela => {
-
-            estrela.addEventListener("click", () => {
-
-                const texto =
-                    estrela.dataset.mensagem;
-
-                efeitoEstrela.textContent = texto;
-
-                efeitoEstrela.classList.remove("mostrar");
-
-                void efeitoEstrela.offsetWidth;
-
-                efeitoEstrela.classList.add("mostrar");
-
-
-                criarParticulas(estrela);
-
-            });
-
-        });
-
-
-
-        /* ========================= */
-        /* PARTÍCULAS */
-        /* ========================= */
-
-        function criarParticulas(elemento) {
-
-            for (let i = 0; i < 8; i++) {
-
-                const particula =
-                    document.createElement("span");
-
-                particula.classList.add("particula");
-
-                particula.textContent = "✦";
-
-                particula.style.setProperty(
-                    "--x",
-                    `${(Math.random() - 0.5) * 180}px`
-                );
-
-                particula.style.setProperty(
-                    "--y",
-                    `${(Math.random() - 0.5) * 180}px`
-                );
-
-                elemento.appendChild(particula);
-
-
-                setTimeout(() => {
-                    particula.remove();
-                }, 900);
-
-            }
-
-        }
-
-
-
-        /* ========================= */
-        /* ANIMAÇÕES AO DESCER */
-        /* ========================= */
-
-        const elementos =
-            document.querySelectorAll(".secao");
-
-
-        const observador =
-            new IntersectionObserver(
-
-                (entradas) => {
-
-                    entradas.forEach(entrada => {
-
-                        if (entrada.isIntersecting) {
-
-                            entrada.target.classList.add(
-                                "visivel"
-                            );
-
-                        }
-
-                    });
-
-                },
-
-                {
-                    threshold: 0.15
-                }
-
+            mensagemCarta.setAttribute(
+                "aria-hidden",
+                "false"
             );
 
+            carta.classList.add("aberta");
 
-        elementos.forEach(elemento => {
+        }, 900);
 
-            observador.observe(elemento);
+
+        /* Liberta o scroll */
+
+        setTimeout(() => {
+
+            document.body.classList.add("scroll");
+
+        }, 1300);
+
+    }
+
+
+
+    /* ========================= */
+    /* CORAÇÕES */
+    /* ========================= */
+
+    const coracoes =
+        document.querySelectorAll(".coracao");
+
+    const mensagemCoracao =
+        document.getElementById("mensagemCoracao");
+
+
+    coracoes.forEach(coracao => {
+
+        coracao.addEventListener("click", () => {
+
+            const texto =
+                coracao.dataset.mensagem;
+
+            mensagemCoracao.textContent = texto;
+
+            mensagemCoracao.classList.remove("mostrar");
+
+            void mensagemCoracao.offsetWidth;
+
+            mensagemCoracao.classList.add("mostrar");
+
+
+            coracao.classList.add("clicado");
+
+
+            setTimeout(() => {
+                coracao.classList.remove("clicado");
+            }, 500);
 
         });
 
-    </script>
+    });
+
+
+
+    /* ========================= */
+    /* ESTRELAS */
+    /* ========================= */
+
+    const estrelas =
+        document.querySelectorAll(".estrela");
+
+    const efeitoEstrela =
+        document.getElementById("efeitoEstrela");
+
+
+    estrelas.forEach(estrela => {
+
+        estrela.addEventListener("click", () => {
+
+            const texto =
+                estrela.dataset.mensagem;
+
+            efeitoEstrela.textContent = texto;
+
+            efeitoEstrela.classList.remove("mostrar");
+
+            void efeitoEstrela.offsetWidth;
+
+            efeitoEstrela.classList.add("mostrar");
+
+
+            criarParticulas(estrela);
+
+        });
+
+    });
+
+
+
+    /* ========================= */
+    /* PARTÍCULAS */
+    /* ========================= */
+
+    function criarParticulas(elemento) {
+
+        for (let i = 0; i < 8; i++) {
+
+            const particula =
+                document.createElement("span");
+
+            particula.classList.add("particula");
+
+            particula.textContent = "✦";
+
+            particula.style.setProperty(
+                "--x",
+                `${(Math.random() - 0.5) * 180}px`
+            );
+
+            particula.style.setProperty(
+                "--y",
+                `${(Math.random() - 0.5) * 180}px`
+            );
+
+            elemento.appendChild(particula);
+
+
+            setTimeout(() => {
+                particula.remove();
+            }, 900);
+
+        }
+
+    }
+
+
+
+    /* ========================= */
+    /* ANIMAÇÕES AO DESCER */
+    /* ========================= */
+
+    const elementos =
+        document.querySelectorAll(".secao");
+
+
+    const observador =
+        new IntersectionObserver(
+
+            (entradas) => {
+
+                entradas.forEach(entrada => {
+
+                    if (entrada.isIntersecting) {
+
+                        entrada.target.classList.add(
+                            "visivel"
+                        );
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.15
+            }
+
+        );
+
+
+    elementos.forEach(elemento => {
+
+        observador.observe(elemento);
+
+    });
+
+</script>
+```
 
 </body>
 </html>
