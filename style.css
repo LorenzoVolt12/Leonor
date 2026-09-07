@@ -3,42 +3,39 @@
 /* ============================= */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
 
 html {
-    scroll-behavior: smooth;
+scroll-behavior: smooth;
 }
-
 
 body {
-    width: 100%;
-    min-height: 100dvh;
+width: 100%;
+min-height: 100dvh;
 
-    background-image: url("Fundo.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+```
+background-image: url("Fundo.png");
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
 
-    font-family: Georgia, "Times New Roman", serif;
+/* ROSA MAIS ESCURO E LEGÍVEL */
+color: #8f5265;
 
-    color: #4a4145;
+font-family: Georgia, "Times New Roman", serif;
 
-    overflow: hidden;
+overflow: hidden;
+```
+
 }
-
-
-/* Quando a carta abre */
 
 body.scroll {
-    overflow-x: hidden;
-    overflow-y: auto;
+overflow-x: hidden;
+overflow-y: auto;
 }
-
-
 
 /* ============================= */
 /* CARTA */
@@ -46,47 +43,49 @@ body.scroll {
 
 #inicio {
 
-    min-height: 100dvh;
+```
+min-height: 100dvh;
 
-    display: flex;
+display: flex;
 
-    justify-content: center;
-    align-items: center;
+justify-content: center;
+align-items: center;
 
-    padding: 30px;
+padding: 30px;
+```
 
 }
-
 
 #carta {
 
-    position: relative;
+```
+position: relative;
 
-    width: min(80vw, 700px);
+width: min(80vw, 700px);
 
-    transition:
-        transform 0.9s ease;
+transition:
+    transform 0.9s ease;
+```
 
 }
-
 
 #envelope {
 
-    width: 100%;
-    height: auto;
+```
+width: 100%;
+height: auto;
 
-    display: block;
+display: block;
 
-    transform-origin: center;
+transform-origin: center;
 
-    transition:
-        transform 1.2s cubic-bezier(.22,1,.36,1),
-        opacity 1s ease,
-        filter 1s ease;
+transition:
+    transform 1.2s cubic-bezier(.22,1,.36,1),
+    opacity 1s ease,
+    filter 1s ease;
+```
 
 }
-
-
 
 /* ============================= */
 /* BOTÃO */
@@ -94,64 +93,65 @@ body.scroll {
 
 #botaoAbrir {
 
-    position: absolute;
+```
+position: absolute;
 
-    left: 50%;
-    top: 68%;
+left: 50%;
+top: 68%;
 
-    width: 55px;
-    height: 55px;
+width: 55px;
+height: 55px;
 
-    transform:
-        translate(-50%, -50%);
+transform:
+    translate(-50%, -50%);
 
-    border-radius: 50%;
+border-radius: 50%;
 
-    background:
-        rgba(255,255,255,.35);
+background:
+    rgba(255,255,255,.45);
 
-    border:
-        2px solid rgba(255,255,255,.8);
+border:
+    2px solid rgba(255,255,255,.9);
 
-    cursor: pointer;
+cursor: pointer;
 
-    z-index: 20;
+z-index: 20;
 
-    animation: pulsar 1.8s infinite;
+animation: pulsar 1.8s infinite;
 
-    touch-action: manipulation;
+touch-action: manipulation;
 
-    -webkit-tap-highlight-color: transparent;
+-webkit-tap-highlight-color: transparent;
+```
 
 }
-
 
 @keyframes pulsar {
 
-    0%,
-    100% {
+```
+0%,
+100% {
 
-        transform:
-            translate(-50%, -50%)
-            scale(1);
+    transform:
+        translate(-50%, -50%)
+        scale(1);
 
-        opacity: .7;
-
-    }
-
-    50% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.15);
-
-        opacity: 1;
-
-    }
+    opacity: .7;
 
 }
 
+50% {
 
+    transform:
+        translate(-50%, -50%)
+        scale(1.15);
+
+    opacity: 1;
+
+}
+```
+
+}
 
 /* ============================= */
 /* ABERTURA */
@@ -159,111 +159,28 @@ body.scroll {
 
 #carta.abrindo {
 
-    transform:
-        translateY(-15px);
+```
+transform:
+    translateY(-15px);
+```
 
 }
-
 
 #carta.abrindo #botaoAbrir {
 
-    animation:
-        desaparecer .45s forwards;
+```
+animation:
+    desaparecer .45s forwards;
 
-    pointer-events: none;
+pointer-events: none;
+```
 
 }
-
 
 @keyframes desaparecer {
 
-    from {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1);
-
-    }
-
-    to {
-
-        opacity: 0;
-
-        transform:
-            translate(-50%, -50%)
-            scale(.2);
-
-    }
-
-}
-
-
-#carta.abrindo #envelope {
-
-    transform:
-        perspective(1000px)
-        rotateX(8deg)
-        translateY(-20px)
-        scale(1.03);
-
-    filter:
-        brightness(1.08);
-
-}
-
-
-#carta.aberta #envelope {
-
-    transform:
-        perspective(1000px)
-        rotateX(12deg)
-        translateY(-25px)
-        scale(1.04);
-
-    opacity: .12;
-
-    filter:
-        blur(3px);
-
-}
-
-
-
-/* ============================= */
-/* MENSAGEM DA CARTA */
-/* ============================= */
-
-#mensagemCarta {
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 75%;
-
-    transform:
-        translate(-50%, -42%)
-        scale(.85);
-
-    opacity: 0;
-
-    text-align: center;
-
-    z-index: 10;
-
-    transition:
-        opacity .9s ease,
-        transform .9s cubic-bezier(.22,1,.36,1);
-
-    pointer-events: none;
-
-}
-
-
-#mensagemCarta[aria-hidden="false"] {
+```
+from {
 
     opacity: 1;
 
@@ -273,29 +190,129 @@ body.scroll {
 
 }
 
+to {
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.2);
+
+}
+```
+
+}
+
+#carta.abrindo #envelope {
+
+```
+transform:
+    perspective(1000px)
+    rotateX(8deg)
+    translateY(-20px)
+    scale(1.03);
+
+filter:
+    brightness(1.08);
+```
+
+}
+
+#carta.aberta #envelope {
+
+```
+transform:
+    perspective(1000px)
+    rotateX(12deg)
+    translateY(-25px)
+    scale(1.04);
+
+opacity: .12;
+
+filter:
+    blur(3px);
+```
+
+}
+
+/* ============================= */
+/* MENSAGEM DA CARTA */
+/* ============================= */
+
+#mensagemCarta {
+
+```
+position: absolute;
+
+left: 50%;
+top: 50%;
+
+width: 75%;
+
+transform:
+    translate(-50%, -42%)
+    scale(.85);
+
+opacity: 0;
+
+text-align: center;
+
+z-index: 10;
+
+transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.22,1,.36,1);
+
+pointer-events: none;
+```
+
+}
+
+#mensagemCarta[aria-hidden="false"] {
+
+```
+opacity: 1;
+
+transform:
+    translate(-50%, -50%)
+    scale(1);
+```
+
+}
 
 #mensagemCarta h1 {
 
-    font-size:
-        clamp(25px, 5vw, 40px);
+```
+font-size:
+    clamp(25px, 5vw, 40px);
 
-    margin-bottom: 20px;
+margin-bottom: 20px;
+
+color: #7d4055;
+
+text-shadow:
+    0 2px 8px rgba(255,255,255,.8);
+```
 
 }
-
 
 #mensagemCarta p {
 
-    font-size:
-        clamp(16px, 3vw, 21px);
+```
+font-size:
+    clamp(16px, 3vw, 21px);
 
-    line-height: 1.6;
+line-height: 1.6;
 
-    margin-bottom: 12px;
+margin-bottom: 12px;
+
+color: #8f5265;
+
+text-shadow:
+    0 1px 6px rgba(255,255,255,.8);
+```
 
 }
-
-
 
 /* ============================= */
 /* CONTEÚDO */
@@ -303,94 +320,109 @@ body.scroll {
 
 #conteudo {
 
-    position: relative;
+```
+position: relative;
 
-    width: 100%;
+width: 100%;
 
-    padding-bottom: 100px;
+padding-bottom: 100px;
+```
 
 }
-
 
 .secao {
 
-    min-height: 100vh;
+```
+min-height: 100vh;
 
-    width: 100%;
+width: 100%;
 
-    padding:
-        100px 25px;
+padding:
+    100px 25px;
 
-    display: flex;
+display: flex;
 
-    flex-direction: column;
+flex-direction: column;
 
-    justify-content: center;
+justify-content: center;
 
-    align-items: center;
+align-items: center;
 
-    text-align: center;
+text-align: center;
 
-    opacity: 0;
+opacity: 0;
 
-    transform:
-        translateY(50px);
+transform:
+    translateY(50px);
 
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
+transition:
+    opacity 1s ease,
+    transform 1s ease;
+```
 
 }
-
 
 .secao.visivel {
 
-    opacity: 1;
+```
+opacity: 1;
 
-    transform:
-        translateY(0);
+transform:
+    translateY(0);
+```
 
 }
-
 
 .secao h2 {
 
-    font-size:
-        clamp(28px, 6vw, 45px);
+```
+font-size:
+    clamp(28px, 6vw, 45px);
 
-    font-weight: normal;
+font-weight: normal;
 
-    margin:
-        15px 0 25px;
+margin:
+    15px 0 25px;
+
+color: #7d4055;
+
+text-shadow:
+    0 2px 8px rgba(255,255,255,.8);
+```
 
 }
-
 
 .secao p {
 
-    max-width: 600px;
+```
+max-width: 600px;
 
-    font-size:
-        clamp(17px, 3.5vw, 21px);
+font-size:
+    clamp(17px, 3.5vw, 21px);
 
-    line-height: 1.8;
+line-height: 1.8;
+
+color: #8f5265;
+
+text-shadow:
+    0 1px 6px rgba(255,255,255,.75);
+```
 
 }
-
 
 .pequeno {
 
-    font-size: 14px !important;
+```
+font-size: 14px !important;
 
-    letter-spacing: 3px;
+letter-spacing: 3px;
 
-    text-transform: uppercase;
+text-transform: uppercase;
 
-    opacity: .65;
+opacity: .75;
+```
 
 }
-
-
 
 /* ============================= */
 /* SETA */
@@ -398,36 +430,37 @@ body.scroll {
 
 .seta {
 
-    margin-top: 50px;
+```
+margin-top: 50px;
 
-    font-size: 35px;
+font-size: 35px;
 
-    animation:
-        flutuar 2s infinite ease-in-out;
+animation:
+    flutuar 2s infinite ease-in-out;
+```
 
 }
-
 
 @keyframes flutuar {
 
-    0%,
-    100% {
+```
+0%,
+100% {
 
-        transform:
-            translateY(0);
-
-    }
-
-    50% {
-
-        transform:
-            translateY(10px);
-
-    }
+    transform:
+        translateY(0);
 
 }
 
+50% {
 
+    transform:
+        translateY(10px);
+
+}
+```
+
+}
 
 /* ============================= */
 /* CORAÇÕES */
@@ -435,76 +468,80 @@ body.scroll {
 
 .coracoes {
 
-    display: flex;
+```
+display: flex;
 
-    justify-content: center;
+justify-content: center;
 
-    align-items: center;
+align-items: center;
 
-    gap: 40px;
+gap: 40px;
 
-    margin-top: 50px;
+margin-top: 50px;
 
-    flex-wrap: wrap;
+flex-wrap: wrap;
+```
 
 }
-
 
 .coracao {
 
-    position: relative;
+```
+position: relative;
 
-    border: none;
+border: none;
 
-    background: none;
+background: none;
 
-    font-size: 65px;
+font-size: 65px;
 
-    color: #b7838c;
+color: #a85c76;
 
-    cursor: pointer;
+cursor: pointer;
 
-    transition:
-        transform .3s ease;
+transition:
+    transform .3s ease;
 
-    touch-action: manipulation;
+touch-action: manipulation;
+```
 
 }
-
 
 .coracao:hover {
 
-    transform:
-        scale(1.2);
+```
+transform:
+    scale(1.2);
+```
 
 }
-
 
 .coracao.clicado {
 
-    animation:
-        coracaoClique .5s ease;
+```
+animation:
+    coracaoClique .5s ease;
+```
 
 }
-
 
 @keyframes coracaoClique {
 
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.5);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-
+```
+0% {
+    transform: scale(1);
 }
 
+50% {
+    transform: scale(1.5);
+}
 
+100% {
+    transform: scale(1);
+}
+```
+
+}
 
 /* ============================= */
 /* MENSAGEM ESCONDIDA */
@@ -512,35 +549,41 @@ body.scroll {
 
 #mensagemCoracao {
 
-    min-height: 35px;
+```
+min-height: 35px;
 
-    margin-top: 40px;
+margin-top: 40px;
 
-    font-size:
-        clamp(17px, 4vw, 23px);
+font-size:
+    clamp(17px, 4vw, 23px);
 
-    opacity: 0;
+color: #7d4055;
 
-    transform:
-        translateY(10px);
+text-shadow:
+    0 1px 6px rgba(255,255,255,.8);
 
-    transition:
-        opacity .5s ease,
-        transform .5s ease;
+opacity: 0;
+
+transform:
+    translateY(10px);
+
+transition:
+    opacity .5s ease,
+    transform .5s ease;
+```
 
 }
-
 
 #mensagemCoracao.mostrar {
 
-    opacity: 1;
+```
+opacity: 1;
 
-    transform:
-        translateY(0);
+transform:
+    translateY(0);
+```
 
 }
-
-
 
 /* ============================= */
 /* ESTRELAS */
@@ -548,130 +591,140 @@ body.scroll {
 
 .estrelas {
 
-    position: relative;
+```
+position: relative;
 
-    width: min(500px, 90vw);
+width: min(500px, 90vw);
 
-    min-height: 250px;
+min-height: 250px;
 
-    margin-top: 40px;
+margin-top: 40px;
+```
 
 }
-
 
 .estrela {
 
-    position: absolute;
+```
+position: absolute;
 
-    border: none;
+border: none;
 
-    background: none;
+background: none;
 
-    font-size: 40px;
+font-size: 40px;
 
-    color: #b9a3a8;
+color: #a85c76;
 
-    cursor: pointer;
+cursor: pointer;
 
-    transition:
-        transform .3s ease;
+transition:
+    transform .3s ease;
+```
 
 }
-
 
 .estrela:nth-child(1) {
 
-    left: 10%;
-    top: 20%;
+```
+left: 10%;
+top: 20%;
+```
 
 }
-
 
 .estrela:nth-child(2) {
 
-    left: 45%;
-    top: 5%;
+```
+left: 45%;
+top: 5%;
+```
 
 }
-
 
 .estrela:nth-child(3) {
 
-    right: 10%;
-    top: 35%;
+```
+right: 10%;
+top: 35%;
+```
 
 }
-
 
 .estrela:nth-child(4) {
 
-    left: 30%;
-    bottom: 10%;
+```
+left: 30%;
+bottom: 10%;
+```
 
 }
-
 
 .estrela:nth-child(5) {
 
-    right: 35%;
-    bottom: 5%;
+```
+right: 35%;
+bottom: 5%;
+```
 
 }
-
 
 .estrela:hover {
 
-    transform:
-        scale(1.4)
-        rotate(15deg);
+```
+transform:
+    scale(1.4)
+    rotate(15deg);
+```
 
 }
-
 
 #efeitoEstrela {
 
-    min-height: 45px;
+```
+min-height: 45px;
 
-    margin-top: 20px;
+margin-top: 20px;
 
-    font-size: 35px;
+font-size: 35px;
 
-    opacity: 0;
+opacity: 0;
+```
 
 }
-
 
 #efeitoEstrela.mostrar {
 
-    animation:
-        aparecerEstrela .7s ease forwards;
+```
+animation:
+    aparecerEstrela .7s ease forwards;
+```
 
 }
-
 
 @keyframes aparecerEstrela {
 
-    from {
+```
+from {
 
-        opacity: 0;
+    opacity: 0;
 
-        transform:
-            scale(.4);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1);
-
-    }
+    transform:
+        scale(.4);
 
 }
 
+to {
 
+    opacity: 1;
+
+    transform:
+        scale(1);
+
+}
+```
+
+}
 
 /* ============================= */
 /* PARTÍCULAS */
@@ -679,83 +732,88 @@ body.scroll {
 
 .particula {
 
-    position: absolute;
+```
+position: absolute;
 
-    left: 50%;
-    top: 50%;
+left: 50%;
+top: 50%;
 
-    pointer-events: none;
+pointer-events: none;
 
-    animation:
-        particula .9s ease forwards;
+animation:
+    particula .9s ease forwards;
+```
 
 }
-
 
 @keyframes particula {
 
-    from {
+```
+from {
 
-        opacity: 1;
+    opacity: 1;
 
-        transform:
-            translate(0,0)
-            scale(1);
-
-    }
-
-    to {
-
-        opacity: 0;
-
-        transform:
-            translate(var(--x),var(--y))
-            scale(.2);
-
-    }
+    transform:
+        translate(0,0)
+        scale(1);
 
 }
 
+to {
 
+    opacity: 0;
+
+    transform:
+        translate(var(--x),var(--y))
+        scale(.2);
+
+}
+```
+
+}
 
 /* ============================= */
 /* FOTO */
 /* ============================= */
 
-.foto-placeholder {
+.foto {
 
-    width: min(500px, 90vw);
+```
+width: min(500px, 90vw);
 
-    height: 300px;
+max-height: 600px;
 
-    margin-top: 30px;
+object-fit: cover;
 
-    display: flex;
+margin-top: 30px;
 
-    justify-content: center;
+border-radius: 18px;
 
-    align-items: center;
+border:
+    5px solid rgba(255,255,255,.7);
 
-    border:
-        2px dashed rgba(100,80,85,.25);
+box-shadow:
+    0 10px 35px rgba(80,40,55,.22);
 
-    border-radius: 15px;
-
-    background:
-        rgba(255,255,255,.15);
-
-}
-
-
-.foto-placeholder p {
-
-    font-size: 17px;
-
-    opacity: .6;
+transition:
+    transform .4s ease,
+    box-shadow .4s ease;
+```
 
 }
 
+.foto:hover {
 
+```
+transform:
+    scale(1.02)
+    rotate(-1deg);
+
+box-shadow:
+    0 15px 40px rgba(80,40,55,.3);
+```
+
+}
 
 /* ============================= */
 /* FINAL */
@@ -763,50 +821,55 @@ body.scroll {
 
 .final {
 
-    min-height: 80vh;
+```
+min-height: 80vh;
+```
 
 }
-
 
 .coracao-final {
 
-    font-size: 90px;
+```
+font-size: 90px;
 
-    animation:
-        respirar 3s infinite ease-in-out;
+color: #a85c76;
+
+animation:
+    respirar 3s infinite ease-in-out;
+```
 
 }
-
 
 @keyframes respirar {
 
-    0%,
-    100% {
+```
+0%,
+100% {
 
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.12);
-
-    }
+    transform:
+        scale(1);
 
 }
 
+50% {
+
+    transform:
+        scale(1.12);
+
+}
+```
+
+}
 
 .assinatura {
 
-    margin-top: 40px;
+```
+margin-top: 40px;
 
-    font-style: italic;
+font-style: italic;
+```
 
 }
-
-
 
 /* ============================= */
 /* CELULAR */
@@ -814,61 +877,65 @@ body.scroll {
 
 @media (max-width: 600px) {
 
-    #inicio {
+```
+#inicio {
 
-        padding: 15px;
+    padding: 15px;
 
-    }
-
-
-    #carta {
-
-        width: 92vw;
-
-    }
+}
 
 
-    #botaoAbrir {
+#carta {
 
-        width: 50px;
-        height: 50px;
+    width: 92vw;
 
-    }
-
-
-    .secao {
-
-        padding:
-            80px 20px;
-
-    }
+}
 
 
-    .coracoes {
+#botaoAbrir {
 
-        gap: 20px;
+    width: 50px;
+    height: 50px;
 
-    }
-
-
-    .coracao {
-
-        font-size: 55px;
-
-    }
+}
 
 
-    .estrelas {
+.secao {
 
-        min-height: 220px;
+    padding:
+        80px 20px;
 
-    }
+}
 
 
-    .foto-placeholder {
+.coracoes {
 
-        height: 250px;
+    gap: 20px;
 
-    }
+}
+
+
+.coracao {
+
+    font-size: 55px;
+
+}
+
+
+.estrelas {
+
+    min-height: 220px;
+
+}
+
+
+.foto {
+
+    width: 90vw;
+
+    max-height: 500px;
+
+}
+```
 
 }
