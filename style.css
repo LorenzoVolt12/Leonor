@@ -254,12 +254,63 @@ body.scroll {
 
     z-index: 10;
 
+    /* Fundo para deixar a letra muito mais fácil de ler */
+    background: rgba(255, 235, 243, 0.88);
+
+    padding: 22px 28px;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+
+    box-shadow:
+        0 8px 25px rgba(90, 40, 60, 0.15);
+
     transition:
         opacity .9s ease,
         transform .9s cubic-bezier(.22,1,.36,1);
 
     pointer-events: none;
+}
 
+
+#mensagemCarta[aria-hidden="false"] {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+
+#mensagemCarta h1 {
+
+    color: #6b3048;
+
+    font-size:
+        clamp(25px, 5vw, 40px);
+
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 1px 2px rgba(255,255,255,.8);
+}
+
+
+#mensagemCarta p {
+
+    color: #71394d;
+
+    font-size:
+        clamp(16px, 3vw, 21px);
+
+    line-height: 1.6;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 1px 2px rgba(255,255,255,.8);
 }
 
 
