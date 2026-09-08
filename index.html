@@ -1,468 +1,1353 @@
 <!DOCTYPE html>
+
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Presentinho :3</title>
+```
+<title>Presentinho :3</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+    /* ============================= */
+    /* RESET */
+    /* ============================= */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        width: 100%;
+        min-height: 100dvh;
+
+        background-image: url("Fundo.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+
+        font-family: Georgia, "Times New Roman", serif;
+
+        color: #4a4145;
+
+        overflow: hidden;
+    }
+
+    body.scroll {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+
+    /* ============================= */
+    /* CARTA */
+    /* ============================= */
+
+    #inicio {
+        min-height: 100dvh;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        padding: 30px;
+    }
+
+    #carta {
+        position: relative;
+
+        width: min(80vw, 700px);
+
+        transition: transform 0.9s ease;
+    }
+
+    #envelope {
+        width: 100%;
+        height: auto;
+
+        display: block;
+
+        transform-origin: center;
+
+        transition:
+            transform 1.2s cubic-bezier(.22,1,.36,1),
+            opacity 1s ease,
+            filter 1s ease;
+    }
+
+
+    /* ============================= */
+    /* BOTÃO */
+    /* ============================= */
+
+    #botaoAbrir {
+        position: absolute;
+
+        left: 50%;
+        top: 68%;
+
+        width: 55px;
+        height: 55px;
+
+        transform: translate(-50%, -50%);
+
+        border-radius: 50%;
+
+        background: rgba(255,255,255,.35);
+
+        border: 2px solid rgba(255,255,255,.8);
+
+        cursor: pointer;
+
+        z-index: 20;
+
+        animation: pulsar 1.8s infinite;
+
+        touch-action: manipulation;
+
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    @keyframes pulsar {
+        0%, 100% {
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+
+            opacity: .7;
+        }
+
+        50% {
+            transform:
+                translate(-50%, -50%)
+                scale(1.15);
+
+            opacity: 1;
+        }
+    }
+
+
+    /* ============================= */
+    /* ABERTURA */
+    /* ============================= */
+
+    #carta.abrindo {
+        transform: translateY(-15px);
+    }
+
+    #carta.abrindo #botaoAbrir {
+        animation: desaparecer .45s forwards;
+
+        pointer-events: none;
+    }
+
+    @keyframes desaparecer {
+        from {
+            opacity: 1;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+        }
+
+        to {
+            opacity: 0;
+
+            transform:
+                translate(-50%, -50%)
+                scale(.2);
+        }
+    }
+
+    #carta.abrindo #envelope {
+        transform:
+            perspective(1000px)
+            rotateX(8deg)
+            translateY(-20px)
+            scale(1.03);
+
+        filter: brightness(1.08);
+    }
+
+    #carta.aberta #envelope {
+        transform:
+            perspective(1000px)
+            rotateX(12deg)
+            translateY(-25px)
+            scale(1.04);
+
+        opacity: .12;
+
+        filter: blur(3px);
+    }
+
+
+    /* ============================= */
+    /* MENSAGEM DA CARTA */
+    /* ============================= */
+
+    #mensagemCarta {
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        width: 75%;
+
+        transform:
+            translate(-50%, -42%)
+            scale(.85);
+
+        opacity: 0;
+
+        text-align: center;
+
+        z-index: 10;
+
+        background:
+            rgba(255, 235, 243, 0.88);
+
+        padding: 22px 28px;
+
+        border-radius: 18px;
+
+        border:
+            1px solid rgba(255, 255, 255, 0.8);
+
+        box-shadow:
+            0 8px 25px rgba(90, 40, 60, 0.15);
+
+        transition:
+            opacity .9s ease,
+            transform .9s cubic-bezier(.22,1,.36,1);
+
+        pointer-events: none;
+    }
+
+    #mensagemCarta[aria-hidden="false"] {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    #mensagemCarta h1 {
+        color: #6b3048;
+
+        font-size:
+            clamp(25px, 5vw, 40px);
+
+        margin-bottom: 20px;
+
+        text-shadow:
+            0 1px 2px rgba(255,255,255,.8);
+    }
+
+    #mensagemCarta p {
+        color: #71394d;
+
+        font-size:
+            clamp(16px, 3vw, 21px);
+
+        line-height: 1.6;
+
+        margin-bottom: 12px;
+
+        text-shadow:
+            0 1px 2px rgba(255,255,255,.8);
+    }
+
+
+    /* ============================= */
+    /* CONTEÚDO */
+    /* ============================= */
+
+    #conteudo {
+        position: relative;
+
+        width: 100%;
+
+        padding-bottom: 100px;
+    }
+
+    .secao {
+        min-height: 100vh;
+
+        width: 100%;
+
+        padding:
+            100px 25px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        text-align: center;
+
+        opacity: 0;
+
+        transform:
+            translateY(50px);
+
+        transition:
+            opacity 1s ease,
+            transform 1s ease;
+    }
+
+    .secao.visivel {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+    .secao h2 {
+        font-size:
+            clamp(28px, 6vw, 45px);
+
+        font-weight: normal;
+
+        margin:
+            15px 0 25px;
+    }
+
+    .secao p {
+        max-width: 600px;
+
+        font-size:
+            clamp(17px, 3.5vw, 21px);
+
+        line-height: 1.8;
+    }
+
+    .pequeno {
+        font-size: 14px !important;
+
+        letter-spacing: 3px;
+
+        text-transform: uppercase;
+
+        opacity: .65;
+    }
+
+
+    /* ============================= */
+    /* SETA */
+    /* ============================= */
+
+    .seta {
+        margin-top: 50px;
+
+        font-size: 35px;
+
+        animation:
+            flutuar 2s infinite ease-in-out;
+    }
+
+    @keyframes flutuar {
+        0%, 100% {
+            transform:
+                translateY(0);
+        }
+
+        50% {
+            transform:
+                translateY(10px);
+        }
+    }
+
+
+    /* ============================= */
+    /* CORAÇÕES */
+    /* ============================= */
+
+    .coracoes {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 40px;
+
+        margin-top: 50px;
+
+        flex-wrap: wrap;
+    }
+
+    .coracao {
+        position: relative;
+
+        border: none;
+
+        background: none;
+
+        font-size: 65px;
+
+        color: #b7838c;
+
+        cursor: pointer;
+
+        transition:
+            transform .3s ease;
+
+        touch-action: manipulation;
+    }
+
+    .coracao:hover {
+        transform:
+            scale(1.2);
+    }
+
+    .coracao.clicado {
+        animation:
+            coracaoClique .5s ease;
+    }
+
+    @keyframes coracaoClique {
+        0% {
+            transform:
+                scale(1);
+        }
+
+        50% {
+            transform:
+                scale(1.5);
+        }
+
+        100% {
+            transform:
+                scale(1);
+        }
+    }
+
+
+    /* ============================= */
+    /* MENSAGEM ESCONDIDA */
+    /* ============================= */
+
+    #mensagemCoracao {
+        min-height: 35px;
+
+        margin-top: 40px;
+
+        font-size:
+            clamp(17px, 4vw, 23px);
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+
+        transition:
+            opacity .5s ease,
+            transform .5s ease;
+    }
+
+    #mensagemCoracao.mostrar {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+
+    /* ============================= */
+    /* ESTRELAS */
+    /* ============================= */
+
+    .estrelas {
+        position: relative;
+
+        width:
+            min(500px, 90vw);
+
+        min-height: 250px;
+
+        margin-top: 40px;
+    }
+
+    .estrela {
+        position: absolute;
+
+        border: none;
+
+        background: none;
+
+        font-size: 40px;
+
+        color: #b9a3a8;
+
+        cursor: pointer;
+
+        transition:
+            transform .3s ease;
+    }
+
+    .estrela:nth-child(1) {
+        left: 10%;
+        top: 20%;
+    }
+
+    .estrela:nth-child(2) {
+        left: 45%;
+        top: 5%;
+    }
+
+    .estrela:nth-child(3) {
+        right: 10%;
+        top: 35%;
+    }
+
+    .estrela:nth-child(4) {
+        left: 30%;
+        bottom: 10%;
+    }
+
+    .estrela:nth-child(5) {
+        right: 35%;
+        bottom: 5%;
+    }
+
+    .estrela:hover {
+        transform:
+            scale(1.4)
+            rotate(15deg);
+    }
+
+    #efeitoEstrela {
+        min-height: 45px;
+
+        margin-top: 20px;
+
+        font-size: 35px;
+
+        opacity: 0;
+    }
+
+    #efeitoEstrela.mostrar {
+        animation:
+            aparecerEstrela .7s ease forwards;
+    }
+
+    @keyframes aparecerEstrela {
+        from {
+            opacity: 0;
+
+            transform:
+                scale(.4);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                scale(1);
+        }
+    }
+
+
+    /* ============================= */
+    /* PARTÍCULAS */
+    /* ============================= */
+
+    .particula {
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        pointer-events: none;
+
+        animation:
+            particula .9s ease forwards;
+    }
+
+    @keyframes particula {
+        from {
+            opacity: 1;
+
+            transform:
+                translate(0,0)
+                scale(1);
+        }
+
+        to {
+            opacity: 0;
+
+            transform:
+                translate(var(--x),var(--y))
+                scale(.2);
+        }
+    }
+
+
+    /* ============================= */
+    /* DESENHOS */
+    /* ============================= */
+
+    .desenho-secao {
+        position: relative;
+    }
+
+    .desenho-flutuante {
+        width:
+            min(420px, 85vw);
+
+        margin:
+            35px auto 0;
+
+        border-radius: 22px;
+
+        overflow: hidden;
+
+        background:
+            rgba(255, 255, 255, 0.22);
+
+        box-shadow:
+            0 15px 35px
+            rgba(90, 40, 60, 0.14);
+
+        animation:
+            desenhoFlutuar
+            4s ease-in-out infinite;
+    }
+
+    .desenho-flutuante img {
+        display: block;
+
+        width: 100%;
+
+        height: auto;
+    }
+
+    .desenho-2 {
+        animation-delay:
+            -2s;
+    }
+
+    @keyframes desenhoFlutuar {
+        0%, 100% {
+            transform:
+                translateY(0)
+                rotate(-1deg);
+        }
+
+        50% {
+            transform:
+                translateY(-10px)
+                rotate(1deg);
+        }
+    }
+
+
+    /* ============================= */
+    /* FOTO */
+    /* ============================= */
+
+    .foto-placeholder {
+        width:
+            min(500px, 90vw);
+
+        height: 300px;
+
+        margin-top: 30px;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        border:
+            2px dashed
+            rgba(100,80,85,.25);
+
+        border-radius: 15px;
+
+        background:
+            rgba(255,255,255,.15);
+    }
+
+    .foto-placeholder p {
+        font-size: 17px;
+
+        opacity: .6;
+    }
+
+
+    /* ============================= */
+    /* FINAL */
+    /* ============================= */
+
+    .final {
+        min-height: 80vh;
+    }
+
+    .coracao-final {
+        font-size: 90px;
+
+        animation:
+            respirar
+            3s infinite ease-in-out;
+    }
+
+    @keyframes respirar {
+        0%, 100% {
+            transform:
+                scale(1);
+        }
+
+        50% {
+            transform:
+                scale(1.12);
+        }
+    }
+
+    .assinatura {
+        margin-top: 40px;
+
+        font-style: italic;
+    }
+
+
+    /* ============================= */
+    /* CELULAR */
+    /* ============================= */
+
+    @media (max-width: 600px) {
+
+        #inicio {
+            padding: 15px;
+        }
+
+        #carta {
+            width: 92vw;
+        }
+
+        #botaoAbrir {
+            width: 50px;
+            height: 50px;
+        }
+
+        .secao {
+            padding:
+                80px 20px;
+        }
+
+        .coracoes {
+            gap: 20px;
+        }
+
+        .coracao {
+            font-size: 55px;
+        }
+
+        .estrelas {
+            min-height: 220px;
+        }
+
+        .foto-placeholder {
+            height: 250px;
+        }
+
+        .desenho-flutuante {
+            width: 88vw;
+
+            margin-top: 25px;
+        }
+    }
+</style>
+```
+
 </head>
 
 <body>
 
-    <!-- ========================= -->
-    <!-- MÚSICA -->
-    <!-- ========================= -->
+```
+<!-- ========================= -->
+<!-- MÚSICA -->
+<!-- ========================= -->
 
-    <audio id="musica" loop>
-        <source src="JVKE - golden hour (official music video).mp3" type="audio/mpeg">
-    </audio>
+<audio id="musica" loop>
+    <source
+        src="JVKE - golden hour (official music video).mp3"
+        type="audio/mpeg"
+    >
+</audio>
 
 
-    <!-- ========================= -->
-    <!-- CARTA -->
-    <!-- ========================= -->
+<!-- ========================= -->
+<!-- CARTA -->
+<!-- ========================= -->
 
-    <section id="inicio">
+<section id="inicio">
 
-        <div id="carta">
+    <div id="carta">
+
+        <img
+            src="Carta%20(fechada).jpg"
+            id="envelope"
+            alt="Carta fechada"
+        >
+
+        <div
+            id="botaoAbrir"
+            role="button"
+            aria-label="Abrir carta"
+            tabindex="0"
+        ></div>
+
+        <div
+            id="mensagemCarta"
+            aria-hidden="true"
+        >
+
+            <h1>Para ti, Leonor :3</h1>
+
+            <p>
+                Eu fiz este presentinho especialmente para ti. 💗
+            </p>
+
+            <p>
+                Espero que gostes.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- CONTEÚDO -->
+<!-- ========================= -->
+
+<main id="conteudo">
+
+    <section class="secao aparecer">
+
+        <p class="pequeno">
+            uma pequena coisa para ti...
+        </p>
+
+        <h2>
+            Fiz isto pensando em ti. ♡
+        </h2>
+
+        <p>
+            Desce pela página.
+            Existem algumas coisinhas escondidas por aqui.
+        </p>
+
+        <div class="seta">
+            ↓
+        </div>
+
+    </section>
+
+
+    <!-- CORAÇÕES -->
+
+    <section class="secao">
+
+        <p class="pequeno">
+            talvez encontres alguma coisa...
+        </p>
+
+        <h2>
+            Há algumas coisas escondidas aqui 👀
+        </h2>
+
+        <p>
+            Tenta tocar nos corações.
+        </p>
+
+        <div class="coracoes">
+
+            <button
+                class="coracao"
+                data-mensagem="És uma pessoa muito especial para mim. ♡"
+                type="button"
+            >
+                ♡
+            </button>
+
+            <button
+                class="coracao"
+                data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3"
+                type="button"
+            >
+                ♡
+            </button>
+
+            <button
+                class="coracao"
+                data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗"
+                type="button"
+            >
+                ♡
+            </button>
+
+        </div>
+
+        <div id="mensagemCoracao"></div>
+
+    </section>
+
+
+    <!-- DESENHO 1 -->
+
+    <section class="secao desenho-secao">
+
+        <p class="pequeno">
+            uma coisinha nossa...
+        </p>
+
+        <h2>
+            ♡
+        </h2>
+
+        <div class="desenho-flutuante desenho-1">
 
             <img
-                src="Carta%20(fechada).jpg"
-                id="envelope"
-                alt="Carta fechada"
+                src="Eu%20e%20Leonor.PNG"
+                alt="Desenho de Lorenzo e Leonor"
             >
-
-            <div
-                id="botaoAbrir"
-                role="button"
-                aria-label="Abrir carta"
-            ></div>
-
-
-            <div id="mensagemCarta">
-
-                <h1>Para ti, Leonor :3</h1>
-
-                <p>
-                    Eu fiz este presentinho especialmente para ti. 💗
-                </p>
-
-                <p>
-                    Espero que gostes.
-                </p>
-
-            </div>
 
         </div>
 
     </section>
 
 
+    <!-- ESTRELAS -->
 
-    <!-- ========================= -->
-    <!-- CONTEÚDO DA PÁGINA -->
-    <!-- ========================= -->
+    <section class="secao">
 
-    <main id="conteudo">
+        <p class="pequeno">
+            olha com atenção...
+        </p>
 
+        <h2>
+            ✨
+        </h2>
 
-        <!-- INTRODUÇÃO -->
+        <p>
+            Algumas estrelas não são apenas decoração.
+        </p>
 
-        <section class="secao aparecer">
+        <div class="estrelas">
 
-            <p class="pequeno">uma pequena coisa para ti...</p>
+            <button
+                class="estrela"
+                data-mensagem="✨"
+                type="button"
+            >
+                ✦
+            </button>
 
-            <h2>Fiz isto pensando em ti. ♡</h2>
+            <button
+                class="estrela"
+                data-mensagem="♡"
+                type="button"
+            >
+                ✧
+            </button>
 
-            <p>
-                Desce pela página.
-                Existem algumas coisinhas escondidas por aqui.
-            </p>
+            <button
+                class="estrela"
+                data-mensagem="🌸"
+                type="button"
+            >
+                ✦
+            </button>
 
-            <div class="seta">↓</div>
+            <button
+                class="estrela"
+                data-mensagem="💗"
+                type="button"
+            >
+                ✧
+            </button>
 
-        </section>
+            <button
+                class="estrela"
+                data-mensagem="✨"
+                type="button"
+            >
+                ✦
+            </button>
 
+        </div>
 
+        <div id="efeitoEstrela"></div>
 
-        <!-- ========================= -->
-        <!-- CORAÇÕES -->
-        <!-- ========================= -->
-
-        <section class="secao">
-
-            <p class="pequeno">talvez encontres alguma coisa...</p>
-
-            <h2>Há algumas coisas escondidas aqui 👀</h2>
-
-            <p>
-                Tenta tocar nos corações.
-            </p>
-
-
-            <div class="coracoes">
-
-                <button
-                    class="coracao"
-                    data-mensagem="És uma pessoa muito especial para mim. ♡"
-                >
-                    ♡
-                </button>
-
-                <button
-                    class="coracao"
-                    data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3"
-                >
-                    ♡
-                </button>
-
-                <button
-                    class="coracao"
-                    data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗"
-                >
-                    ♡
-                </button>
-
-            </div>
+    </section>
 
 
-            <div id="mensagemCoracao"></div>
+    <!-- DESENHO 2 -->
 
-        </section>
+    <section class="secao desenho-secao">
 
+        <p class="pequeno">
+            e mais uma coisinha :3
+        </p>
 
+        <h2>
+            Eu e tu. ♡
+        </h2>
 
-        <!-- ========================= -->
-        <!-- DESENHO 1 -->
-        <!-- ========================= -->
+        <div class="desenho-flutuante desenho-2">
 
-        <section class="secao desenho-secao">
+            <img
+                src="Eu%20e%20Leonor%202.PNG"
+                alt="Segundo desenho de Lorenzo e Leonor"
+            >
 
-            <p class="pequeno">uma coisinha nossa...</p>
+        </div>
 
-            <h2>♡</h2>
-
-            <div class="desenho-flutuante desenho-1">
-
-                <img
-                    src="Eu%20e%20Leonor.PNG"
-                    alt="Desenho de Lorenzo e Leonor"
-                >
-
-            </div>
-
-        </section>
+    </section>
 
 
+    <!-- FOTO -->
 
-        <!-- ========================= -->
-        <!-- ESTRELAS -->
-        <!-- ========================= -->
+    <section class="secao foto-secao">
 
-        <section class="secao">
+        <p class="pequeno">
+            uma memória
+        </p>
 
-            <p class="pequeno">olha com atenção...</p>
+        <h2>
+            ♡
+        </h2>
 
-            <h2>✨</h2>
+        <div class="foto-placeholder">
 
             <p>
-                Algumas estrelas não são apenas decoração.
+                Aqui vai uma foto nossa :3
             </p>
 
+        </div>
 
-            <div class="estrelas">
+    </section>
 
-                <button class="estrela" data-mensagem="✨">
-                    ✦
-                </button>
 
-                <button class="estrela" data-mensagem="♡">
-                    ✧
-                </button>
+    <!-- FINAL -->
 
-                <button class="estrela" data-mensagem="🌸">
-                    ✦
-                </button>
+    <section class="secao final">
 
-                <button class="estrela" data-mensagem="💗">
-                    ✧
-                </button>
+        <div class="coracao-final">
+            ♡
+        </div>
 
-                <button class="estrela" data-mensagem="✨">
-                    ✦
-                </button>
+        <h2>
+            Chegaste ao fim.
+        </h2>
 
-            </div>
+        <p>
+            Mas ainda há muito mais que eu quero viver contigo.
+        </p>
 
+        <p class="assinatura">
+            — Lorenzo ♡
+        </p>
 
-            <div id="efeitoEstrela"></div>
+    </section>
 
-        </section>
+</main>
 
 
+<!-- ========================= -->
+<!-- JAVASCRIPT -->
+<!-- ========================= -->
 
-        <!-- ========================= -->
-        <!-- DESENHO 2 -->
-        <!-- ========================= -->
+<script>
 
-        <section class="secao desenho-secao">
+    const carta =
+        document.getElementById("carta");
 
-            <p class="pequeno">e mais uma coisinha :3</p>
+    const botao =
+        document.getElementById("botaoAbrir");
 
-            <h2>Eu e tu. ♡</h2>
+    const mensagemCarta =
+        document.getElementById("mensagemCarta");
 
-            <div class="desenho-flutuante desenho-2">
+    const musica =
+        document.getElementById("musica");
 
-                <img
-                    src="Eu%20e%20Leonor%202.PNG"
-                    alt="Segundo desenho de Lorenzo e Leonor"
-                >
+    let abriu = false;
 
-            </div>
 
-        </section>
+    /* ========================= */
+    /* ABRIR CARTA */
+    /* ========================= */
 
+    botao.addEventListener(
+        "click",
+        abrirCarta
+    );
 
+    botao.addEventListener(
+        "keydown",
+        (evento) => {
 
-        <!-- ========================= -->
-        <!-- ESPAÇO PARA FOTO -->
-        <!-- ========================= -->
+            if (
+                evento.key === "Enter" ||
+                evento.key === " "
+            ) {
+                evento.preventDefault();
 
-        <section class="secao foto-secao">
-
-            <p class="pequeno">uma memória</p>
-
-            <h2>♡</h2>
-
-            <div class="foto-placeholder">
-
-                <p>
-                    Aqui vai uma foto nossa :3
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ========================= -->
-        <!-- FINAL -->
-        <!-- ========================= -->
-
-        <section class="secao final">
-
-            <div class="coracao-final">♡</div>
-
-            <h2>Chegaste ao fim.</h2>
-
-            <p>
-                Mas ainda há muito mais que eu quero viver contigo.
-            </p>
-
-            <p class="assinatura">
-                — Lorenzo ♡
-            </p>
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- ========================= -->
-    <!-- JAVASCRIPT -->
-    <!-- ========================= -->
-
-    <script>
-
-        const carta = document.getElementById("carta");
-        const botao = document.getElementById("botaoAbrir");
-        const mensagemCarta = document.getElementById("mensagemCarta");
-        const musica = document.getElementById("musica");
-
-        let abriu = false;
-
-
-        /* ========================= */
-        /* ABRIR CARTA */
-        /* ========================= */
-
-        botao.addEventListener("click", abrirCarta);
-
-
-        function abrirCarta() {
-
-            if (abriu) return;
-
-            abriu = true;
-
-            carta.classList.add("abrindo");
-
-            botao.setAttribute("aria-hidden", "true");
-
-
-            musica.volume = 0.35;
-
-            musica.play().catch(() => {
-                console.log("A música não pôde começar automaticamente.");
-            });
-
-
-            setTimeout(() => {
-
-                mensagemCarta.setAttribute(
-                    "aria-hidden",
-                    "false"
-                );
-
-                carta.classList.add("aberta");
-
-            }, 900);
-
-
-            setTimeout(() => {
-
-                document.body.classList.add("scroll");
-
-            }, 1300);
-
-        }
-
-
-
-        /* ========================= */
-        /* CORAÇÕES */
-        /* ========================= */
-
-        const coracoes =
-            document.querySelectorAll(".coracao");
-
-        const mensagemCoracao =
-            document.getElementById("mensagemCoracao");
-
-
-        coracoes.forEach(coracao => {
-
-            coracao.addEventListener("click", () => {
-
-                const texto =
-                    coracao.dataset.mensagem;
-
-                mensagemCoracao.textContent = texto;
-
-                mensagemCoracao.classList.remove("mostrar");
-
-                void mensagemCoracao.offsetWidth;
-
-                mensagemCoracao.classList.add("mostrar");
-
-
-                coracao.classList.add("clicado");
-
-
-                setTimeout(() => {
-                    coracao.classList.remove("clicado");
-                }, 500);
-
-            });
-
-        });
-
-
-
-        /* ========================= */
-        /* ESTRELAS */
-        /* ========================= */
-
-        const estrelas =
-            document.querySelectorAll(".estrela");
-
-        const efeitoEstrela =
-            document.getElementById("efeitoEstrela");
-
-
-        estrelas.forEach(estrela => {
-
-            estrela.addEventListener("click", () => {
-
-                const texto =
-                    estrela.dataset.mensagem;
-
-                efeitoEstrela.textContent = texto;
-
-                efeitoEstrela.classList.remove("mostrar");
-
-                void efeitoEstrela.offsetWidth;
-
-                efeitoEstrela.classList.add("mostrar");
-
-
-                criarParticulas(estrela);
-
-            });
-
-        });
-
-
-
-        /* ========================= */
-        /* PARTÍCULAS */
-        /* ========================= */
-
-        function criarParticulas(elemento) {
-
-            for (let i = 0; i < 8; i++) {
-
-                const particula =
-                    document.createElement("span");
-
-                particula.classList.add("particula");
-
-                particula.textContent = "✦";
-
-                particula.style.setProperty(
-                    "--x",
-                    `${(Math.random() - 0.5) * 180}px`
-                );
-
-                particula.style.setProperty(
-                    "--y",
-                    `${(Math.random() - 0.5) * 180}px`
-                );
-
-                elemento.appendChild(particula);
-
-
-                setTimeout(() => {
-                    particula.remove();
-                }, 900);
-
+                abrirCarta();
             }
 
         }
+    );
 
 
+    function abrirCarta() {
 
-        /* ========================= */
-        /* ANIMAÇÕES AO DESCER */
-        /* ========================= */
+        if (abriu) return;
 
-        const elementos =
-            document.querySelectorAll(".secao");
+        abriu = true;
+
+        carta.classList.add(
+            "abrindo"
+        );
+
+        botao.setAttribute(
+            "aria-hidden",
+            "true"
+        );
 
 
-        const observador =
-            new IntersectionObserver(
+        musica.volume = 0.35;
 
-                (entradas) => {
+        musica.play().catch(() => {
+            console.log(
+                "A música precisa de uma interação do utilizador."
+            );
+        });
 
-                    entradas.forEach(entrada => {
 
-                        if (entrada.isIntersecting) {
+        setTimeout(() => {
+
+            mensagemCarta.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            carta.classList.add(
+                "aberta"
+            );
+
+        }, 900);
+
+
+        setTimeout(() => {
+
+            document.body.classList.add(
+                "scroll"
+            );
+
+        }, 1300);
+
+    }
+
+
+    /* ========================= */
+    /* CORAÇÕES */
+    /* ========================= */
+
+    const coracoes =
+        document.querySelectorAll(
+            ".coracao"
+        );
+
+    const mensagemCoracao =
+        document.getElementById(
+            "mensagemCoracao"
+        );
+
+
+    coracoes.forEach(
+        coracao => {
+
+            coracao.addEventListener(
+                "click",
+                () => {
+
+                    const texto =
+                        coracao.dataset.mensagem;
+
+                    mensagemCoracao.textContent =
+                        texto;
+
+                    mensagemCoracao.classList.remove(
+                        "mostrar"
+                    );
+
+                    void mensagemCoracao.offsetWidth;
+
+                    mensagemCoracao.classList.add(
+                        "mostrar"
+                    );
+
+
+                    coracao.classList.add(
+                        "clicado"
+                    );
+
+
+                    setTimeout(() => {
+
+                        coracao.classList.remove(
+                            "clicado"
+                        );
+
+                    }, 500);
+
+                }
+            );
+
+        }
+    );
+
+
+    /* ========================= */
+    /* ESTRELAS */
+    /* ========================= */
+
+    const estrelas =
+        document.querySelectorAll(
+            ".estrela"
+        );
+
+    const efeitoEstrela =
+        document.getElementById(
+            "efeitoEstrela"
+        );
+
+
+    estrelas.forEach(
+        estrela => {
+
+            estrela.addEventListener(
+                "click",
+                () => {
+
+                    const texto =
+                        estrela.dataset.mensagem;
+
+                    efeitoEstrela.textContent =
+                        texto;
+
+                    efeitoEstrela.classList.remove(
+                        "mostrar"
+                    );
+
+                    void efeitoEstrela.offsetWidth;
+
+                    efeitoEstrela.classList.add(
+                        "mostrar"
+                    );
+
+
+                    criarParticulas(
+                        estrela
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* ========================= */
+    /* PARTÍCULAS */
+    /* ========================= */
+
+    function criarParticulas(
+        elemento
+    ) {
+
+        for (
+            let i = 0;
+            i < 8;
+            i++
+        ) {
+
+            const particula =
+                document.createElement(
+                    "span"
+                );
+
+            particula.classList.add(
+                "particula"
+            );
+
+            particula.textContent =
+                "✦";
+
+            particula.style.setProperty(
+                "--x",
+                `${(Math.random() - 0.5) * 180}px`
+            );
+
+            particula.style.setProperty(
+                "--y",
+                `${(Math.random() - 0.5) * 180}px`
+            );
+
+            elemento.appendChild(
+                particula
+            );
+
+
+            setTimeout(() => {
+
+                particula.remove();
+
+            }, 900);
+
+        }
+
+    }
+
+
+    /* ========================= */
+    /* ANIMAÇÕES AO DESCER */
+    /* ========================= */
+
+    const elementos =
+        document.querySelectorAll(
+            ".secao"
+        );
+
+
+    const observador =
+        new IntersectionObserver(
+
+            (entradas) => {
+
+                entradas.forEach(
+                    entrada => {
+
+                        if (
+                            entrada.isIntersecting
+                        ) {
 
                             entrada.target.classList.add(
                                 "visivel"
@@ -470,24 +1355,37 @@
 
                         }
 
-                    });
+                    }
+                );
 
-                },
+            },
 
-                {
-                    threshold: 0.15
-                }
+            {
+                threshold: 0.15
+            }
 
+        );
+
+
+    elementos.forEach(
+        elemento => {
+
+            observador.observe(
+                elemento
             );
 
+        }
+    );
 
-        elementos.forEach(elemento => {
 
-            observador.observe(elemento);
+    /* A primeira secção aparece logo */
 
-        });
+    document
+        .querySelector(".aparecer")
+        ?.classList.add("visivel");
 
-    </script>
+</script>
+```
 
 </body>
 </html>
