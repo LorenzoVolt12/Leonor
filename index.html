@@ -751,13 +751,19 @@
             align-items: center;
             justify-content: center;
             margin: 20px auto;
-            font-size: 100px;
             cursor: pointer;
             transition: transform 0.2s;
+            overflow: hidden;
         }
 
         .pet-area:hover {
             transform: scale(1.05);
+        }
+
+        .pet-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .pet-stats {
@@ -1187,12 +1193,12 @@
         </p>
 
         <h2>
-            Tens um Bichinho Especial 🐱
+            Tens um Bichinho Especial 🐿
         </h2>
 
         <div class="pet-container">
             <div class="pet-area" id="petArea">
-                <span id="petEmoji">🐱</span>
+                <img id="petImg" src="mascote.png" alt="Mascote">
             </div>
 
             <div class="pet-stats">
@@ -1233,7 +1239,7 @@
         </div>
 
         <p style="margin-top: 30px;">
-            Obrigado por tudo que és para mim. 💗
+            Obrigado por todos os momentos que tivemos juntos. 💗
         </p>
 
         <div class="assinatura">

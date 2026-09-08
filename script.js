@@ -303,13 +303,13 @@ class Pet {
         document.getElementById('fomeBar').style.width = (100 - this.fome) + '%';
         document.getElementById('felicidadeBar').style.width = this.felicidade + '%';
         
-        const petEmoji = document.getElementById('petEmoji');
+        const petImg = document.getElementById('petImg');
         if (this.felicidade > 70) {
-            petEmoji.textContent = '😻';
-        } else if (this.felicidade < 30) {
-            petEmoji.textContent = '😿';
+            petImg.src = 'mascote feliz.png';
+            petImg.alt = 'Mascote feliz';
         } else {
-            petEmoji.textContent = '😸';
+            petImg.src = 'mascote.png';
+            petImg.alt = 'Mascote';
         }
     }
 }
