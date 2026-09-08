@@ -11,9 +11,52 @@ const musica = document.getElementById('musica');
 
 let cartaAberta = false;
 let cartaAbrindo = false;
+let musicaTocando = false;
 
 // ========================================
-// EVENTOS DO BOTÃO
+// CONTROLES DE MÚSICA
+// ========================================
+
+const btnMusica = document.getElementById('btnMusica');
+const volumeSlider = document.getElementById('volumeSlider');
+
+volumeSlider.addEventListener('change', (e) => {
+    musica.volume = e.target.value;
+});
+
+btnMusica.addEventListener('click', () => {
+    if (musicaTocando) {
+        musica.pause();
+        btnMusica.textContent = '🔇';
+        musicaTocando = false;
+    } else {
+        musica.play();
+        btnMusica.textContent = '🎵';
+        musicaTocando = true;
+    }
+});
+
+// ========================================
+// MODO ESCURO
+// ========================================
+
+const btnToggleDarkMode = document.getElementById('btnToggleDarkMode');
+const savedDarkMode = localStorage.getItem('darkMode');
+
+if (savedDarkMode === 'true') {
+    body.classList.add('dark-mode');
+    btnToggleDarkMode.textContent = '☀️';
+}
+
+btnToggleDarkMode.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    const isDarkMode = body.classList.contains('dark-mode');
+    btnToggleDarkMode.textContent = isDarkMode ? '☀️' : '🌙';
+    localStorage.setItem('darkMode', isDarkMode);
+});
+
+// ========================================
+// EVENTOS DO BOTÃO CARTA
 // ========================================
 
 botaoAbrir.addEventListener('click', abrirCarta);
@@ -30,8 +73,10 @@ function abrirCarta() {
 
     // Toca a música
     musica.play().catch(() => {
-        console.log('Autoplay bloqueado - usuário precisa interagir primeiro');
+        console.log('Autoplay bloqueado');
     });
+    musicaTocando = true;
+    btnMusica.textContent = '🎵';
 
     // Adiciona classe de abertura
     carta.classList.add('abrindo');
@@ -48,12 +93,41 @@ function abrirCarta() {
         cartaAberta = true;
         cartaAbrindo = false;
 
+        // Confete!
+        criarConfete();
+
         // Ativa o scroll depois de 1.5s
         setTimeout(() => {
             body.classList.add('scroll');
             botaoAbrir.style.pointerEvents = 'none';
         }, 1500);
     }, 900);
+}
+
+// ========================================
+// CONFETE
+// ========================================
+
+function criarConfete() {
+    const cores = ['#ff69b4', '#ffd700', '#87ceeb', '#98fb98', '#dda0dd', '#f0e68c'];
+    const emojis = ['🎉', '✨', '💗', '🌸', '⭐', '🎊'];
+
+    for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+            const confete = document.createElement('div');
+            confete.className = 'confete';
+            confete.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            confete.style.left = Math.random() * 100 + 'vw';
+            confete.style.top = '-20px';
+            confete.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            confete.style.opacity = Math.random() * 0.5 + 0.5;
+            confete.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            document.body.appendChild(confete);
+
+            setTimeout(() => confete.remove(), 3000);
+        }, i * 30);
+    }
 }
 
 // ========================================
@@ -90,22 +164,17 @@ coracoes.forEach(coracao => {
     coracao.addEventListener('click', function() {
         const mensagem = this.getAttribute('data-mensagem');
         
-        // Adiciona animação
         this.classList.add('clicado');
         
-        // Remove a classe depois da animação
         setTimeout(() => {
             this.classList.remove('clicado');
         }, 500);
 
-        // Mostra a mensagem
         mensagemCoracao.textContent = mensagem;
         mensagemCoracao.classList.add('mostrar');
 
-        // Cria partículas de corações
         criarParticulas(this);
 
-        // Esconde a mensagem depois de 3s
         setTimeout(() => {
             mensagemCoracao.classList.remove('mostrar');
         }, 3000);
@@ -126,12 +195,10 @@ estrelas.forEach(estrela => {
         efeitoEstrela.textContent = mensagem;
         efeitoEstrela.classList.remove('mostrar');
         
-        // Força o reflow para resetar a animação
         void efeitoEstrela.offsetWidth;
         
         efeitoEstrela.classList.add('mostrar');
 
-        // Remove após 2s
         setTimeout(() => {
             efeitoEstrela.classList.remove('mostrar');
         }, 2000);
@@ -152,7 +219,6 @@ function criarParticulas(elemento) {
         particula.className = 'particula';
         particula.textContent = '♡';
         
-        // Posição aleatória
         const angulo = (i / 8) * Math.PI * 2;
         const distancia = 80 + Math.random() * 50;
         const moveX = Math.cos(angulo) * distancia;
@@ -166,7 +232,6 @@ function criarParticulas(elemento) {
         
         document.body.appendChild(particula);
         
-        // Remove depois da animação
         setTimeout(() => {
             particula.remove();
         }, 900);
@@ -174,10 +239,93 @@ function criarParticulas(elemento) {
 }
 
 // ========================================
+// PET FEEDER GAME
+// ========================================
+
+class Pet {
+    constructor() {
+        this.fome = 70;
+        this.felicidade = 80;
+        this.energia = 100;
+        this.updateDisplay();
+        
+        setInterval(() => this.decreaseStats(), 5000);
+    }
+
+    alimentar() {
+        if (this.fome < 100) {
+            this.fome = Math.min(100, this.fome + 30);
+            this.felicidade = Math.min(100, this.felicidade + 10);
+            this.mostrarMensagem('Yum! 😋');
+        }
+    }
+
+    brincar() {
+        if (this.energia > 20) {
+            this.felicidade = Math.min(100, this.felicidade + 40);
+            this.fome = Math.max(0, this.fome - 20);
+            this.energia = Math.max(0, this.energia - 30);
+            this.mostrarMensagem('Wheee! 🎉');
+        }
+    }
+
+    acariciar() {
+        this.felicidade = Math.min(100, this.felicidade + 20);
+        this.mostrarMensagem('Purr... 💚');
+    }
+
+    decreaseStats() {
+        if (this.fome > 0) this.fome -= 5;
+        if (this.felicidade > 40) this.felicidade -= 3;
+        if (this.energia < 100) this.energia += 2;
+        this.updateDisplay();
+    }
+
+    mostrarMensagem(msg) {
+        const bubble = document.createElement('div');
+        bubble.textContent = msg;
+        bubble.style.position = 'fixed';
+        bubble.style.top = '50%';
+        bubble.style.left = '50%';
+        bubble.style.transform = 'translate(-50%, -50%)';
+        bubble.style.background = 'rgba(255, 200, 200, 0.9)';
+        bubble.style.padding = '15px 25px';
+        bubble.style.borderRadius = '50px';
+        bubble.style.fontSize = '18px';
+        bubble.style.pointerEvents = 'none';
+        bubble.style.zIndex = '999';
+        bubble.style.animation = 'flutuar 1s ease-out forwards';
+        document.body.appendChild(bubble);
+        setTimeout(() => bubble.remove(), 1000);
+    }
+
+    updateDisplay() {
+        document.getElementById('fomeBar').style.width = (100 - this.fome) + '%';
+        document.getElementById('felicidadeBar').style.width = this.felicidade + '%';
+        
+        const petEmoji = document.getElementById('petEmoji');
+        if (this.felicidade > 70) {
+            petEmoji.textContent = '😻';
+        } else if (this.felicidade < 30) {
+            petEmoji.textContent = '😿';
+        } else {
+            petEmoji.textContent = '😸';
+        }
+    }
+}
+
+const pet = new Pet();
+
+document.getElementById('btnComida').addEventListener('click', () => pet.alimentar());
+document.getElementById('btnBrincar').addEventListener('click', () => pet.brincar());
+document.getElementById('btnAcariciar').addEventListener('click', () => pet.acariciar());
+
+document.getElementById('petArea').addEventListener('click', () => pet.acariciar());
+
+// ========================================
 // ACESSIBILIDADE
 // ========================================
 
-// Permite abrir com Enter/Space
 document.addEventListener('keydown', (e) => {
     if (!cartaAberta && (e.key === 'Enter' || e.key === ' ')) {
         if (document.activeElement === botaoAbrir) {

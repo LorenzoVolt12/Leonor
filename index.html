@@ -4,780 +4,950 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentinho :3</title>
 
-```
-<title>Presentinho :3</title>
+    <style>
+        /* ============================= */
+        /* RESET */
+        /* ============================= */
 
-<style>
-    /* ============================= */
-    /* RESET */
-    /* ============================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    html {
-        scroll-behavior: smooth;
-    }
+        body {
+            width: 100%;
+            min-height: 100dvh;
 
-    body {
-        width: 100%;
-        min-height: 100dvh;
+            background-image: url("Fundo.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
 
-        background-image: url("Fundo.png");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+            font-family: Georgia, "Times New Roman", serif;
 
-        font-family: Georgia, "Times New Roman", serif;
+            color: #4a4145;
 
-        color: #4a4145;
+            overflow: hidden;
 
-        overflow: hidden;
-    }
+            --bg-light: #ffffff;
+            --bg-dark: #1a1a1a;
+            --text-light: #4a4145;
+            --text-dark: #e0e0e0;
+        }
 
-    body.scroll {
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+        body.dark-mode {
+            --bg-light: #1a1a1a;
+            --bg-dark: #ffffff;
+            --text-light: #e0e0e0;
+            --text-dark: #4a4145;
+        }
 
-
-    /* ============================= */
-    /* CARTA */
-    /* ============================= */
-
-    #inicio {
-        min-height: 100dvh;
-
-        display: flex;
-
-        justify-content: center;
-        align-items: center;
-
-        padding: 30px;
-    }
-
-    #carta {
-        position: relative;
-
-        width: min(80vw, 700px);
-
-        transition: transform 0.9s ease;
-    }
-
-    #envelope {
-        width: 100%;
-        height: auto;
-
-        display: block;
-
-        transform-origin: center;
-
-        transition:
-            transform 1.2s cubic-bezier(.22,1,.36,1),
-            opacity 1s ease,
-            filter 1s ease;
-    }
+        body.scroll {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
 
 
-    /* ============================= */
-    /* BOTÃO */
-    /* ============================= */
+        /* ============================= */
+        /* CONTROLES SUPERIORES */
+        /* ============================= */
 
-    #botaoAbrir {
-        position: absolute;
+        .controles-topo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
 
-        left: 50%;
-        top: 68%;
+        .btn-controle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid rgba(100, 80, 85, 0.3);
+            background: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
 
-        width: 55px;
-        height: 55px;
+        .btn-controle:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(90, 40, 60, 0.2);
+        }
 
-        transform: translate(-50%, -50%);
+        body.dark-mode .btn-controle {
+            background: rgba(50, 50, 50, 0.8);
+            border-color: rgba(200, 200, 200, 0.3);
+        }
 
-        border-radius: 50%;
+        body.dark-mode .btn-controle:hover {
+            background: rgba(50, 50, 50, 1);
+        }
 
-        background: rgba(255,255,255,.35);
+        .volume-slider {
+            width: 100px;
+            cursor: pointer;
+            accent-color: #b7838c;
+        }
 
-        border: 2px solid rgba(255,255,255,.8);
 
-        cursor: pointer;
+        /* ============================= */
+        /* CARTA */
+        /* ============================= */
 
-        z-index: 20;
+        #inicio {
+            min-height: 100dvh;
 
-        animation: pulsar 1.8s infinite;
+            display: flex;
 
-        touch-action: manipulation;
+            justify-content: center;
+            align-items: center;
 
-        -webkit-tap-highlight-color: transparent;
-    }
+            padding: 30px;
+        }
 
-    @keyframes pulsar {
-        0%, 100% {
+        #carta {
+            position: relative;
+
+            width: min(80vw, 700px);
+
+            transition: transform 0.9s ease;
+        }
+
+        #envelope {
+            width: 100%;
+            height: auto;
+
+            display: block;
+
+            transform-origin: center;
+
+            transition:
+                transform 1.2s cubic-bezier(.22,1,.36,1),
+                opacity 1s ease,
+                filter 1s ease;
+        }
+
+
+        /* ============================= */
+        /* BOTÃO */
+        /* ============================= */
+
+        #botaoAbrir {
+            position: absolute;
+
+            left: 50%;
+            top: 68%;
+
+            width: 55px;
+            height: 55px;
+
+            transform: translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.35);
+
+            border: 2px solid rgba(255,255,255,.8);
+
+            cursor: pointer;
+
+            z-index: 20;
+
+            animation: pulsar 1.8s infinite;
+
+            touch-action: manipulation;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes pulsar {
+            0%, 100% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(1);
+
+                opacity: .7;
+            }
+
+            50% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.15);
+
+                opacity: 1;
+            }
+        }
+
+
+        /* ============================= */
+        /* ABERTURA */
+        /* ============================= */
+
+        #carta.abrindo {
+            transform: translateY(-15px);
+        }
+
+        #carta.abrindo #botaoAbrir {
+            animation: desaparecer .45s forwards;
+
+            pointer-events: none;
+        }
+
+        @keyframes desaparecer {
+            from {
+                opacity: 1;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1);
+            }
+
+            to {
+                opacity: 0;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(.2);
+            }
+        }
+
+        #carta.abrindo #envelope {
+            transform:
+                perspective(1000px)
+                rotateX(8deg)
+                translateY(-20px)
+                scale(1.03);
+
+            filter: brightness(1.08);
+        }
+
+        #carta.aberta #envelope {
+            transform:
+                perspective(1000px)
+                rotateX(12deg)
+                translateY(-25px)
+                scale(1.04);
+
+            opacity: .12;
+
+            filter: blur(3px);
+        }
+
+
+        /* ============================= */
+        /* MENSAGEM DA CARTA */
+        /* ============================= */
+
+        #mensagemCarta {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            width: 75%;
+
+            transform:
+                translate(-50%, -42%)
+                scale(.85);
+
+            opacity: 0;
+
+            text-align: center;
+
+            z-index: 10;
+
+            background:
+                rgba(255, 235, 243, 0.88);
+
+            padding: 22px 28px;
+
+            border-radius: 18px;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.8);
+
+            box-shadow:
+                0 8px 25px rgba(90, 40, 60, 0.15);
+
+            transition:
+                opacity .9s ease,
+                transform .9s cubic-bezier(.22,1,.36,1);
+
+            pointer-events: none;
+        }
+
+        #mensagemCarta[aria-hidden="false"] {
+            opacity: 1;
+
             transform:
                 translate(-50%, -50%)
                 scale(1);
-
-            opacity: .7;
         }
 
-        50% {
-            transform:
-                translate(-50%, -50%)
-                scale(1.15);
+        #mensagemCarta h1 {
+            color: #6b3048;
 
-            opacity: 1;
-        }
-    }
+            font-size:
+                clamp(25px, 5vw, 40px);
 
+            margin-bottom: 20px;
 
-    /* ============================= */
-    /* ABERTURA */
-    /* ============================= */
-
-    #carta.abrindo {
-        transform: translateY(-15px);
-    }
-
-    #carta.abrindo #botaoAbrir {
-        animation: desaparecer .45s forwards;
-
-        pointer-events: none;
-    }
-
-    @keyframes desaparecer {
-        from {
-            opacity: 1;
-
-            transform:
-                translate(-50%, -50%)
-                scale(1);
+            text-shadow:
+                0 1px 2px rgba(255,255,255,.8);
         }
 
-        to {
+        #mensagemCarta p {
+            color: #71394d;
+
+            font-size:
+                clamp(16px, 3vw, 21px);
+
+            line-height: 1.6;
+
+            margin-bottom: 12px;
+
+            text-shadow:
+                0 1px 2px rgba(255,255,255,.8);
+        }
+
+
+        /* ============================= */
+        /* CONTEÚDO */
+        /* ============================= */
+
+        #conteudo {
+            position: relative;
+
+            width: 100%;
+
+            padding-bottom: 100px;
+        }
+
+        .secao {
+            min-height: 100vh;
+
+            width: 100%;
+
+            padding:
+                100px 25px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
             opacity: 0;
 
             transform:
-                translate(-50%, -50%)
-                scale(.2);
+                translateY(50px);
+
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
         }
-    }
 
-    #carta.abrindo #envelope {
-        transform:
-            perspective(1000px)
-            rotateX(8deg)
-            translateY(-20px)
-            scale(1.03);
+        .secao.visivel {
+            opacity: 1;
 
-        filter: brightness(1.08);
-    }
-
-    #carta.aberta #envelope {
-        transform:
-            perspective(1000px)
-            rotateX(12deg)
-            translateY(-25px)
-            scale(1.04);
-
-        opacity: .12;
-
-        filter: blur(3px);
-    }
-
-
-    /* ============================= */
-    /* MENSAGEM DA CARTA */
-    /* ============================= */
-
-    #mensagemCarta {
-        position: absolute;
-
-        left: 50%;
-        top: 50%;
-
-        width: 75%;
-
-        transform:
-            translate(-50%, -42%)
-            scale(.85);
-
-        opacity: 0;
-
-        text-align: center;
-
-        z-index: 10;
-
-        background:
-            rgba(255, 235, 243, 0.88);
-
-        padding: 22px 28px;
-
-        border-radius: 18px;
-
-        border:
-            1px solid rgba(255, 255, 255, 0.8);
-
-        box-shadow:
-            0 8px 25px rgba(90, 40, 60, 0.15);
-
-        transition:
-            opacity .9s ease,
-            transform .9s cubic-bezier(.22,1,.36,1);
-
-        pointer-events: none;
-    }
-
-    #mensagemCarta[aria-hidden="false"] {
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1);
-    }
-
-    #mensagemCarta h1 {
-        color: #6b3048;
-
-        font-size:
-            clamp(25px, 5vw, 40px);
-
-        margin-bottom: 20px;
-
-        text-shadow:
-            0 1px 2px rgba(255,255,255,.8);
-    }
-
-    #mensagemCarta p {
-        color: #71394d;
-
-        font-size:
-            clamp(16px, 3vw, 21px);
-
-        line-height: 1.6;
-
-        margin-bottom: 12px;
-
-        text-shadow:
-            0 1px 2px rgba(255,255,255,.8);
-    }
-
-
-    /* ============================= */
-    /* CONTEÚDO */
-    /* ============================= */
-
-    #conteudo {
-        position: relative;
-
-        width: 100%;
-
-        padding-bottom: 100px;
-    }
-
-    .secao {
-        min-height: 100vh;
-
-        width: 100%;
-
-        padding:
-            100px 25px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        align-items: center;
-
-        text-align: center;
-
-        opacity: 0;
-
-        transform:
-            translateY(50px);
-
-        transition:
-            opacity 1s ease,
-            transform 1s ease;
-    }
-
-    .secao.visivel {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-
-    .secao h2 {
-        font-size:
-            clamp(28px, 6vw, 45px);
-
-        font-weight: normal;
-
-        margin:
-            15px 0 25px;
-    }
-
-    .secao p {
-        max-width: 600px;
-
-        font-size:
-            clamp(17px, 3.5vw, 21px);
-
-        line-height: 1.8;
-    }
-
-    .pequeno {
-        font-size: 14px !important;
-
-        letter-spacing: 3px;
-
-        text-transform: uppercase;
-
-        opacity: .65;
-    }
-
-
-    /* ============================= */
-    /* SETA */
-    /* ============================= */
-
-    .seta {
-        margin-top: 50px;
-
-        font-size: 35px;
-
-        animation:
-            flutuar 2s infinite ease-in-out;
-    }
-
-    @keyframes flutuar {
-        0%, 100% {
             transform:
                 translateY(0);
         }
 
-        50% {
-            transform:
-                translateY(10px);
-        }
-    }
+        .secao h2 {
+            font-size:
+                clamp(28px, 6vw, 45px);
 
+            font-weight: normal;
 
-    /* ============================= */
-    /* CORAÇÕES */
-    /* ============================= */
-
-    .coracoes {
-        display: flex;
-
-        justify-content: center;
-        align-items: center;
-
-        gap: 40px;
-
-        margin-top: 50px;
-
-        flex-wrap: wrap;
-    }
-
-    .coracao {
-        position: relative;
-
-        border: none;
-
-        background: none;
-
-        font-size: 65px;
-
-        color: #b7838c;
-
-        cursor: pointer;
-
-        transition:
-            transform .3s ease;
-
-        touch-action: manipulation;
-    }
-
-    .coracao:hover {
-        transform:
-            scale(1.2);
-    }
-
-    .coracao.clicado {
-        animation:
-            coracaoClique .5s ease;
-    }
-
-    @keyframes coracaoClique {
-        0% {
-            transform:
-                scale(1);
+            margin:
+                15px 0 25px;
         }
 
-        50% {
-            transform:
-                scale(1.5);
+        .secao p {
+            max-width: 600px;
+
+            font-size:
+                clamp(17px, 3.5vw, 21px);
+
+            line-height: 1.8;
         }
 
-        100% {
-            transform:
-                scale(1);
-        }
-    }
+        .pequeno {
+            font-size: 14px !important;
 
+            letter-spacing: 3px;
 
-    /* ============================= */
-    /* MENSAGEM ESCONDIDA */
-    /* ============================= */
+            text-transform: uppercase;
 
-    #mensagemCoracao {
-        min-height: 35px;
-
-        margin-top: 40px;
-
-        font-size:
-            clamp(17px, 4vw, 23px);
-
-        opacity: 0;
-
-        transform:
-            translateY(10px);
-
-        transition:
-            opacity .5s ease,
-            transform .5s ease;
-    }
-
-    #mensagemCoracao.mostrar {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-
-
-    /* ============================= */
-    /* ESTRELAS */
-    /* ============================= */
-
-    .estrelas {
-        position: relative;
-
-        width:
-            min(500px, 90vw);
-
-        min-height: 250px;
-
-        margin-top: 40px;
-    }
-
-    .estrela {
-        position: absolute;
-
-        border: none;
-
-        background: none;
-
-        font-size: 40px;
-
-        color: #b9a3a8;
-
-        cursor: pointer;
-
-        transition:
-            transform .3s ease;
-    }
-
-    .estrela:nth-child(1) {
-        left: 10%;
-        top: 20%;
-    }
-
-    .estrela:nth-child(2) {
-        left: 45%;
-        top: 5%;
-    }
-
-    .estrela:nth-child(3) {
-        right: 10%;
-        top: 35%;
-    }
-
-    .estrela:nth-child(4) {
-        left: 30%;
-        bottom: 10%;
-    }
-
-    .estrela:nth-child(5) {
-        right: 35%;
-        bottom: 5%;
-    }
-
-    .estrela:hover {
-        transform:
-            scale(1.4)
-            rotate(15deg);
-    }
-
-    #efeitoEstrela {
-        min-height: 45px;
-
-        margin-top: 20px;
-
-        font-size: 35px;
-
-        opacity: 0;
-    }
-
-    #efeitoEstrela.mostrar {
-        animation:
-            aparecerEstrela .7s ease forwards;
-    }
-
-    @keyframes aparecerEstrela {
-        from {
-            opacity: 0;
-
-            transform:
-                scale(.4);
+            opacity: .65;
         }
 
-        to {
-            opacity: 1;
 
-            transform:
-                scale(1);
-        }
-    }
+        /* ============================= */
+        /* SETA */
+        /* ============================= */
 
+        .seta {
+            margin-top: 50px;
 
-    /* ============================= */
-    /* PARTÍCULAS */
-    /* ============================= */
+            font-size: 35px;
 
-    .particula {
-        position: absolute;
-
-        left: 50%;
-        top: 50%;
-
-        pointer-events: none;
-
-        animation:
-            particula .9s ease forwards;
-    }
-
-    @keyframes particula {
-        from {
-            opacity: 1;
-
-            transform:
-                translate(0,0)
-                scale(1);
+            animation:
+                flutuar 2s infinite ease-in-out;
         }
 
-        to {
-            opacity: 0;
+        @keyframes flutuar {
+            0%, 100% {
+                transform:
+                    translateY(0);
+            }
 
-            transform:
-                translate(var(--x),var(--y))
-                scale(.2);
-        }
-    }
-
-
-    /* ============================= */
-    /* DESENHOS */
-    /* ============================= */
-
-    .desenho-secao {
-        position: relative;
-    }
-
-    .desenho-flutuante {
-        width:
-            min(420px, 85vw);
-
-        margin:
-            35px auto 0;
-
-        border-radius: 22px;
-
-        overflow: hidden;
-
-        background:
-            rgba(255, 255, 255, 0.22);
-
-        box-shadow:
-            0 15px 35px
-            rgba(90, 40, 60, 0.14);
-
-        animation:
-            desenhoFlutuar
-            4s ease-in-out infinite;
-    }
-
-    .desenho-flutuante img {
-        display: block;
-
-        width: 100%;
-
-        height: auto;
-    }
-
-    .desenho-2 {
-        animation-delay:
-            -2s;
-    }
-
-    @keyframes desenhoFlutuar {
-        0%, 100% {
-            transform:
-                translateY(0)
-                rotate(-1deg);
+            50% {
+                transform:
+                    translateY(10px);
+            }
         }
 
-        50% {
-            transform:
-                translateY(-10px)
-                rotate(1deg);
-        }
-    }
 
-
-    /* ============================= */
-    /* FOTO */
-    /* ============================= */
-
-    .foto-placeholder {
-        width:
-            min(500px, 90vw);
-
-        height: 300px;
-
-        margin-top: 30px;
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-
-        border:
-            2px dashed
-            rgba(100,80,85,.25);
-
-        border-radius: 15px;
-
-        background:
-            rgba(255,255,255,.15);
-    }
-
-    .foto-placeholder p {
-        font-size: 17px;
-
-        opacity: .6;
-    }
-
-
-    /* ============================= */
-    /* FINAL */
-    /* ============================= */
-
-    .final {
-        min-height: 80vh;
-    }
-
-    .coracao-final {
-        font-size: 90px;
-
-        animation:
-            respirar
-            3s infinite ease-in-out;
-    }
-
-    @keyframes respirar {
-        0%, 100% {
-            transform:
-                scale(1);
-        }
-
-        50% {
-            transform:
-                scale(1.12);
-        }
-    }
-
-    .assinatura {
-        margin-top: 40px;
-
-        font-style: italic;
-    }
-
-
-    /* ============================= */
-    /* CELULAR */
-    /* ============================= */
-
-    @media (max-width: 600px) {
-
-        #inicio {
-            padding: 15px;
-        }
-
-        #carta {
-            width: 92vw;
-        }
-
-        #botaoAbrir {
-            width: 50px;
-            height: 50px;
-        }
-
-        .secao {
-            padding:
-                80px 20px;
-        }
+        /* ============================= */
+        /* CORAÇÕES */
+        /* ============================= */
 
         .coracoes {
-            gap: 20px;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 40px;
+
+            margin-top: 50px;
+
+            flex-wrap: wrap;
         }
 
         .coracao {
-            font-size: 55px;
+            position: relative;
+
+            border: none;
+
+            background: none;
+
+            font-size: 65px;
+
+            color: #b7838c;
+
+            cursor: pointer;
+
+            transition:
+                transform .3s ease;
+
+            touch-action: manipulation;
         }
+
+        .coracao:hover {
+            transform:
+                scale(1.2);
+        }
+
+        .coracao.clicado {
+            animation:
+                coracaoClique .5s ease;
+        }
+
+        @keyframes coracaoClique {
+            0% {
+                transform:
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    scale(1.5);
+            }
+
+            100% {
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        /* ============================= */
+        /* MENSAGEM ESCONDIDA */
+        /* ============================= */
+
+        #mensagemCoracao {
+            min-height: 35px;
+
+            margin-top: 40px;
+
+            font-size:
+                clamp(17px, 4vw, 23px);
+
+            opacity: 0;
+
+            transform:
+                translateY(10px);
+
+            transition:
+                opacity .5s ease,
+                transform .5s ease;
+        }
+
+        #mensagemCoracao.mostrar {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* ============================= */
+        /* ESTRELAS */
+        /* ============================= */
 
         .estrelas {
-            min-height: 220px;
+            position: relative;
+
+            width:
+                min(500px, 90vw);
+
+            min-height: 250px;
+
+            margin-top: 40px;
         }
 
-        .foto-placeholder {
-            height: 250px;
+        .estrela {
+            position: absolute;
+
+            border: none;
+
+            background: none;
+
+            font-size: 40px;
+
+            color: #b9a3a8;
+
+            cursor: pointer;
+
+            transition:
+                transform .3s ease;
+        }
+
+        .estrela:nth-child(1) {
+            left: 10%;
+            top: 20%;
+        }
+
+        .estrela:nth-child(2) {
+            left: 45%;
+            top: 5%;
+        }
+
+        .estrela:nth-child(3) {
+            right: 10%;
+            top: 35%;
+        }
+
+        .estrela:nth-child(4) {
+            left: 30%;
+            bottom: 10%;
+        }
+
+        .estrela:nth-child(5) {
+            right: 35%;
+            bottom: 5%;
+        }
+
+        .estrela:hover {
+            transform:
+                scale(1.4)
+                rotate(15deg);
+        }
+
+        #efeitoEstrela {
+            min-height: 45px;
+
+            margin-top: 20px;
+
+            font-size: 35px;
+
+            opacity: 0;
+        }
+
+        #efeitoEstrela.mostrar {
+            animation:
+                aparecerEstrela .7s ease forwards;
+        }
+
+        @keyframes aparecerEstrela {
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(.4);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        /* ============================= */
+        /* PARTÍCULAS */
+        /* ============================= */
+
+        .particula {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            pointer-events: none;
+
+            animation:
+                particula .9s ease forwards;
+        }
+
+        @keyframes particula {
+            from {
+                opacity: 1;
+
+                transform:
+                    translate(0,0)
+                    scale(1);
+            }
+
+            to {
+                opacity: 0;
+
+                transform:
+                    translate(var(--x),var(--y))
+                    scale(.2);
+            }
+        }
+
+        /* ============================= */
+        /* CONFETE */
+        /* ============================= */
+
+        .confete {
+            position: fixed;
+            pointer-events: none;
+            animation: cair 3s ease-out forwards;
+        }
+
+        @keyframes cair {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+
+        /* ============================= */
+        /* DESENHOS */
+        /* ============================= */
+
+        .desenho-secao {
+            position: relative;
         }
 
         .desenho-flutuante {
-            width: 88vw;
+            width:
+                min(420px, 85vw);
 
-            margin-top: 25px;
+            margin:
+                35px auto 0;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            background:
+                rgba(255, 255, 255, 0.22);
+
+            box-shadow:
+                0 15px 35px
+                rgba(90, 40, 60, 0.14);
+
+            animation:
+                desenhoFlutuar
+                4s ease-in-out infinite;
         }
-    }
-</style>
-```
 
+        .desenho-flutuante img {
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+        }
+
+        .desenho-2 {
+            animation-delay:
+                -2s;
+        }
+
+        @keyframes desenhoFlutuar {
+            0%, 100% {
+                transform:
+                    translateY(0)
+                    rotate(-1deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-10px)
+                    rotate(1deg);
+            }
+        }
+
+
+        /* ============================= */
+        /* PET */
+        /* ============================= */
+
+        .pet-container {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 235, 243, 0.5);
+            border-radius: 20px;
+            max-width: 400px;
+        }
+
+        .pet-area {
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            font-size: 100px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .pet-area:hover {
+            transform: scale(1.05);
+        }
+
+        .pet-stats {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .stat-bar {
+            width: 80px;
+            height: 8px;
+            background: rgba(200, 100, 100, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: #b7838c;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .pet-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pet-btn {
+            padding: 8px 16px;
+            border: 2px solid #b7838c;
+            background: rgba(255, 255, 255, 0.5);
+            color: #b7838c;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .pet-btn:hover {
+            background: #b7838c;
+            color: white;
+        }
+
+
+        /* ============================= */
+        /* FOTO */
+        /* ============================= */
+
+        .foto-placeholder {
+            width:
+                min(500px, 90vw);
+
+            height: 300px;
+
+            margin-top: 30px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            border:
+                2px dashed
+                rgba(100,80,85,.25);
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,.15);
+        }
+
+        .foto-placeholder p {
+            font-size: 17px;
+
+            opacity: .6;
+        }
+
+
+        /* ============================= */
+        /* FINAL */
+        /* ============================= */
+
+        .final {
+            min-height: 80vh;
+        }
+
+        .coracao-final {
+            font-size: 90px;
+
+            animation:
+                respirar
+                3s infinite ease-in-out;
+        }
+
+        @keyframes respirar {
+            0%, 100% {
+                transform:
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    scale(1.12);
+            }
+        }
+
+        .assinatura {
+            margin-top: 40px;
+
+            font-style: italic;
+        }
+
+
+        /* ============================= */
+        /* CELULAR */
+        /* ============================= */
+
+        @media (max-width: 600px) {
+
+            #inicio {
+                padding: 15px;
+            }
+
+            #carta {
+                width: 92vw;
+            }
+
+            #botaoAbrir {
+                width: 50px;
+                height: 50px;
+            }
+
+            .secao {
+                padding:
+                    80px 20px;
+            }
+
+            .coracoes {
+                gap: 20px;
+            }
+
+            .coracao {
+                font-size: 55px;
+            }
+
+            .estrelas {
+                min-height: 220px;
+            }
+
+            .foto-placeholder {
+                height: 250px;
+            }
+
+            .desenho-flutuante {
+                width: 88vw;
+
+                margin-top: 25px;
+            }
+
+            .controles-topo {
+                top: 10px;
+                right: 10px;
+                gap: 10px;
+            }
+
+            .btn-controle {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-```
 <!-- ========================= -->
-<!-- MÚSICA -->
+<!-- ÁUDIO -->
 <!-- ========================= -->
 
 <audio id="musica" loop>
@@ -786,6 +956,17 @@
         type="audio/mpeg"
     >
 </audio>
+
+
+<!-- ========================= -->
+<!-- CONTROLES TOPO -->
+<!-- ========================= -->
+
+<div class="controles-topo">
+    <button id="btnToggleDarkMode" class="btn-controle" title="Alternar modo escuro" aria-label="Dark mode toggle">🌙</button>
+    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5" title="Volume">
+    <button id="btnMusica" class="btn-controle" title="Pausar música" aria-label="Toggle music">🎵</button>
+</div>
 
 
 <!-- ========================= -->
@@ -997,395 +1178,73 @@
     </section>
 
 
-    <!-- DESENHO 2 -->
+    <!-- PET FEEDER GAME -->
 
-    <section class="secao desenho-secao">
+    <section class="secao">
 
         <p class="pequeno">
-            e mais uma coisinha :3
+            quer brincar comigo?
         </p>
 
         <h2>
-            Eu e tu. ♡
+            Tens um Bichinho Especial 🐱
         </h2>
 
-        <div class="desenho-flutuante desenho-2">
+        <div class="pet-container">
+            <div class="pet-area" id="petArea">
+                <span id="petEmoji">🐱</span>
+            </div>
 
-            <img
-                src="Eu%20e%20Leonor%202.PNG"
-                alt="Segundo desenho de Lorenzo e Leonor"
-            >
+            <div class="pet-stats">
+                <div class="stat">
+                    <span>Fome</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" id="fomeBar" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <span>Felicidade</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" id="felicidadeBar" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="pet-buttons">
+                <button class="pet-btn" id="btnComida">🍖 Alimentar</button>
+                <button class="pet-btn" id="btnBrincar">🎮 Brincar</button>
+                <button class="pet-btn" id="btnAcariciar">✋ Acariciar</button>
+            </div>
         </div>
 
     </section>
 
 
-    <!-- FOTO -->
-
-    <section class="secao foto-secao">
-
-        <p class="pequeno">
-            uma memória
-        </p>
-
-        <h2>
-            ♡
-        </h2>
-
-        <div class="foto-placeholder">
-
-            <p>
-                Aqui vai uma foto nossa :3
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FINAL -->
+    <!-- MENSAGEM FINAL -->
 
     <section class="secao final">
+
+        <p class="pequeno">
+            a ti com amor
+        </p>
 
         <div class="coracao-final">
             ♡
         </div>
 
-        <h2>
-            Chegaste ao fim.
-        </h2>
-
-        <p>
-            Mas ainda há muito mais que eu quero viver contigo.
+        <p style="margin-top: 30px;">
+            Obrigado por tudo que és para mim. 💗
         </p>
 
-        <p class="assinatura">
-            — Lorenzo ♡
-        </p>
+        <div class="assinatura">
+            — Lorenzo 🌸
+        </div>
 
     </section>
 
 </main>
 
-
-<!-- ========================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================= -->
-
-<script>
-
-    const carta =
-        document.getElementById("carta");
-
-    const botao =
-        document.getElementById("botaoAbrir");
-
-    const mensagemCarta =
-        document.getElementById("mensagemCarta");
-
-    const musica =
-        document.getElementById("musica");
-
-    let abriu = false;
-
-
-    /* ========================= */
-    /* ABRIR CARTA */
-    /* ========================= */
-
-    botao.addEventListener(
-        "click",
-        abrirCarta
-    );
-
-    botao.addEventListener(
-        "keydown",
-        (evento) => {
-
-            if (
-                evento.key === "Enter" ||
-                evento.key === " "
-            ) {
-                evento.preventDefault();
-
-                abrirCarta();
-            }
-
-        }
-    );
-
-
-    function abrirCarta() {
-
-        if (abriu) return;
-
-        abriu = true;
-
-        carta.classList.add(
-            "abrindo"
-        );
-
-        botao.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-
-        musica.volume = 0.35;
-
-        musica.play().catch(() => {
-            console.log(
-                "A música precisa de uma interação do utilizador."
-            );
-        });
-
-
-        setTimeout(() => {
-
-            mensagemCarta.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-            carta.classList.add(
-                "aberta"
-            );
-
-        }, 900);
-
-
-        setTimeout(() => {
-
-            document.body.classList.add(
-                "scroll"
-            );
-
-        }, 1300);
-
-    }
-
-
-    /* ========================= */
-    /* CORAÇÕES */
-    /* ========================= */
-
-    const coracoes =
-        document.querySelectorAll(
-            ".coracao"
-        );
-
-    const mensagemCoracao =
-        document.getElementById(
-            "mensagemCoracao"
-        );
-
-
-    coracoes.forEach(
-        coracao => {
-
-            coracao.addEventListener(
-                "click",
-                () => {
-
-                    const texto =
-                        coracao.dataset.mensagem;
-
-                    mensagemCoracao.textContent =
-                        texto;
-
-                    mensagemCoracao.classList.remove(
-                        "mostrar"
-                    );
-
-                    void mensagemCoracao.offsetWidth;
-
-                    mensagemCoracao.classList.add(
-                        "mostrar"
-                    );
-
-
-                    coracao.classList.add(
-                        "clicado"
-                    );
-
-
-                    setTimeout(() => {
-
-                        coracao.classList.remove(
-                            "clicado"
-                        );
-
-                    }, 500);
-
-                }
-            );
-
-        }
-    );
-
-
-    /* ========================= */
-    /* ESTRELAS */
-    /* ========================= */
-
-    const estrelas =
-        document.querySelectorAll(
-            ".estrela"
-        );
-
-    const efeitoEstrela =
-        document.getElementById(
-            "efeitoEstrela"
-        );
-
-
-    estrelas.forEach(
-        estrela => {
-
-            estrela.addEventListener(
-                "click",
-                () => {
-
-                    const texto =
-                        estrela.dataset.mensagem;
-
-                    efeitoEstrela.textContent =
-                        texto;
-
-                    efeitoEstrela.classList.remove(
-                        "mostrar"
-                    );
-
-                    void efeitoEstrela.offsetWidth;
-
-                    efeitoEstrela.classList.add(
-                        "mostrar"
-                    );
-
-
-                    criarParticulas(
-                        estrela
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-    /* ========================= */
-    /* PARTÍCULAS */
-    /* ========================= */
-
-    function criarParticulas(
-        elemento
-    ) {
-
-        for (
-            let i = 0;
-            i < 8;
-            i++
-        ) {
-
-            const particula =
-                document.createElement(
-                    "span"
-                );
-
-            particula.classList.add(
-                "particula"
-            );
-
-            particula.textContent =
-                "✦";
-
-            particula.style.setProperty(
-                "--x",
-                `${(Math.random() - 0.5) * 180}px`
-            );
-
-            particula.style.setProperty(
-                "--y",
-                `${(Math.random() - 0.5) * 180}px`
-            );
-
-            elemento.appendChild(
-                particula
-            );
-
-
-            setTimeout(() => {
-
-                particula.remove();
-
-            }, 900);
-
-        }
-
-    }
-
-
-    /* ========================= */
-    /* ANIMAÇÕES AO DESCER */
-    /* ========================= */
-
-    const elementos =
-        document.querySelectorAll(
-            ".secao"
-        );
-
-
-    const observador =
-        new IntersectionObserver(
-
-            (entradas) => {
-
-                entradas.forEach(
-                    entrada => {
-
-                        if (
-                            entrada.isIntersecting
-                        ) {
-
-                            entrada.target.classList.add(
-                                "visivel"
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
-
-            {
-                threshold: 0.15
-            }
-
-        );
-
-
-    elementos.forEach(
-        elemento => {
-
-            observador.observe(
-                elemento
-            );
-
-        }
-    );
-
-
-    /* A primeira secção aparece logo */
-
-    document
-        .querySelector(".aparecer")
-        ?.classList.add("visivel");
-
-</script>
-```
+<script src="script.js"></script>
 
 </body>
 </html>
