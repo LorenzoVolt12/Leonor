@@ -244,8 +244,8 @@ function criarParticulas(elemento) {
 
 class Pet {
     constructor() {
-        this.fome = 70;
-        this.felicidade = 80;
+        this.fome = 30;
+        this.felicidade = 40;
         this.energia = 100;
         this.updateDisplay();
         
@@ -255,8 +255,8 @@ class Pet {
     alimentar() {
         if (this.fome < 100) {
             this.fome = Math.min(100, this.fome + 30);
-            this.felicidade = Math.min(100, this.felicidade + 10);
             this.mostrarMensagem('Yum! 😋');
+            this.updateDisplay();
         }
     }
 
@@ -266,12 +266,14 @@ class Pet {
             this.fome = Math.max(0, this.fome - 20);
             this.energia = Math.max(0, this.energia - 30);
             this.mostrarMensagem('Wheee! 🎉');
+            this.updateDisplay();
         }
     }
 
     acariciar() {
         this.felicidade = Math.min(100, this.felicidade + 20);
         this.mostrarMensagem('Purr... 💚');
+        this.updateDisplay();
     }
 
     decreaseStats() {
@@ -305,10 +307,10 @@ class Pet {
         
         const petImg = document.getElementById('petImg');
         if (this.felicidade > 70) {
-            petImg.src = 'mascote feliz.png';
+            petImg.src = 'mascote%20feliz.PNG';
             petImg.alt = 'Mascote feliz';
         } else {
-            petImg.src = 'mascote.png';
+            petImg.src = 'mascote.PNG';
             petImg.alt = 'Mascote';
         }
     }
