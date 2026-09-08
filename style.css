@@ -1074,3 +1074,63 @@ font-style: italic;
 ```
 
 }
+/* ============================= */
+/* DESENHOS */
+/* ============================= */
+
+.desenho-secao {
+    position: relative;
+}
+
+.desenho-flutuante {
+    width: min(420px, 85vw);
+    margin: 35px auto 0;
+
+    border-radius: 22px;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.22);
+
+    box-shadow:
+        0 15px 35px rgba(90, 40, 60, 0.14);
+
+    animation: desenhoFlutuar 4s ease-in-out infinite;
+}
+
+.desenho-flutuante img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+.desenho-2 {
+    animation-delay: -2s;
+}
+
+
+@keyframes desenhoFlutuar {
+
+    0% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .desenho-flutuante {
+        width: 88vw;
+        margin-top: 25px;
+    }
+
+}
