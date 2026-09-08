@@ -40,6 +40,7 @@
                 aria-label="Abrir carta"
             ></div>
 
+
             <div id="mensagemCarta">
 
                 <h1>Para ti, Leonor :3</h1>
@@ -59,11 +60,15 @@
     </section>
 
 
+
     <!-- ========================= -->
-    <!-- CONTEÚDO -->
+    <!-- CONTEÚDO DA PÁGINA -->
     <!-- ========================= -->
 
     <main id="conteudo">
+
+
+        <!-- INTRODUÇÃO -->
 
         <section class="secao aparecer">
 
@@ -81,6 +86,7 @@
         </section>
 
 
+
         <!-- ========================= -->
         <!-- CORAÇÕES -->
         <!-- ========================= -->
@@ -94,6 +100,7 @@
             <p>
                 Tenta tocar nos corações.
             </p>
+
 
             <div class="coracoes">
 
@@ -120,9 +127,34 @@
 
             </div>
 
+
             <div id="mensagemCoracao"></div>
 
         </section>
+
+
+
+        <!-- ========================= -->
+        <!-- DESENHO 1 -->
+        <!-- ========================= -->
+
+        <section class="secao desenho-secao">
+
+            <p class="pequeno">uma coisinha nossa...</p>
+
+            <h2>♡</h2>
+
+            <div class="desenho-flutuante desenho-1">
+
+                <img
+                    src="Eu%20e%20Leonor.PNG"
+                    alt="Desenho de Lorenzo e Leonor"
+                >
+
+            </div>
+
+        </section>
+
 
 
         <!-- ========================= -->
@@ -138,6 +170,7 @@
             <p>
                 Algumas estrelas não são apenas decoração.
             </p>
+
 
             <div class="estrelas">
 
@@ -163,48 +196,38 @@
 
             </div>
 
+
             <div id="efeitoEstrela"></div>
 
         </section>
 
 
+
         <!-- ========================= -->
-        <!-- DESENHOS -->
+        <!-- DESENHO 2 -->
         <!-- ========================= -->
 
-        <section class="secao desenhos-secao">
+        <section class="secao desenho-secao">
 
-            <p class="pequeno">uma coisinha que fizemos juntos</p>
+            <p class="pequeno">e mais uma coisinha :3</p>
 
             <h2>Eu e tu. ♡</h2>
 
-            <p>
-                Algumas das nossas memórias desenhadas.
-            </p>
+            <div class="desenho-flutuante desenho-2">
 
-            <div class="desenhos">
-
-                <div class="desenho-card">
-                    <img
-                        src="Eu%20e%20Leonor.PNG"
-                        alt="Desenho de Lorenzo e Leonor"
-                    >
-                </div>
-
-                <div class="desenho-card">
-                    <img
-                        src="Eu%20e%20Leonor%202.PNG"
-                        alt="Segundo desenho de Lorenzo e Leonor"
-                    >
-                </div>
+                <img
+                    src="Eu%20e%20Leonor%202.PNG"
+                    alt="Segundo desenho de Lorenzo e Leonor"
+                >
 
             </div>
 
         </section>
 
 
+
         <!-- ========================= -->
-        <!-- FOTO -->
+        <!-- ESPAÇO PARA FOTO -->
         <!-- ========================= -->
 
         <section class="secao foto-secao">
@@ -222,6 +245,7 @@
             </div>
 
         </section>
+
 
 
         <!-- ========================= -->
@@ -244,7 +268,9 @@
 
         </section>
 
+
     </main>
+
 
 
     <!-- ========================= -->
@@ -278,6 +304,7 @@
 
             botao.setAttribute("aria-hidden", "true");
 
+
             musica.volume = 0.35;
 
             musica.play().catch(() => {
@@ -306,6 +333,7 @@
         }
 
 
+
         /* ========================= */
         /* CORAÇÕES */
         /* ========================= */
@@ -332,6 +360,7 @@
 
                 mensagemCoracao.classList.add("mostrar");
 
+
                 coracao.classList.add("clicado");
 
 
@@ -342,6 +371,7 @@
             });
 
         });
+
 
 
         /* ========================= */
@@ -370,11 +400,13 @@
 
                 efeitoEstrela.classList.add("mostrar");
 
+
                 criarParticulas(estrela);
 
             });
 
         });
+
 
 
         /* ========================= */
@@ -412,6 +444,7 @@
             }
 
         }
+
 
 
         /* ========================= */
