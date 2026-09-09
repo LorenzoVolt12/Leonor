@@ -307,10 +307,10 @@ class Pet {
         
         const petImg = document.getElementById('petImg');
         if (this.felicidade > 70) {
-            petImg.src = 'mascote%20feliz.PNG';
+            petImg.src = 'mascote feliz.png';
             petImg.alt = 'Mascote feliz';
         } else {
-            petImg.src = 'mascote.PNG';
+            petImg.src = 'mascote.png';
             petImg.alt = 'Mascote';
         }
     }
