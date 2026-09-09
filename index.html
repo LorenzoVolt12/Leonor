@@ -1186,69 +1186,242 @@
 
     <!-- PET FEEDER GAME -->
 
-<section class="secao">
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bichinho Virtual</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-    <p class="pequeno">
-        quer brincar comigo?
-    </p>
+        .secao {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
 
-    <h2>
-        Tens um Bichinho Especial 🐿
-    </h2>
+        .pequeno {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    <div class="pet-container">
+        h2 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
 
-        <div class="pet-area" id="petArea">
-            <img id="petImg" src="mascote.png" alt="Mascote">
-        </div>
+        .pet-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        <div class="pet-stats">
+        .pet-area {
+            width: 150px;
+            height: 150px;
+            background-color: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 4px solid #4caf50;
+            transition: transform 0.2s ease;
+        }
 
-            <div class="stat">
-                <span>Fome</span>
+        #petImg {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            display: block;
+        }
 
-                <div class="stat-bar">
-                    <div
-                        class="stat-fill"
-                        id="fomeBar"
-                        style="width: 70%;">
-                    </div>
-                </div>
-            </div>
+        /* Animações para o bichinho */
+        .animar-comer {
+            animation: comer 0.5s ease;
+        }
+        .animar-brincar {
+            animation: brincar 0.5s ease infinite alternate;
+        }
+        .animar-carinho {
+            animation: carinho 0.5s ease;
+        }
 
-            <div class="stat">
-                <span>Felicidade</span>
+        @keyframes comer {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2) rotate(5deg); }
+            100% { transform: scale(1); }
+        }
+        @keyframes brincar {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        @keyframes carinho {
+            0% { transform: skewX(0deg); }
+            50% { transform: skewX(10deg); }
+            100% { transform: skewX(0deg); }
+        }
 
-                <div class="stat-bar">
-                    <div
-                        class="stat-fill"
-                        id="felicidadeBar"
-                        style="width: 80%;">
-                    </div>
-                </div>
-            </div>
+        .pet-stats {
+            width: 100%;
+            margin-bottom: 25px;
+        }
 
-        </div>
+        .stat {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
 
-        <div class="pet-buttons">
+        .stat span {
+            font-weight: bold;
+            color: #555;
+            width: 90px;
+            text-align: left;
+        }
 
-            <button class="pet-btn" id="btnComida">
-                🍖 Alimentar
-            </button>
+        .stat-bar {
+            flex-grow: 1;
+            height: 16px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
 
-            <button class="pet-btn" id="btnBrincar">
-                🎮 Brincar
-            </button>
+        .stat-fill {
+            height: 100%;
+            border-radius: 8px;
+            transition: width 0.4s ease, background-color 0.4s ease;
+        }
 
-            <button class="pet-btn" id="btnAcariciar">
-                ✋ Acariciar
-            </button>
+        #fomeBar { background-color: #ff9800; }
+        #felicidadeBar { background-color: #e91e63; }
 
-        </div>
+        .pet-buttons {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
 
-    </div>
+        .pet-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white;
+            font-size: 13px;
+        }
 
-</section>
+        #btnComida { background-color: #4caf50; }
+        #btnComida:hover { background-color: #45a049; }
+        
+        #btnBrincar { background-color: #2196f3; }
+        #btnBrincar:hover { background-color: #1e88e5; }
+        
+        #btnAcariciar { background-color: #9c27b0; }
+        #btnAcariciar:hover { background-color: #8e24aa; }
+
+        .pet-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<section class="secao"> <p class="pequeno"> quer brincar comigo? </p> <h2> Tens um Bichinho Especial 🐿 </h2> <div class="pet-container"> <div class="pet-area" id="petArea"> <img id="petImg" src="mascote.png" alt="Mascote"> </div> <div class="pet-stats"> <div class="stat"> <span>Fome</span> <div class="stat-bar"> <div class="stat-fill" id="fomeBar" style="width: 70%;"></div> </div> </div> <div class="stat"> <span>Felicidade</span> <div class="stat-bar"> <div class="stat-fill" id="felicidadeBar" style="width: 80%;"></div> </div> </div> </div> <div class="pet-buttons"> <button class="pet-btn" id="btnComida">🍖 Alimentar</button> <button class="pet-btn" id="btnBrincar">🎮 Brincar</button> <button class="pet-btn" id="btnAcariciar">✋ Acariciar</button> </div> </div> </section>
+
+<script>
+    const fomeBar = document.getElementById('fomeBar');
+    const felicidadeBar = document.getElementById('felicidadeBar');
+    const petArea = document.getElementById('petArea');
+    
+    const btnComida = document.getElementById('btnComida');
+    const btnBrincar = document.getElementById('btnBrincar');
+    const btnAcariciar = document.getElementById('btnAcariciar');
+
+    let fome = 70; 
+    let felicidade = 80;
+
+    function atualizarStatus() {
+        fome = Math.max(0, Math.min(100, fome));
+        felicidade = Math.max(0, Math.min(100, felicidade));
+
+        fomeBar.style.width = fome + '%';
+        felicidadeBar.style.width = felicidade + '%';
+
+        if (fome > 80) {
+            fomeBar.style.backgroundColor = '#f44336';
+        } else {
+            fomeBar.style.backgroundColor = '#ff9800';
+        }
+    }
+
+    function aplicarAnimacao(classeAnimacao) {
+        petArea.className = 'pet-area';
+        void petArea.offsetWidth; 
+        petArea.classList.add(classeAnimacao);
+
+        if (classeAnimacao === 'animar-brincar') {
+            setTimeout(() => {
+                petArea.classList.remove('animar-brincar');
+            }, 1500);
+        }
+    }
+
+    btnComida.addEventListener('click', () => {
+        fome -= 15; 
+        felicidade += 5;
+        aplicarAnimacao('animar-comer');
+        atualizarStatus();
+    });
+
+    btnBrincar.addEventListener('click', () => {
+        felicidade += 15; 
+        fome += 10;       
+        aplicarAnimacao('animar-brincar');
+        atualizarStatus();
+    });
+
+    btnAcariciar.addEventListener('click', () => {
+        felicidade += 10; 
+        aplicarAnimacao('animar-carinho');
+        atualizarStatus();
+    });
+
+    setInterval(() => {
+        fome += 2;
+        felicidade -= 1;
+        atualizarStatus();
+    }, 3000);
+</script>
+
+</body>
+</html>
 
     <!-- MENSAGEM FINAL -->
 
