@@ -8,304 +8,284 @@
     box-sizing: border-box;
 }
 
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
-
 html {
     scroll-behavior: smooth;
-scroll-behavior: smooth;
 }
-
 
 body {
     width: 100%;
     min-height: 100dvh;
-width: 100%;
-min-height: 100dvh;
 
     background-image: url("Fundo.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-```
-background-image: url("Fundo.png");
-background-size: cover;
-background-position: center;
-background-attachment: fixed;
 
     font-family: Georgia, "Times New Roman", serif;
-font-family: Georgia, "Times New Roman", serif;
 
     color: #4a4145;
-color: #4a4145;
 
     overflow: hidden;
-}
-overflow: hidden;
-```
 
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease;
 }
-
-/* Quando a carta abre */
 
 body.scroll {
     overflow-x: hidden;
     overflow-y: auto;
-overflow-x: hidden;
-overflow-y: auto;
+}
+
+
+/* ============================= */
+/* MODO ESCURO */
+/* ============================= */
+
+body.dark-mode {
+    background-color: #1a1719;
+    color: #e8dfe3;
+}
+
+body.dark-mode .secao h2,
+body.dark-mode .secao p {
+    color: #e8dfe3;
+}
+
+body.dark-mode .btn-controle {
+    background: rgba(35, 30, 33, 0.85);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .pet-container {
+    background: rgba(30, 25, 28, 0.55);
+}
+
+body.dark-mode .desenho-flutuante {
+    background: rgba(30, 25, 28, 0.45);
+}
+
+body.dark-mode .pet-btn {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+
+/* ============================= */
+/* CONTROLES DO TOPO */
+/* ============================= */
+
+.controles-topo {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.btn-controle {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    border:
+        2px solid rgba(100, 80, 85, 0.3);
+
+    background:
+        rgba(255, 255, 255, 0.8);
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+
+    backdrop-filter: blur(5px);
+
+    touch-action: manipulation;
+}
+
+.btn-controle:hover {
+    transform: scale(1.08);
+}
+
+.btn-controle:active {
+    transform: scale(0.95);
+}
+
+.volume-slider {
+    width: 90px;
+
+    cursor: pointer;
+
+    accent-color: #b7838c;
 }
 
 
 /* ============================= */
 /* CARTA */
 /* ============================= */
-#inicio {
 
+#inicio {
     min-height: 100dvh;
-```
-min-height: 100dvh;
 
     display: flex;
-display: flex;
 
     justify-content: center;
     align-items: center;
-justify-content: center;
-align-items: center;
 
     padding: 30px;
-padding: 30px;
-```
-
 }
 
-
 #carta {
-
     position: relative;
-```
-position: relative;
 
     width: min(80vw, 700px);
-width: min(80vw, 700px);
 
     transition:
         transform 0.9s ease;
-transition:
-    transform 0.9s ease;
-```
-
 }
 
 #envelope {
-
     width: 100%;
     height: auto;
-```
-width: 100%;
-height: auto;
 
     display: block;
-display: block;
 
     transform-origin: center;
-transform-origin: center;
 
     transition:
-        transform 1.2s cubic-bezier(.22,1,.36,1),
+        transform 1.2s cubic-bezier(.22, 1, .36, 1),
         opacity 1s ease,
         filter 1s ease;
-transition:
-    transform 1.2s cubic-bezier(.22,1,.36,1),
-    opacity 1s ease,
-    filter 1s ease;
-```
-
 }
+
 
 /* ============================= */
 /* BOTÃO */
 /* ============================= */
+
 #botaoAbrir {
+    appearance: none;
+    -webkit-appearance: none;
 
     position: absolute;
-```
-position: absolute;
 
     left: 50%;
     top: 68%;
-left: 50%;
-top: 68%;
 
     width: 55px;
     height: 55px;
-width: 55px;
-height: 55px;
+
+    padding: 0;
 
     transform:
         translate(-50%, -50%);
-transform:
-    translate(-50%, -50%);
 
     border-radius: 50%;
-border-radius: 50%;
 
     background:
-        rgba(255,255,255,.35);
-background:
-    rgba(255,255,255,.35);
+        rgba(255, 255, 255, .35);
 
     border:
-        2px solid rgba(255,255,255,.8);
-border:
-    2px solid rgba(255,255,255,.8);
+        2px solid rgba(255, 255, 255, .8);
 
     cursor: pointer;
-cursor: pointer;
 
     z-index: 20;
-z-index: 20;
 
-    animation: pulsar 1.8s infinite;
-animation: pulsar 1.8s infinite;
+    animation:
+        pulsar 1.8s infinite;
 
     touch-action: manipulation;
-touch-action: manipulation;
 
     -webkit-tap-highlight-color: transparent;
--webkit-tap-highlight-color: transparent;
-```
+}
 
+#botaoAbrir:focus-visible {
+    outline: 3px solid rgba(183, 131, 140, .7);
+    outline-offset: 5px;
 }
 
 @keyframes pulsar {
+
     0%,
     100% {
         transform:
             translate(-50%, -50%)
             scale(1);
-```
-0%,
-100% {
 
         opacity: .7;
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-
     }
-    opacity: .7;
 
     50% {
-}
-
         transform:
             translate(-50%, -50%)
             scale(1.15);
-50% {
 
         opacity: 1;
-    transform:
-        translate(-50%, -50%)
-        scale(1.15);
-
     }
-    opacity: 1;
-
 }
-```
 
-
-}
 
 /* ============================= */
 /* ABERTURA */
 /* ============================= */
-#carta.abrindo {
 
+#carta.abrindo {
     transform:
         translateY(-15px);
-```
-transform:
-    translateY(-15px);
-```
-
 }
 
 #carta.abrindo #botaoAbrir {
-
     animation:
         desaparecer .45s forwards;
-```
-animation:
-    desaparecer .45s forwards;
 
     pointer-events: none;
-pointer-events: none;
-```
-
 }
 
 @keyframes desaparecer {
-    from {
 
+    from {
         opacity: 1;
-```
-from {
 
         transform:
             translate(-50%, -50%)
             scale(1);
-    opacity: 1;
-
     }
-    transform:
-        translate(-50%, -50%)
-        scale(1);
 
     to {
-}
-
         opacity: 0;
-to {
 
         transform:
             translate(-50%, -50%)
             scale(.2);
-    opacity: 0;
-
     }
-    transform:
-        translate(-50%, -50%)
-        scale(.2);
-
-}
-```
-
 }
 
 #carta.abrindo #envelope {
-
     transform:
         perspective(1000px)
         rotateX(8deg)
         translateY(-20px)
         scale(1.03);
-```
-transform:
-    perspective(1000px)
-    rotateX(8deg)
-    translateY(-20px)
-    scale(1.03);
 
     filter:
         brightness(1.08);
-filter:
-    brightness(1.08);
-```
-
 }
 
 #carta.aberta #envelope {
@@ -314,1120 +294,472 @@ filter:
         rotateX(12deg)
         translateY(-25px)
         scale(1.04);
-```
-transform:
-    perspective(1000px)
-    rotateX(12deg)
-    translateY(-25px)
-    scale(1.04);
 
     opacity: .12;
-opacity: .12;
 
     filter:
         blur(3px);
-filter:
-    blur(3px);
-```
-
 }
+
 
 /* ============================= */
 /* MENSAGEM DA CARTA */
 /* ============================= */
-#mensagemCarta {
 
+#mensagemCarta {
     position: absolute;
-```
-position: absolute;
 
     left: 50%;
     top: 50%;
-left: 50%;
-top: 50%;
 
     width: 75%;
-width: 75%;
 
     transform:
         translate(-50%, -42%)
         scale(.85);
+
     opacity: 0;
+
     text-align: center;
 
     z-index: 10;
-transform:
-    translate(-50%, -42%)
-    scale(.85);
 
-    /* Fundo para deixar a letra muito mais fácil de ler */
-    background: rgba(255, 235, 243, 0.88);
-opacity: 0;
+    background:
+        rgba(255, 235, 243, .88);
 
-    padding: 22px 28px;
-text-align: center;
+    padding:
+        22px 28px;
 
     border-radius: 18px;
-z-index: 10;
 
-    border: 1px solid rgba(255, 255, 255, 0.8);
-background:
-    rgba(255, 235, 243, 0.88);
+    border:
+        1px solid rgba(255, 255, 255, .8);
 
     box-shadow:
-        0 8px 25px rgba(90, 40, 60, 0.15);
-padding: 22px 28px;
+        0 8px 25px rgba(90, 40, 60, .15);
 
     transition:
         opacity .9s ease,
-        transform .9s cubic-bezier(.22,1,.36,1);
-border-radius: 18px;
+        transform .9s cubic-bezier(.22, 1, .36, 1);
 
     pointer-events: none;
 }
-border:
-    1px solid rgba(255, 255, 255, 0.8);
-
-box-shadow:
-    0 8px 25px rgba(90, 40, 60, 0.15);
 
 #mensagemCarta[aria-hidden="false"] {
-transition:
-    opacity .9s ease,
-    transform .9s cubic-bezier(.22,1,.36,1);
-
     opacity: 1;
-pointer-events: none;
-```
 
     transform:
         translate(-50%, -50%)
         scale(1);
-}
-#mensagemCarta h1 {
-    color: #6b3048;
-    font-size:
-        clamp(25px, 5vw, 40px);
-    margin-bottom: 20px;
-    text-shadow:
-        0 1px 2px rgba(255,255,255,.8);
-}
-#mensagemCarta p {
-    color: #71394d;
-    font-size:
-        clamp(16px, 3vw, 21px);
-    line-height: 1.6;
-    margin-bottom: 12px;
-    text-shadow:
-        0 1px 2px rgba(255,255,255,.8);
-}
-#mensagemCarta[aria-hidden="false"] {
-
-    opacity: 1;
-```
-opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-transform:
-    translate(-50%, -50%)
-    scale(1);
-```
-
 }
 
 #mensagemCarta h1 {
+    color: #6b3048;
 
     font-size:
         clamp(25px, 5vw, 40px);
-```
-color: #6b3048;
 
     margin-bottom: 20px;
-font-size:
-    clamp(25px, 5vw, 40px);
 
-}
-margin-bottom: 20px;
-
-text-shadow:
-    0 1px 2px rgba(255,255,255,.8);
-```
-
+    text-shadow:
+        0 1px 2px rgba(255, 255, 255, .8);
 }
 
 #mensagemCarta p {
+    color: #71394d;
 
     font-size:
         clamp(16px, 3vw, 21px);
-```
-color: #71394d;
 
     line-height: 1.6;
-font-size:
-    clamp(16px, 3vw, 21px);
 
     margin-bottom: 12px;
-line-height: 1.6;
 
+    text-shadow:
+        0 1px 2px rgba(255, 255, 255, .8);
 }
-margin-bottom: 12px;
 
-text-shadow:
-    0 1px 2px rgba(255,255,255,.8);
-```
-
-}
 
 /* ============================= */
 /* CONTEÚDO */
 /* ============================= */
-#conteudo {
 
+#conteudo {
     position: relative;
-```
-position: relative;
 
     width: 100%;
-width: 100%;
 
     padding-bottom: 100px;
-padding-bottom: 100px;
-```
-
 }
 
-
 .secao {
-
     min-height: 100vh;
-```
-min-height: 100vh;
 
     width: 100%;
-width: 100%;
 
     padding:
         100px 25px;
-padding:
-    100px 25px;
 
     display: flex;
-display: flex;
 
     flex-direction: column;
-flex-direction: column;
 
     justify-content: center;
-justify-content: center;
-
     align-items: center;
-align-items: center;
 
     text-align: center;
-text-align: center;
 
     opacity: 0;
-opacity: 0;
 
     transform:
         translateY(50px);
-transform:
-    translateY(50px);
 
     transition:
         opacity 1s ease,
         transform 1s ease;
-transition:
-    opacity 1s ease,
-    transform 1s ease;
-```
-
 }
 
-
 .secao.visivel {
-
     opacity: 1;
-```
-opacity: 1;
 
     transform:
         translateY(0);
-transform:
-    translateY(0);
-```
-
 }
 
 .secao h2 {
-
     font-size:
         clamp(28px, 6vw, 45px);
-```
-font-size:
-    clamp(28px, 6vw, 45px);
 
     font-weight: normal;
-font-weight: normal;
 
     margin:
         15px 0 25px;
-margin:
-    15px 0 25px;
-```
-
 }
 
-
 .secao p {
-
     max-width: 600px;
-```
-max-width: 600px;
 
     font-size:
         clamp(17px, 3.5vw, 21px);
-font-size:
-    clamp(17px, 3.5vw, 21px);
 
     line-height: 1.8;
-line-height: 1.8;
-```
-
 }
-
 
 .pequeno {
-
     font-size: 14px !important;
-```
-font-size: 14px !important;
 
     letter-spacing: 3px;
-letter-spacing: 3px;
 
     text-transform: uppercase;
-text-transform: uppercase;
 
     opacity: .65;
-opacity: .65;
-```
-
 }
+
 
 /* ============================= */
 /* SETA */
 /* ============================= */
-.seta {
 
+.seta {
     margin-top: 50px;
-```
-margin-top: 50px;
 
     font-size: 35px;
-font-size: 35px;
 
     animation:
         flutuar 2s infinite ease-in-out;
-animation:
-    flutuar 2s infinite ease-in-out;
-```
-
 }
 
 @keyframes flutuar {
+
     0%,
     100% {
-
         transform:
             translateY(0);
-```
-0%,
-100% {
-
     }
-    transform:
-        translateY(0);
 
     50% {
-}
-
         transform:
             translateY(10px);
-50% {
-
     }
-    transform:
-        translateY(10px);
-
 }
-```
 
-
-}
 
 /* ============================= */
 /* CORAÇÕES */
 /* ============================= */
-.coracoes {
 
+.coracoes {
     display: flex;
-```
-display: flex;
 
     justify-content: center;
-justify-content: center;
-
     align-items: center;
-align-items: center;
 
     gap: 40px;
-gap: 40px;
 
     margin-top: 50px;
-margin-top: 50px;
 
     flex-wrap: wrap;
-flex-wrap: wrap;
-```
-
 }
 
-
 .coracao {
-
     position: relative;
-```
-position: relative;
 
     border: none;
-border: none;
 
     background: none;
-background: none;
+
+    font-family: inherit;
 
     font-size: 65px;
-font-size: 65px;
 
     color: #b7838c;
-color: #b7838c;
 
     cursor: pointer;
-cursor: pointer;
 
     transition:
         transform .3s ease;
-transition:
-    transform .3s ease;
 
     touch-action: manipulation;
-touch-action: manipulation;
-```
 
+    -webkit-tap-highlight-color: transparent;
 }
 
 .coracao:hover {
-
     transform:
         scale(1.2);
-```
-transform:
-    scale(1.2);
-```
+}
 
+.coracao:active {
+    transform:
+        scale(.9);
 }
 
 .coracao.clicado {
-
     animation:
         coracaoClique .5s ease;
-```
-animation:
-    coracaoClique .5s ease;
-```
-
 }
 
 @keyframes coracaoClique {
+
     0% {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
+
     50% {
-        transform: scale(1.5);
+        transform:
+            scale(1.5);
     }
+
     100% {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
-```
-0% {
-    transform: scale(1);
 }
 
-50% {
-    transform: scale(1.5);
-}
-
-100% {
-    transform: scale(1);
-}
-```
-
-}
 
 /* ============================= */
-/* MENSAGEM ESCONDIDA */
+/* MENSAGEM CORAÇÃO */
 /* ============================= */
+
 #mensagemCoracao {
-
     min-height: 35px;
-```
-min-height: 35px;
 
     margin-top: 40px;
-margin-top: 40px;
 
     font-size:
         clamp(17px, 4vw, 23px);
-font-size:
-    clamp(17px, 4vw, 23px);
 
     opacity: 0;
-opacity: 0;
 
     transform:
         translateY(10px);
-transform:
-    translateY(10px);
 
     transition:
         opacity .5s ease,
         transform .5s ease;
-transition:
-    opacity .5s ease,
-    transform .5s ease;
-```
-
 }
 
-
 #mensagemCoracao.mostrar {
-
     opacity: 1;
-```
-opacity: 1;
 
     transform:
         translateY(0);
-transform:
-    translateY(0);
-```
-
 }
+
 
 /* ============================= */
 /* ESTRELAS */
 /* ============================= */
-.estrelas {
 
+.estrelas {
     position: relative;
-```
-position: relative;
 
     width: min(500px, 90vw);
-width: min(500px, 90vw);
 
     min-height: 250px;
-min-height: 250px;
 
     margin-top: 40px;
-margin-top: 40px;
-```
-
 }
 
-
 .estrela {
-
     position: absolute;
-```
-position: absolute;
 
     border: none;
-border: none;
 
     background: none;
-background: none;
+
+    font-family: inherit;
 
     font-size: 40px;
-font-size: 40px;
 
     color: #b9a3a8;
-color: #b9a3a8;
 
     cursor: pointer;
-cursor: pointer;
 
     transition:
         transform .3s ease;
-transition:
-    transform .3s ease;
-```
 
+    touch-action: manipulation;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
 .estrela:nth-child(1) {
-
     left: 10%;
     top: 20%;
-```
-left: 10%;
-top: 20%;
-```
-
 }
 
 .estrela:nth-child(2) {
-
     left: 45%;
     top: 5%;
-```
-left: 45%;
-top: 5%;
-```
-
 }
 
 .estrela:nth-child(3) {
-
     right: 10%;
     top: 35%;
-```
-right: 10%;
-top: 35%;
-```
-
 }
 
 .estrela:nth-child(4) {
-
     left: 30%;
     bottom: 10%;
-```
-left: 30%;
-bottom: 10%;
-```
-
 }
 
 .estrela:nth-child(5) {
-
     right: 35%;
     bottom: 5%;
-```
-right: 35%;
-bottom: 5%;
-```
-
 }
 
 .estrela:hover {
     transform:
         scale(1.4)
         rotate(15deg);
-```
-transform:
-    scale(1.4)
-    rotate(15deg);
-```
-
 }
-
 
 #efeitoEstrela {
-
     min-height: 45px;
-```
-min-height: 45px;
-
-margin-top: 20px;
-
-font-size: 35px;
 
     margin-top: 20px;
-opacity: 0;
-```
 
     font-size: 35px;
-}
-
-#efeitoEstrela.mostrar {
-
-```
-animation:
-    aparecerEstrela .7s ease forwards;
-```
-
-}
-
-@keyframes aparecerEstrela {
-
-```
-from {
 
     opacity: 0;
-
-    transform:
-        scale(.4);
-
 }
-
-to {
 
 #efeitoEstrela.mostrar {
-    opacity: 1;
-
     animation:
         aparecerEstrela .7s ease forwards;
-    transform:
-        scale(1);
-
-}
-```
-
 }
 
 @keyframes aparecerEstrela {
-/* ============================= */
-/* PARTÍCULAS */
-/* ============================= */
 
     from {
-.particula {
-
         opacity: 0;
-```
-position: absolute;
 
         transform:
             scale(.4);
-left: 50%;
-top: 50%;
-
     }
-pointer-events: none;
 
     to {
-animation:
-    particula .9s ease forwards;
-```
-
         opacity: 1;
-}
 
         transform:
             scale(1);
-@keyframes particula {
-
     }
-```
-from {
-
-    opacity: 1;
-
-    transform:
-        translate(0,0)
-        scale(1);
-
 }
 
-to {
-
-    opacity: 0;
-
-    transform:
-        translate(var(--x),var(--y))
-        scale(.2);
-
-}
-```
-
-}
 
 /* ============================= */
 /* PARTÍCULAS */
-/* DESENHOS */
 /* ============================= */
 
 .particula {
-.desenhos-secao {
-
-```
-min-height: 100vh;
-```
-
-}
-
-.desenhos {
-
-```
-width: min(1000px, 94vw);
-
-margin-top: 45px;
-
-display: flex;
-
-    position: absolute;
-justify-content: center;
+    position: fixed;
 
     left: 50%;
     top: 50%;
-align-items: center;
 
     pointer-events: none;
-gap: 45px;
+
+    z-index: 2000;
 
     animation:
         particula .9s ease forwards;
-flex-wrap: wrap;
-```
-
 }
-
-.desenho-card {
 
 @keyframes particula {
-```
-position: relative;
 
     from {
-width: min(420px, 90vw);
-
         opacity: 1;
-padding: 14px;
 
         transform:
-            translate(0,0)
+            translate(0, 0)
             scale(1);
-border-radius: 22px;
-
     }
-background:
-    rgba(255,255,255,.28);
 
     to {
-border:
-    1px solid rgba(255,255,255,.55);
-
         opacity: 0;
-box-shadow:
-    0 12px 35px rgba(90, 40, 60, .12);
 
         transform:
-            translate(var(--x),var(--y))
+            translate(var(--x), var(--y))
             scale(.2);
-backdrop-filter:
-    blur(4px);
-
     }
-animation:
-    desenhoFlutuar 4s ease-in-out infinite;
-```
-
 }
 
-.desenho-card:nth-child(2) {
-
-```
-animation-delay:
-    -2s;
-```
-
-}
-
-.desenho-card img {
-
-```
-display: block;
-
-width: 100%;
-
-height: auto;
-
-border-radius: 14px;
-
-object-fit: contain;
-
-transition:
-    transform .5s ease,
-    filter .5s ease;
-```
-
-}
-
-.desenho-card:hover img {
-
-```
-transform:
-    scale(1.025);
-
-filter:
-    brightness(1.04);
-```
-
-}
-
-@keyframes desenhoFlutuar {
-
-```
-0%,
-100% {
-
-    transform:
-        translateY(0)
-        rotate(-1deg);
-
-}
-
-50% {
-
-    transform:
-        translateY(-10px)
-        rotate(1deg);
-
-}
-```
-
-}
 
 /* ============================= */
-/* FOTO */
+/* CONFETE */
 /* ============================= */
-.foto-placeholder {
 
-    width: min(500px, 90vw);
-```
-width: min(500px, 90vw);
+.confete {
+    position: fixed;
 
-    height: 300px;
-height: 300px;
+    top: -20px;
 
-    margin-top: 30px;
-margin-top: 30px;
+    z-index: 3000;
 
-    display: flex;
-display: flex;
-
-    justify-content: center;
-justify-content: center;
-
-    align-items: center;
-align-items: center;
-
-    border:
-        2px dashed rgba(100,80,85,.25);
-border:
-    2px dashed rgba(100,80,85,.25);
-
-    border-radius: 15px;
-border-radius: 15px;
-
-    background:
-        rgba(255,255,255,.15);
-background:
-    rgba(255,255,255,.15);
-```
-
-}
-
-
-.foto-placeholder p {
-
-    font-size: 17px;
-```
-font-size: 17px;
-
-    opacity: .6;
-opacity: .6;
-```
-
-}
-
-/* ============================= */
-/* FINAL */
-/* ============================= */
-.final {
-
-    min-height: 80vh;
-```
-min-height: 80vh;
-```
-
-}
-
-
-.coracao-final {
-
-    font-size: 90px;
-```
-font-size: 90px;
+    pointer-events: none;
 
     animation:
-        respirar 3s infinite ease-in-out;
-animation:
-    respirar 3s infinite ease-in-out;
-```
-
+        confeteCair 3s linear forwards;
 }
 
-@keyframes respirar {
-    0%,
+@keyframes confeteCair {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
     100% {
-
         transform:
-            scale(1);
-```
-0%,
-100% {
-
-    }
-    transform:
-        scale(1);
-
-    50% {
-}
-
-        transform:
-            scale(1.12);
-50% {
-
-    }
-    transform:
-        scale(1.12);
-
-}
-```
-
-}
-
-.assinatura {
-
-    margin-top: 40px;
-```
-margin-top: 40px;
-
-    font-style: italic;
-font-style: italic;
-```
-
-}
-
-/* ============================= */
-/* CELULAR */
-/* ============================= */
-@media (max-width: 600px) {
-
-    #inicio {
-```
-#inicio {
-
-        padding: 15px;
-    padding: 15px;
-
+            translateY(110vh)
+            rotate(720deg);
     }
 }
 
 
-    #carta {
-#carta {
-
-        width: 92vw;
-    width: 92vw;
-
-    }
-}
-
-
-    #botaoAbrir {
-#botaoAbrir {
-
-        width: 50px;
-        height: 50px;
-    width: 50px;
-    height: 50px;
-
-    }
-}
-
-
-    .secao {
-.secao {
-
-        padding:
-            80px 20px;
-    padding:
-        80px 20px;
-
-    }
-}
-
-
-    .coracoes {
-.coracoes {
-
-        gap: 20px;
-    gap: 20px;
-
-    }
-}
-
-
-    .coracao {
-.coracao {
-
-        font-size: 55px;
-    font-size: 55px;
-
-    }
-}
-
-
-.estrelas {
-
-    min-height: 220px;
-
-}
-
-
-.desenhos {
-
-    gap: 30px;
-
-    margin-top: 35px;
-
-}
-
-
-.desenho-card {
-
-    width: 92vw;
-
-    .estrelas {
-    padding: 10px;
-
-        min-height: 220px;
-}
-
-
-.foto-placeholder {
-
-    height: 250px;
-
-}
-```
-
-}
 /* ============================= */
 /* DESENHOS */
 /* ============================= */
@@ -1438,17 +770,24 @@ font-style: italic;
 
 .desenho-flutuante {
     width: min(420px, 85vw);
-    margin: 35px auto 0;
+
+    margin:
+        35px auto 0;
+
+    padding: 12px;
 
     border-radius: 22px;
+
     overflow: hidden;
 
-    background: rgba(255, 255, 255, 0.22);
+    background:
+        rgba(255, 255, 255, .22);
 
     box-shadow:
-        0 15px 35px rgba(90, 40, 60, 0.14);
+        0 15px 35px rgba(90, 40, 60, .14);
 
-    animation: desenhoFlutuar 4s ease-in-out infinite;
+    animation:
+        desenhoFlutuar 4s ease-in-out infinite;
 }
 
 .desenho-flutuante img {
@@ -1456,37 +795,450 @@ font-style: italic;
 
     width: 100%;
     height: auto;
+
+    border-radius: 14px;
 }
 
 .desenho-2 {
-    animation-delay: -2s;
+    animation-delay:
+        -2s;
 }
-
 
 @keyframes desenhoFlutuar {
 
-    0% {
-        transform: translateY(0) rotate(-1deg);
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-1deg);
     }
 
     50% {
-        transform: translateY(-10px) rotate(1deg);
+        transform:
+            translateY(-10px)
+            rotate(1deg);
+    }
+}
+
+
+/* ============================= */
+/* PET */
+/* ============================= */
+
+.pet-container {
+    width: min(650px, 92vw);
+
+    margin-top: 35px;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255, 255, 255, .28);
+
+    border:
+        1px solid rgba(255, 255, 255, .45);
+
+    box-shadow:
+        0 15px 40px rgba(90, 40, 60, .12);
+
+    backdrop-filter: blur(5px);
+}
+
+.pet-area {
+    position: relative;
+
+    width: min(300px, 75vw);
+
+    min-height: 220px;
+
+    margin:
+        0 auto 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+}
+
+.pet-area img {
+    display: block;
+
+    width: min(230px, 65vw);
+
+    max-height: 230px;
+
+    object-fit: contain;
+
+    transition:
+        transform .3s ease;
+}
+
+.pet-area:hover img {
+    transform:
+        translateY(-5px)
+        scale(1.03);
+}
+
+#petEmoji {
+    position: absolute;
+
+    right: 5px;
+    bottom: 5px;
+
+    z-index: 2;
+
+    font-size: 45px;
+
+    pointer-events: none;
+}
+
+.pet-stats {
+    width: min(450px, 100%);
+
+    margin:
+        0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.stat {
+    width: 100%;
+
+    text-align: left;
+}
+
+.stat > span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 16px;
+}
+
+.stat-bar {
+    width: 100%;
+
+    height: 15px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        rgba(100, 80, 85, .15);
+}
+
+.stat-fill {
+    height: 100%;
+
+    width: 50%;
+
+    border-radius: inherit;
+
+    background:
+        #b7838c;
+
+    transition:
+        width .4s ease;
+}
+
+.pet-buttons {
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.pet-btn {
+    border: none;
+
+    padding:
+        12px 18px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, .75);
+
+    color: #4a4145;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+    touch-action: manipulation;
+}
+
+.pet-btn:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(255, 255, 255, .95);
+}
+
+.pet-btn:active {
+    transform:
+        scale(.95);
+}
+
+.pet-mensagem {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        rgba(255, 200, 200, .92);
+
+    color: #4a4145;
+
+    padding:
+        15px 25px;
+
+    border-radius: 50px;
+
+    font-size: 18px;
+
+    pointer-events: none;
+
+    z-index: 2500;
+
+    animation:
+        petMensagem 1s ease-out forwards;
+}
+
+@keyframes petMensagem {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -40%)
+            scale(.8);
+    }
+
+    20% {
+        opacity: 1;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1);
     }
 
     100% {
-        transform: translateY(0) rotate(-1deg);
-    }
+        opacity: 0;
 
-    .foto-placeholder {
+        transform:
+            translate(-50%, -80%)
+            scale(1);
+    }
 }
 
-        height: 250px;
+
+/* ============================= */
+/* FOTO */
+/* ============================= */
+
+.foto-placeholder {
+    width: min(500px, 90vw);
+
+    height: 300px;
+
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border:
+        2px dashed rgba(100, 80, 85, .25);
+
+    border-radius: 15px;
+
+    background:
+        rgba(255, 255, 255, .15);
+}
+
+.foto-placeholder p {
+    font-size: 17px;
+
+    opacity: .6;
+}
+
+
+/* ============================= */
+/* FINAL */
+/* ============================= */
+
+.final {
+    min-height: 80vh;
+}
+
+.coracao-final {
+    font-size: 90px;
+
+    animation:
+        respirar 3s infinite ease-in-out;
+}
+
+@keyframes respirar {
+
+    0%,
+    100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.12);
+    }
+}
+
+.assinatura {
+    margin-top: 40px;
+
+    font-style: italic;
+}
+
+
+/* ============================= */
+/* CELULAR */
+/* ============================= */
 
 @media (max-width: 600px) {
 
+    .controles-topo {
+        top: 12px;
+        right: 12px;
+
+        gap: 8px;
+    }
+
+    .btn-controle {
+        width: 40px;
+        height: 40px;
+
+        font-size: 18px;
+    }
+
+    .volume-slider {
+        width: 70px;
+    }
+
+    #inicio {
+        padding: 15px;
+    }
+
+    #carta {
+        width: 92vw;
+    }
+
+    #botaoAbrir {
+        width: 50px;
+        height: 50px;
+    }
+
+    #mensagemCarta {
+        width: 82%;
+
+        padding:
+            18px 20px;
+    }
+
+    #mensagemCarta h1 {
+        margin-bottom: 12px;
+    }
+
+    .secao {
+        padding:
+            80px 20px;
+    }
+
+    .coracoes {
+        gap: 20px;
+    }
+
+    .coracao {
+        font-size: 55px;
+    }
+
+    .estrelas {
+        min-height: 220px;
+    }
+
     .desenho-flutuante {
         width: 88vw;
+
         margin-top: 25px;
     }
 
+    .pet-container {
+        padding:
+            20px 15px;
+    }
+
+    .pet-buttons {
+        gap: 8px;
+    }
+
+    .pet-btn {
+        padding:
+            10px 13px;
+
+        font-size: 14px;
+    }
+
+    #petEmoji {
+        font-size: 35px;
+    }
+
+    .foto-placeholder {
+        height: 250px;
+    }
+}
+
+
+/* ============================= */
+/* REDUZIR ANIMAÇÕES */
+/* ============================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
+
+        scroll-behavior: auto !important;
+    }
 }
