@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +7,7 @@
 
     <style>
         /* ============================= */
-        /* RESET */
+        /* RESET & BASE */
         /* ============================= */
 
         * {
@@ -34,7 +33,9 @@
 
             color: #4a4145;
 
-            overflow: hidden;
+            /* Permitir scroll vertical por padrão */
+            overflow-x: hidden;
+            overflow-y: auto;
 
             --bg-light: #ffffff;
             --bg-dark: #1a1a1a;
@@ -48,12 +49,6 @@
             --text-light: #e0e0e0;
             --text-dark: #4a4145;
         }
-
-        body.scroll {
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-
 
         /* ============================= */
         /* CONTROLES SUPERIORES */
@@ -105,98 +100,69 @@
             accent-color: #b7838c;
         }
 
-
         /* ============================= */
         /* CARTA */
         /* ============================= */
 
         #inicio {
             min-height: 100dvh;
-
             display: flex;
-
             justify-content: center;
             align-items: center;
-
             padding: 30px;
         }
 
         #carta {
             position: relative;
-
             width: min(80vw, 700px);
-
             transition: transform 0.9s ease;
         }
 
         #envelope {
             width: 100%;
             height: auto;
-
             display: block;
-
             transform-origin: center;
-
             transition:
                 transform 1.2s cubic-bezier(.22,1,.36,1),
                 opacity 1s ease,
                 filter 1s ease;
         }
 
-
         /* ============================= */
-        /* BOTÃO */
+        /* BOTÃO ABRIR */
         /* ============================= */
 
         #botaoAbrir {
             position: absolute;
-
             left: 50%;
             top: 68%;
-
             width: 55px;
             height: 55px;
-
             transform: translate(-50%, -50%);
-
             border-radius: 50%;
-
             background: rgba(255,255,255,.35);
-
             border: 2px solid rgba(255,255,255,.8);
-
             cursor: pointer;
-
             z-index: 20;
-
             animation: pulsar 1.8s infinite;
-
             touch-action: manipulation;
-
             -webkit-tap-highlight-color: transparent;
         }
 
         @keyframes pulsar {
             0%, 100% {
-                transform:
-                    translate(-50%, -50%)
-                    scale(1);
-
+                transform: translate(-50%, -50%) scale(1);
                 opacity: .7;
             }
-
             50% {
-                transform:
-                    translate(-50%, -50%)
-                    scale(1.15);
-
+                transform: translate(-50%, -50%) scale(1.15);
                 opacity: 1;
             }
         }
 
-
         /* ============================= */
-        /* ABERTURA */
+        /* ABERTURA DA CARTA */
         /* ============================= */
 
         #carta.abrindo {
@@ -205,50 +171,30 @@
 
         #carta.abrindo #botaoAbrir {
             animation: desaparecer .45s forwards;
-
             pointer-events: none;
         }
 
         @keyframes desaparecer {
             from {
                 opacity: 1;
-
-                transform:
-                    translate(-50%, -50%)
-                    scale(1);
+                transform: translate(-50%, -50%) scale(1);
             }
-
             to {
                 opacity: 0;
-
-                transform:
-                    translate(-50%, -50%)
-                    scale(.2);
+                transform: translate(-50%, -50%) scale(.2);
             }
         }
 
         #carta.abrindo #envelope {
-            transform:
-                perspective(1000px)
-                rotateX(8deg)
-                translateY(-20px)
-                scale(1.03);
-
+            transform: perspective(1000px) rotateX(8deg) translateY(-20px) scale(1.03);
             filter: brightness(1.08);
         }
 
         #carta.aberta #envelope {
-            transform:
-                perspective(1000px)
-                rotateX(12deg)
-                translateY(-25px)
-                scale(1.04);
-
+            transform: perspective(1000px) rotateX(12deg) translateY(-25px) scale(1.04);
             opacity: .12;
-
             filter: blur(3px);
         }
-
 
         /* ============================= */
         /* MENSAGEM DA CARTA */
@@ -256,423 +202,159 @@
 
         #mensagemCarta {
             position: absolute;
-
             left: 50%;
             top: 50%;
-
             width: 75%;
-
-            transform:
-                translate(-50%, -42%)
-                scale(.85);
-
+            transform: translate(-50%, -42%) scale(.85);
             opacity: 0;
-
             text-align: center;
-
             z-index: 10;
-
-            background:
-                rgba(255, 235, 243, 0.88);
-
+            background: rgba(255, 235, 243, 0.88);
             padding: 22px 28px;
-
             border-radius: 18px;
-
-            border:
-                1px solid rgba(255, 255, 255, 0.8);
-
-            box-shadow:
-                0 8px 25px rgba(90, 40, 60, 0.15);
-
-            transition:
-                opacity .9s ease,
-                transform .9s cubic-bezier(.22,1,.36,1);
-
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 25px rgba(90, 40, 60, 0.15);
+            transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1);
             pointer-events: none;
         }
 
         #mensagemCarta[aria-hidden="false"] {
             opacity: 1;
-
-            transform:
-                translate(-50%, -50%)
-                scale(1);
+            transform: translate(-50%, -50%) scale(1);
         }
 
         #mensagemCarta h1 {
             color: #6b3048;
-
-            font-size:
-                clamp(25px, 5vw, 40px);
-
+            font-size: clamp(25px, 5vw, 40px);
             margin-bottom: 20px;
-
-            text-shadow:
-                0 1px 2px rgba(255,255,255,.8);
+            text-shadow: 0 1px 2px rgba(255,255,255,.8);
         }
 
         #mensagemCarta p {
             color: #71394d;
-
-            font-size:
-                clamp(16px, 3vw, 21px);
-
+            font-size: clamp(16px, 3vw, 21px);
             line-height: 1.6;
-
             margin-bottom: 12px;
-
-            text-shadow:
-                0 1px 2px rgba(255,255,255,.8);
+            text-shadow: 0 1px 2px rgba(255,255,255,.8);
         }
 
-
         /* ============================= */
-        /* CONTEÚDO */
+        /* CONTEÚDO E SECÇÕES */
         /* ============================= */
 
         #conteudo {
             position: relative;
-
             width: 100%;
-
             padding-bottom: 100px;
         }
 
         .secao {
             min-height: 100vh;
-
             width: 100%;
-
-            padding:
-                100px 25px;
-
+            padding: 100px 25px;
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: center;
-
             text-align: center;
-
             opacity: 0;
-
-            transform:
-                translateY(50px);
-
-            transition:
-                opacity 1s ease,
-                transform 1s ease;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
         .secao.visivel {
             opacity: 1;
-
-            transform:
-                translateY(0);
+            transform: translateY(0);
         }
 
         .secao h2 {
-            font-size:
-                clamp(28px, 6vw, 45px);
-
+            font-size: clamp(28px, 6vw, 45px);
             font-weight: normal;
-
-            margin:
-                15px 0 25px;
+            margin: 15px 0 25px;
         }
 
         .secao p {
             max-width: 600px;
-
-            font-size:
-                clamp(17px, 3.5vw, 21px);
-
+            font-size: clamp(17px, 3.5vw, 21px);
             line-height: 1.8;
         }
 
         .pequeno {
             font-size: 14px !important;
-
             letter-spacing: 3px;
-
             text-transform: uppercase;
-
             opacity: .65;
         }
 
-
         /* ============================= */
-        /* SETA */
+        /* SETA DA PRIMEIRA SECÇÃO */
         /* ============================= */
 
         .seta {
             margin-top: 50px;
-
             font-size: 35px;
-
-            animation:
-                flutuar 2s infinite ease-in-out;
+            animation: flutuar 2s infinite ease-in-out;
         }
 
         @keyframes flutuar {
-            0%, 100% {
-                transform:
-                    translateY(0);
-            }
-
-            50% {
-                transform:
-                    translateY(10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
         }
 
-
         /* ============================= */
-        /* CORAÇÕES */
+        /* CORAÇÕES INTERATIVOS */
         /* ============================= */
 
         .coracoes {
             display: flex;
-
             justify-content: center;
             align-items: center;
-
             gap: 40px;
-
             margin-top: 50px;
-
             flex-wrap: wrap;
         }
 
         .coracao {
             position: relative;
-
             border: none;
-
             background: none;
-
             font-size: 65px;
-
             color: #b7838c;
-
             cursor: pointer;
-
-            transition:
-                transform .3s ease;
-
+            transition: transform .3s ease;
             touch-action: manipulation;
         }
 
         .coracao:hover {
-            transform:
-                scale(1.2);
+            transform: scale(1.2);
         }
 
         .coracao.clicado {
-            animation:
-                coracaoClique .5s ease;
+            animation: coracaoClique .5s ease;
         }
 
         @keyframes coracaoClique {
-            0% {
-                transform:
-                    scale(1);
-            }
-
-            50% {
-                transform:
-                    scale(1.5);
-            }
-
-            100% {
-                transform:
-                    scale(1);
-            }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
         }
-
-
-        /* ============================= */
-        /* MENSAGEM ESCONDIDA */
-        /* ============================= */
 
         #mensagemCoracao {
             min-height: 35px;
-
             margin-top: 40px;
-
-            font-size:
-                clamp(17px, 4vw, 23px);
-
+            font-size: clamp(17px, 4vw, 23px);
             opacity: 0;
-
-            transform:
-                translateY(10px);
-
-            transition:
-                opacity .5s ease,
-                transform .5s ease;
+            transform: translateY(10px);
+            transition: opacity .5s ease, transform .5s ease;
         }
 
         #mensagemCoracao.mostrar {
             opacity: 1;
-
-            transform:
-                translateY(0);
-        }
-
-
-        /* ============================= */
-        /* ESTRELAS */
-        /* ============================= */
-
-        .estrelas {
-            position: relative;
-
-            width:
-                min(500px, 90vw);
-
-            min-height: 250px;
-
-            margin-top: 40px;
-        }
-
-        .estrela {
-            position: absolute;
-
-            border: none;
-
-            background: none;
-
-            font-size: 40px;
-
-            color: #b9a3a8;
-
-            cursor: pointer;
-
-            transition:
-                transform .3s ease;
-        }
-
-        .estrela:nth-child(1) {
-            left: 10%;
-            top: 20%;
-        }
-
-        .estrela:nth-child(2) {
-            left: 45%;
-            top: 5%;
-        }
-
-        .estrela:nth-child(3) {
-            right: 10%;
-            top: 35%;
-        }
-
-        .estrela:nth-child(4) {
-            left: 30%;
-            bottom: 10%;
-        }
-
-        .estrela:nth-child(5) {
-            right: 35%;
-            bottom: 5%;
-        }
-
-        .estrela:hover {
-            transform:
-                scale(1.4)
-                rotate(15deg);
-        }
-
-        #efeitoEstrela {
-            min-height: 45px;
-
-            margin-top: 20px;
-
-            font-size: 35px;
-
-            opacity: 0;
-        }
-
-        #efeitoEstrela.mostrar {
-            animation:
-                aparecerEstrela .7s ease forwards;
-        }
-
-        @keyframes aparecerEstrela {
-            from {
-                opacity: 0;
-
-                transform:
-                    scale(.4);
-            }
-
-            to {
-                opacity: 1;
-
-                transform:
-                    scale(1);
-            }
-        }
-
-
-        /* ============================= */
-        /* PARTÍCULAS */
-        /* ============================= */
-
-        .particula {
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            pointer-events: none;
-
-            animation:
-                particula .9s ease forwards;
-        }
-
-        @keyframes particula {
-            from {
-                opacity: 1;
-
-                transform:
-                    translate(0,0)
-                    scale(1);
-            }
-
-            to {
-                opacity: 0;
-
-                transform:
-                    translate(var(--x),var(--y))
-                    scale(.2);
-            }
+            transform: translateY(0);
         }
 
         /* ============================= */
-        /* CONFETE */
-        /* ============================= */
-
-        .confete {
-            position: fixed;
-            pointer-events: none;
-            animation: cair 3s ease-out forwards;
-        }
-
-        @keyframes cair {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-
-        /* ============================= */
-        /* DESENHOS */
+        /* DESENHOS FLUTUANTES */
         /* ============================= */
 
         .desenho-secao {
@@ -680,80 +362,101 @@
         }
 
         .desenho-flutuante {
-            width:
-                min(420px, 85vw);
-
-            margin:
-                35px auto 0;
-
+            width: min(420px, 85vw);
+            margin: 35px auto 0;
             border-radius: 22px;
-
             overflow: hidden;
-
-            background:
-                rgba(255, 255, 255, 0.22);
-
-            box-shadow:
-                0 15px 35px
-                rgba(90, 40, 60, 0.14);
-
-            animation:
-                desenhoFlutuar
-                4s ease-in-out infinite;
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 15px 35px rgba(90, 40, 60, 0.14);
+            animation: desenhoFlutuar 4s ease-in-out infinite;
         }
 
         .desenho-flutuante img {
             display: block;
-
             width: 100%;
-
             height: auto;
         }
 
-        .desenho-2 {
-            animation-delay:
-                -2s;
-        }
-
         @keyframes desenhoFlutuar {
-            0%, 100% {
-                transform:
-                    translateY(0)
-                    rotate(-1deg);
-            }
-
-            50% {
-                transform:
-                    translateY(-10px)
-                    rotate(1deg);
-            }
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
         }
-
 
         /* ============================= */
-        /* PET */
+        /* ESTRELAS */
+        /* ============================= */
+
+        .estrelas {
+            position: relative;
+            width: min(500px, 90vw);
+            min-height: 250px;
+            margin-top: 40px;
+        }
+
+        .estrela {
+            position: absolute;
+            border: none;
+            background: none;
+            font-size: 40px;
+            color: #b9a3a8;
+            cursor: pointer;
+            transition: transform .3s ease;
+        }
+
+        .estrela:nth-child(1) { left: 10%; top: 20%; }
+        .estrela:nth-child(2) { left: 45%; top: 5%; }
+        .estrela:nth-child(3) { right: 10%; top: 35%; }
+        .estrela:nth-child(4) { left: 30%; bottom: 10%; }
+        .estrela:nth-child(5) { right: 35%; bottom: 5%; }
+
+        .estrela:hover {
+            transform: scale(1.4) rotate(15deg);
+        }
+
+        #efeitoEstrela {
+            min-height: 45px;
+            margin-top: 20px;
+            font-size: 35px;
+            opacity: 0;
+        }
+
+        #efeitoEstrela.mostrar {
+            animation: aparecerEstrela .7s ease forwards;
+        }
+
+        @keyframes aparecerEstrela {
+            from { opacity: 0; transform: scale(.4); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ============================= */
+        /* BICHINHO VIRTUAL (PET) */
         /* ============================= */
 
         .pet-container {
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(255, 235, 243, 0.5);
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 235, 243, 0.6);
             border-radius: 20px;
-            max-width: 400px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(90, 40, 60, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
         .pet-area {
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
+            width: 160px;
+            height: 160px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 20px auto;
+            margin: 15px auto 25px;
             cursor: pointer;
-            transition: transform 0.2s;
+            border: 3px solid #b7838c;
             overflow: hidden;
+            transition: transform 0.2s;
         }
 
         .pet-area:hover {
@@ -761,56 +464,85 @@
         }
 
         .pet-area img {
-            width: 100%;
-            height: 100%;
+            max-width: 80%;
+            max-height: 80%;
             object-fit: contain;
         }
 
+        /* Animações do pet */
+        .animar-comer { animation: comer 0.5s ease; }
+        .animar-brincar { animation: brincar 0.5s ease infinite alternate; }
+        .animar-carinho { animation: carinho 0.5s ease; }
+
+        @keyframes comer {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15) rotate(5deg); }
+            100% { transform: scale(1); }
+        }
+        @keyframes brincar {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+        @keyframes carinho {
+            0% { transform: skewX(0deg); }
+            50% { transform: skewX(8deg); }
+            100% { transform: skewX(0deg); }
+        }
+
         .pet-stats {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
         .stat {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
             font-size: 14px;
         }
 
-        .stat-bar {
+        .stat span {
+            font-weight: bold;
+            color: #6b3048;
             width: 80px;
-            height: 8px;
-            background: rgba(200, 100, 100, 0.2);
+            text-align: left;
+        }
+
+        .stat-bar {
+            flex-grow: 1;
+            height: 12px;
+            background: rgba(200, 100, 100, 0.15);
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 5px;
         }
 
         .stat-fill {
             height: 100%;
-            background: #b7838c;
             border-radius: 10px;
-            transition: width 0.3s;
+            transition: width 0.3s ease, background-color 0.3s ease;
         }
+
+        #fomeBar { background-color: #e09f67; }
+        #felicidadeBar { background-color: #b7838c; }
 
         .pet-buttons {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            flex-wrap: wrap;
         }
 
         .pet-btn {
-            padding: 8px 16px;
+            flex: 1;
+            padding: 10px 6px;
             border: 2px solid #b7838c;
-            background: rgba(255, 255, 255, 0.5);
-            color: #b7838c;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #6b3048;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.2s ease;
         }
 
         .pet-btn:hover {
@@ -818,44 +550,12 @@
             color: white;
         }
 
-
-        /* ============================= */
-        /* FOTO */
-        /* ============================= */
-
-        .foto-placeholder {
-            width:
-                min(500px, 90vw);
-
-            height: 300px;
-
-            margin-top: 30px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            border:
-                2px dashed
-                rgba(100,80,85,.25);
-
-            border-radius: 15px;
-
-            background:
-                rgba(255,255,255,.15);
+        .pet-btn:active {
+            transform: translateY(2px);
         }
 
-        .foto-placeholder p {
-            font-size: 17px;
-
-            opacity: .6;
-        }
-
-
         /* ============================= */
-        /* FINAL */
+        /* SECÇÃO FINAL */
         /* ============================= */
 
         .final {
@@ -864,502 +564,169 @@
 
         .coracao-final {
             font-size: 90px;
-
-            animation:
-                respirar
-                3s infinite ease-in-out;
+            color: #b7838c;
+            animation: respirar 3s infinite ease-in-out;
         }
 
         @keyframes respirar {
-            0%, 100% {
-                transform:
-                    scale(1);
-            }
-
-            50% {
-                transform:
-                    scale(1.12);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
         }
 
         .assinatura {
             margin-top: 40px;
-
             font-style: italic;
         }
 
-
         /* ============================= */
-        /* CELULAR */
+        /* ADAPTAÇÕES PARA TELEMÓVEL */
         /* ============================= */
 
         @media (max-width: 600px) {
-
-            #inicio {
-                padding: 15px;
-            }
-
-            #carta {
-                width: 92vw;
-            }
-
-            #botaoAbrir {
-                width: 50px;
-                height: 50px;
-            }
-
-            .secao {
-                padding:
-                    80px 20px;
-            }
-
-            .coracoes {
-                gap: 20px;
-            }
-
-            .coracao {
-                font-size: 55px;
-            }
-
-            .estrelas {
-                min-height: 220px;
-            }
-
-            .foto-placeholder {
-                height: 250px;
-            }
-
-            .desenho-flutuante {
-                width: 88vw;
-
-                margin-top: 25px;
-            }
-
-            .controles-topo {
-                top: 10px;
-                right: 10px;
-                gap: 10px;
-            }
-
-            .btn-controle {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
+            #inicio { padding: 15px; }
+            #carta { width: 92vw; }
+            #botaoAbrir { width: 50px; height: 50px; }
+            .secao { padding: 80px 20px; }
+            .coracoes { gap: 20px; }
+            .coracao { font-size: 55px; }
+            .estrelas { min-height: 220px; }
+            .desenho-flutuante { width: 88vw; margin-top: 25px; }
+            .controles-topo { top: 10px; right: 10px; gap: 10px; }
+            .btn-controle { width: 40px; height: 40px; font-size: 18px; }
         }
     </style>
 </head>
 
 <body>
 
-<!-- ========================= -->
-<!-- ÁUDIO -->
-<!-- ========================= -->
-
-<audio id="musica" loop>
-    <source
-        src="JVKE - golden hour (official music video).mp3"
-        type="audio/mpeg"
-    >
-</audio>
-
-
-<!-- ========================= -->
-<!-- CONTROLES TOPO -->
-<!-- ========================= -->
-
+<!-- CONTROLES MÚSICA & TEMA -->
 <div class="controles-topo">
     <button id="btnToggleDarkMode" class="btn-controle" title="Alternar modo escuro" aria-label="Dark mode toggle">🌙</button>
     <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.1" value="0.5" title="Volume">
     <button id="btnMusica" class="btn-controle" title="Pausar música" aria-label="Toggle music">🎵</button>
 </div>
 
+<!-- MÚSICA DE FUNDO -->
+<audio id="musica" loop>
+    <source src="JVKE - golden hour (official music video).mp3" type="audio/mpeg">
+</audio>
 
-<!-- ========================= -->
-<!-- CARTA -->
-<!-- ========================= -->
-
+<!-- SECÇÃO CARTA DE ENTRADA -->
 <section id="inicio">
-
     <div id="carta">
-
-        <img
-            src="Carta%20(fechada).jpg"
-            id="envelope"
-            alt="Carta fechada"
-        >
-
-        <div
-            id="botaoAbrir"
-            role="button"
-            aria-label="Abrir carta"
-            tabindex="0"
-        ></div>
-
-        <div
-            id="mensagemCarta"
-            aria-hidden="true"
-        >
-
+        <img src="Carta%20(fechada).jpg" id="envelope" alt="Carta fechada">
+        <div id="botaoAbrir" role="button" aria-label="Abrir carta" tabindex="0"></div>
+        <div id="mensagemCarta" aria-hidden="true">
             <h1>Para ti, Leonor :3</h1>
-
-            <p>
-                Eu fiz este presentinho especialmente para ti. 💗
-            </p>
-
-            <p>
-                Espero que gostes.
-            </p>
-
+            <p>Eu fiz este presentinho especialmente para ti. 💗</p>
+            <p>Espero que gostes.</p>
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ========================= -->
-<!-- CONTEÚDO -->
-<!-- ========================= -->
-
+<!-- CONTEÚDO PRINCIPAL DA PÁGINA -->
 <main id="conteudo">
 
-    <section class="secao aparecer">
-
-        <p class="pequeno">
-            uma pequena coisa para ti...
-        </p>
-
-        <h2>
-            Fiz isto pensando em ti. ♡
-        </h2>
-
-        <p>
-            Desce pela página.
-            Existem algumas coisinhas escondidas por aqui.
-        </p>
-
-        <div class="seta">
-            ↓
-        </div>
-
+    <!-- SECÇÃO 1: INTRODUÇÃO -->
+    <section class="secao">
+        <p class="pequeno">uma pequena coisa para ti...</p>
+        <h2>Fiz isto pensando em ti. ♡</h2>
+        <p>Desce pela página. Existem algumas coisinhas escondidas por aqui.</p>
+        <div class="seta">↓</div>
     </section>
 
-
-    <!-- CORAÇÕES -->
-
+    <!-- SECÇÃO 2: CORAÇÕES INTERATIVOS -->
     <section class="secao">
-
-        <p class="pequeno">
-            talvez encontres alguma coisa...
-        </p>
-
-        <h2>
-            Há algumas coisas escondidas aqui 👀
-        </h2>
-
-        <p>
-            Tenta tocar nos corações.
-        </p>
+        <p class="pequeno">talvez encontres alguma coisa...</p>
+        <h2>Há algumas coisas escondidas aqui 👀</h2>
+        <p>Tenta tocar nos corações.</p>
 
         <div class="coracoes">
-
-            <button
-                class="coracao"
-                data-mensagem="És uma pessoa muito especial para mim. ♡"
-                type="button"
-            >
-                ♡
-            </button>
-
-            <button
-                class="coracao"
-                data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3"
-                type="button"
-            >
-                ♡
-            </button>
-
-            <button
-                class="coracao"
-                data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗"
-                type="button"
-            >
-                ♡
-            </button>
-
+            <button class="coracao" data-mensagem="És uma pessoa muito especial para mim. ♡" type="button">♡</button>
+            <button class="coracao" data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3" type="button">♡</button>
+            <button class="coracao" data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗" type="button">♡</button>
         </div>
 
         <div id="mensagemCoracao"></div>
-
     </section>
 
-
-    <!-- DESENHO 1 -->
-
+    <!-- SECÇÃO 3: DESENHO ILUSTRATIVO -->
     <section class="secao desenho-secao">
-
-        <p class="pequeno">
-            uma coisinha nossa...
-        </p>
-
-        <h2>
-            ♡
-        </h2>
-
-        <div class="desenho-flutuante desenho-1">
-
-            <img
-                src="Eu%20e%20Leonor.PNG"
-                alt="Desenho de Lorenzo e Leonor"
-            >
-
+        <p class="pequeno">uma coisinha nossa...</p>
+        <h2>♡</h2>
+        <div class="desenho-flutuante">
+            <img src="Eu%20e%20Leonor.PNG" alt="Desenho de Lorenzo e Leonor">
         </div>
-
     </section>
 
-
-    <!-- ESTRELAS -->
-
+    <!-- SECÇÃO 4: ESTRELAS -->
     <section class="secao">
-
-        <p class="pequeno">
-            olha com atenção...
-        </p>
-
-        <h2>
-            ✨
-        </h2>
-
-        <p>
-            Algumas estrelas não são apenas decoração.
-        </p>
+        <p class="pequeno">olha com atenção...</p>
+        <h2>✨</h2>
+        <p>Algumas estrelas não são apenas decoração.</p>
 
         <div class="estrelas">
-
-            <button
-                class="estrela"
-                data-mensagem="✨"
-                type="button"
-            >
-                ✦
-            </button>
-
-            <button
-                class="estrela"
-                data-mensagem="♡"
-                type="button"
-            >
-                ✧
-            </button>
-
-            <button
-                class="estrela"
-                data-mensagem="🌸"
-                type="button"
-            >
-                ✦
-            </button>
-
-            <button
-                class="estrela"
-                data-mensagem="💗"
-                type="button"
-            >
-                ✧
-            </button>
-
-            <button
-                class="estrela"
-                data-mensagem="✨"
-                type="button"
-            >
-                ✦
-            </button>
-
+            <button class="estrela" data-mensagem="✨" type="button">✦</button>
+            <button class="estrela" data-mensagem="♡" type="button">✧</button>
+            <button class="estrela" data-mensagem="🌸" type="button">✦</button>
+            <button class="estrela" data-mensagem="💗" type="button">✧</button>
+            <button class="estrela" data-mensagem="✨" type="button">✦</button>
         </div>
 
         <div id="efeitoEstrela"></div>
-
     </section>
 
+    <!-- SECÇÃO 5: BICHINHO VIRTUAL -->
+    <section class="secao">
+        <p class="pequeno">quer brincar comigo?</p>
+        <h2>Tens um Bichinho Especial 🐿</h2>
 
-    <!-- PET FEEDER GAME -->
+        <div class="pet-container">
+            <div class="pet-area" id="petArea">
+                <img id="petImg" src="mascote.png" alt="Mascote">
+            </div>
 
-<!DOCTYPE html>
-<html lang="pt-PT">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bichinho Virtual</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+            <div class="pet-stats">
+                <div class="stat">
+                    <span>Fome</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" id="fomeBar" style="width: 70%;"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <span>Felicidade</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill" id="felicidadeBar" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
 
-        .secao {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 350px;
-            width: 100%;
-        }
+            <div class="pet-buttons">
+                <button class="pet-btn" id="btnComida">🍖 Alimentar</button>
+                <button class="pet-btn" id="btnBrincar">🎮 Brincar</button>
+                <button class="pet-btn" id="btnAcariciar">✋ Acariciar</button>
+            </div>
+        </div>
+    </section>
 
-        .pequeno {
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    <!-- SECÇÃO 6: MENSAGEM FINAL -->
+    <section class="secao final">
+        <p class="pequeno">a ti com amor</p>
+        <div class="coracao-final">♡</div>
+        <p style="margin-top: 30px;">
+            Você chegou no fim, mas ainda há muito mais que quero viver com você 💗
+        </p>
+        <div class="assinatura">— Lorenzo 🌸</div>
+    </section>
 
-        h2 {
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 25px;
-        }
+</main>
 
-        .pet-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .pet-area {
-            width: 150px;
-            height: 150px;
-            background-color: #e8f5e9;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 25px;
-            overflow: hidden;
-            border: 4px solid #4caf50;
-            transition: transform 0.2s ease;
-        }
-
-        #petImg {
-            max-width: 80%;
-            max-height: 80%;
-            object-fit: contain;
-            display: block;
-        }
-
-        /* Animações para o bichinho */
-        .animar-comer {
-            animation: comer 0.5s ease;
-        }
-        .animar-brincar {
-            animation: brincar 0.5s ease infinite alternate;
-        }
-        .animar-carinho {
-            animation: carinho 0.5s ease;
-        }
-
-        @keyframes comer {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2) rotate(5deg); }
-            100% { transform: scale(1); }
-        }
-        @keyframes brincar {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-20px); }
-        }
-        @keyframes carinho {
-            0% { transform: skewX(0deg); }
-            50% { transform: skewX(10deg); }
-            100% { transform: skewX(0deg); }
-        }
-
-        .pet-stats {
-            width: 100%;
-            margin-bottom: 25px;
-        }
-
-        .stat {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .stat span {
-            font-weight: bold;
-            color: #555;
-            width: 90px;
-            text-align: left;
-        }
-
-        .stat-bar {
-            flex-grow: 1;
-            height: 16px;
-            background-color: #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .stat-fill {
-            height: 100%;
-            border-radius: 8px;
-            transition: width 0.4s ease, background-color 0.4s ease;
-        }
-
-        #fomeBar { background-color: #ff9800; }
-        #felicidadeBar { background-color: #e91e63; }
-
-        .pet-buttons {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .pet-btn {
-            flex: 1;
-            padding: 12px 8px;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            color: white;
-            font-size: 13px;
-        }
-
-        #btnComida { background-color: #4caf50; }
-        #btnComida:hover { background-color: #45a049; }
-        
-        #btnBrincar { background-color: #2196f3; }
-        #btnBrincar:hover { background-color: #1e88e5; }
-        
-        #btnAcariciar { background-color: #9c27b0; }
-        #btnAcariciar:hover { background-color: #8e24aa; }
-
-        .pet-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-        }
-    </style>
-</head>
-<body>
-
-<section class="secao"> <p class="pequeno"> quer brincar comigo? </p> <h2> Tens um Bichinho Especial 🐿 </h2> <div class="pet-container"> <div class="pet-area" id="petArea"> <img id="petImg" src="mascote.png" alt="Mascote"> </div> <div class="pet-stats"> <div class="stat"> <span>Fome</span> <div class="stat-bar"> <div class="stat-fill" id="fomeBar" style="width: 70%;"></div> </div> </div> <div class="stat"> <span>Felicidade</span> <div class="stat-bar"> <div class="stat-fill" id="felicidadeBar" style="width: 80%;"></div> </div> </div> </div> <div class="pet-buttons"> <button class="pet-btn" id="btnComida">🍖 Alimentar</button> <button class="pet-btn" id="btnBrincar">🎮 Brincar</button> <button class="pet-btn" id="btnAcariciar">✋ Acariciar</button> </div> </div> </section>
-
+<!-- SCRIPT DO BICHINHO VIRTUAL -->
 <script>
     const fomeBar = document.getElementById('fomeBar');
     const felicidadeBar = document.getElementById('felicidadeBar');
     const petArea = document.getElementById('petArea');
-    
+
     const btnComida = document.getElementById('btnComida');
     const btnBrincar = document.getElementById('btnBrincar');
     const btnAcariciar = document.getElementById('btnAcariciar');
@@ -1377,7 +744,7 @@
         if (fome > 80) {
             fomeBar.style.backgroundColor = '#f44336';
         } else {
-            fomeBar.style.backgroundColor = '#ff9800';
+            fomeBar.style.backgroundColor = '#e09f67';
         }
     }
 
@@ -1420,33 +787,7 @@
     }, 3000);
 </script>
 
-</body>
-</html>
-
-    <!-- MENSAGEM FINAL -->
-
-    <section class="secao final">
-
-        <p class="pequeno">
-            a ti com amor
-        </p>
-
-        <div class="coracao-final">
-            ♡
-        </div>
-
-        <p style="margin-top: 30px;">
-            Você chegou no fim, mas ainda há muito mais que quero viver com você 💗
-        </p>
-
-        <div class="assinatura">
-            — Lorenzo 🌸
-        </div>
-
-    </section>
-
-</main>
-
+<!-- FICHEIRO SCRIPT PRINCIPAL EXTERNO -->
 <script src="script.js"></script>
 
 </body>
