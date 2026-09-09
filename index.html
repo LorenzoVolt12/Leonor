@@ -4,23 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Presentinho :3</title>
 
+    <link rel="stylesheet" href="style.css">
+</head>
     <style>
         /* ============================= */
         /* RESET */
         /* ============================= */
 
+<body>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+    <!-- ========================= -->
+    <!-- MÚSICA -->
+    <!-- ========================= -->
         html {
             scroll-behavior: smooth;
         }
 
+    <audio id="musica" loop>
+        <source src="JVKE - golden hour (official music video).mp3" type="audio/mpeg">
+    </audio>
         body {
             width: 100%;
             min-height: 100dvh;
@@ -30,18 +40,33 @@
             background-position: center;
             background-attachment: fixed;
 
+    <!-- ========================= -->
+    <!-- CARTA -->
+    <!-- ========================= -->
             font-family: Georgia, "Times New Roman", serif;
 
+    <section id="inicio">
             color: #4a4145;
 
+        <div id="carta">
             overflow: hidden;
 
+            <img
+                src="Carta%20(fechada).jpg"
+                id="envelope"
+                alt="Carta fechada"
+            >
             --bg-light: #ffffff;
             --bg-dark: #1a1a1a;
             --text-light: #4a4145;
             --text-dark: #e0e0e0;
         }
 
+            <div
+                id="botaoAbrir"
+                role="button"
+                aria-label="Abrir carta"
+            ></div>
         body.dark-mode {
             --bg-light: #1a1a1a;
             --bg-dark: #ffffff;
@@ -54,11 +79,14 @@
             overflow-y: auto;
         }
 
+            <!-- Mensagem dentro da carta -->
 
+            <div id="mensagemCarta">
         /* ============================= */
         /* CONTROLES SUPERIORES */
         /* ============================= */
 
+                <h1>Para ti, Leonor :3</h1>
         .controles-topo {
             position: fixed;
             top: 20px;
@@ -69,6 +97,9 @@
             align-items: center;
         }
 
+                <p>
+                    Eu fiz este presentinho especialmente para ti. 💗
+                </p>
         .btn-controle {
             width: 45px;
             height: 45px;
@@ -84,21 +115,27 @@
             backdrop-filter: blur(5px);
         }
 
+                <p>
+                    Espero que gostes.
+                </p>
         .btn-controle:hover {
             background: rgba(255, 255, 255, 1);
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(90, 40, 60, 0.2);
         }
 
+            </div>
         body.dark-mode .btn-controle {
             background: rgba(50, 50, 50, 0.8);
             border-color: rgba(200, 200, 200, 0.3);
         }
 
+        </div>
         body.dark-mode .btn-controle:hover {
             background: rgba(50, 50, 50, 1);
         }
 
+    </section>
         .volume-slider {
             width: 100px;
             cursor: pointer;
@@ -110,33 +147,47 @@
         /* CARTA */
         /* ============================= */
 
+    <!-- ========================= -->
+    <!-- CONTEÚDO DA PÁGINA -->
+    <!-- ========================= -->
         #inicio {
             min-height: 100dvh;
 
+    <main id="conteudo">
             display: flex;
 
             justify-content: center;
             align-items: center;
 
+        <!-- Pequena introdução -->
             padding: 30px;
         }
 
+        <section class="secao aparecer">
         #carta {
             position: relative;
 
+            <p class="pequeno">uma pequena coisa para ti...</p>
             width: min(80vw, 700px);
 
+            <h2>Fiz isto pensando em ti. ♡</h2>
             transition: transform 0.9s ease;
         }
 
+            <p>
+                Desce pela página.
+                Existem algumas coisinhas escondidas por aqui.
+            </p>
         #envelope {
             width: 100%;
             height: auto;
 
             display: block;
 
+            <div class="seta">↓</div>
             transform-origin: center;
 
+        </section>
             transition:
                 transform 1.2s cubic-bezier(.22,1,.36,1),
                 opacity 1s ease,
@@ -148,29 +199,58 @@
         /* BOTÃO */
         /* ============================= */
 
+        <!-- ========================= -->
+        <!-- CORAÇÕES -->
+        <!-- ========================= -->
         #botaoAbrir {
             position: absolute;
 
+        <section class="secao">
             left: 50%;
             top: 68%;
 
+            <p class="pequeno">talvez encontres alguma coisa...</p>
             width: 55px;
             height: 55px;
 
+            <h2>Há algumas coisas escondidas aqui 👀</h2>
             transform: translate(-50%, -50%);
 
+            <p>
+                Tenta tocar nos corações.
+            </p>
             border-radius: 50%;
 
             background: rgba(255,255,255,.35);
 
+            <div class="coracoes">
             border: 2px solid rgba(255,255,255,.8);
 
+                <button
+                    class="coracao"
+                    data-mensagem="És uma pessoa muito especial para mim. ♡"
+                >
+                    ♡
+                </button>
             cursor: pointer;
 
+                <button
+                    class="coracao"
+                    data-mensagem="Espero conseguir fazer-te sorrir muitas vezes. :3"
+                >
+                    ♡
+                </button>
             z-index: 20;
 
+                <button
+                    class="coracao"
+                    data-mensagem="Obrigado por todos os momentos que tivemos juntos. 💗"
+                >
+                    ♡
+                </button>
             animation: pulsar 1.8s infinite;
 
+            </div>
             touch-action: manipulation;
 
             -webkit-tap-highlight-color: transparent;
@@ -185,11 +265,13 @@
                 opacity: .7;
             }
 
+            <div id="mensagemCoracao"></div>
             50% {
                 transform:
                     translate(-50%, -50%)
                     scale(1.15);
 
+        </section>
                 opacity: 1;
             }
         }
@@ -199,20 +281,29 @@
         /* ABERTURA */
         /* ============================= */
 
+        <!-- ========================= -->
+        <!-- EFEITO DE ESTRELAS -->
+        <!-- ========================= -->
         #carta.abrindo {
             transform: translateY(-15px);
         }
 
+        <section class="secao">
         #carta.abrindo #botaoAbrir {
             animation: desaparecer .45s forwards;
 
+            <p class="pequeno">olha com atenção...</p>
             pointer-events: none;
         }
 
+            <h2>✨</h2>
         @keyframes desaparecer {
             from {
                 opacity: 1;
 
+            <p>
+                Algumas estrelas não são apenas decoração.
+            </p>
                 transform:
                     translate(-50%, -50%)
                     scale(1);
@@ -221,12 +312,16 @@
             to {
                 opacity: 0;
 
+            <div class="estrelas">
                 transform:
                     translate(-50%, -50%)
                     scale(.2);
             }
         }
 
+                <button class="estrela" data-mensagem="✨">
+                    ✦
+                </button>
         #carta.abrindo #envelope {
             transform:
                 perspective(1000px)
@@ -234,9 +329,15 @@
                 translateY(-20px)
                 scale(1.03);
 
+                <button class="estrela" data-mensagem="♡">
+                    ✧
+                </button>
             filter: brightness(1.08);
         }
 
+                <button class="estrela" data-mensagem="🌸">
+                    ✦
+                </button>
         #carta.aberta #envelope {
             transform:
                 perspective(1000px)
@@ -244,19 +345,28 @@
                 translateY(-25px)
                 scale(1.04);
 
+                <button class="estrela" data-mensagem="💗">
+                    ✧
+                </button>
             opacity: .12;
 
+                <button class="estrela" data-mensagem="✨">
+                    ✦
+                </button>
             filter: blur(3px);
         }
 
+            </div>
 
         /* ============================= */
         /* MENSAGEM DA CARTA */
         /* ============================= */
 
+            <div id="efeitoEstrela"></div>
         #mensagemCarta {
             position: absolute;
 
+        </section>
             left: 50%;
             top: 50%;
 
@@ -266,22 +376,34 @@
                 translate(-50%, -42%)
                 scale(.85);
 
+        <!-- ========================= -->
+        <!-- ESPAÇO PARA FOTO -->
+        <!-- ========================= -->
             opacity: 0;
 
+        <section class="secao foto-secao">
             text-align: center;
 
+            <p class="pequeno">uma memória</p>
             z-index: 10;
 
+            <h2>♡</h2>
             background:
                 rgba(255, 235, 243, 0.88);
 
+            <div class="foto-placeholder">
             padding: 22px 28px;
 
+                <p>
+                    Aqui vai uma foto nossa :3
+                </p>
             border-radius: 18px;
 
+            </div>
             border:
                 1px solid rgba(255, 255, 255, 0.8);
 
+        </section>
             box-shadow:
                 0 8px 25px rgba(90, 40, 60, 0.15);
 
@@ -292,22 +414,34 @@
             pointer-events: none;
         }
 
+        <!-- ========================= -->
+        <!-- FINAL -->
+        <!-- ========================= -->
         #mensagemCarta[aria-hidden="false"] {
             opacity: 1;
 
+        <section class="secao final">
             transform:
                 translate(-50%, -50%)
                 scale(1);
         }
 
+            <div class="coracao-final">♡</div>
         #mensagemCarta h1 {
             color: #6b3048;
 
+            <h2>Chegaste ao fim.</h2>
             font-size:
                 clamp(25px, 5vw, 40px);
 
+            <p>
+                Mas ainda há muito mais que eu quero viver contigo.
+            </p>
             margin-bottom: 20px;
 
+            <p class="assinatura">
+                — Lorenzo ♡
+            </p>
             text-shadow:
                 0 1px 2px rgba(255,255,255,.8);
         }
@@ -320,12 +454,14 @@
 
             line-height: 1.6;
 
+        </section>
             margin-bottom: 12px;
 
             text-shadow:
                 0 1px 2px rgba(255,255,255,.8);
         }
 
+    </main>
 
         /* ============================= */
         /* CONTEÚDO */
@@ -334,34 +470,52 @@
         #conteudo {
             position: relative;
 
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
             width: 100%;
 
+    <script>
             padding-bottom: 100px;
         }
 
+        const carta = document.getElementById("carta");
+        const botao = document.getElementById("botaoAbrir");
+        const mensagemCarta = document.getElementById("mensagemCarta");
+        const musica = document.getElementById("musica");
         .secao {
             min-height: 100vh;
 
+        let abriu = false;
             width: 100%;
 
             padding:
                 100px 25px;
 
+        /* ========================= */
+        /* ABRIR CARTA */
+        /* ========================= */
             display: flex;
 
+        botao.addEventListener("click", abrirCarta);
             flex-direction: column;
 
             justify-content: center;
 
+        function abrirCarta() {
             align-items: center;
 
+            if (abriu) return;
             text-align: center;
 
+            abriu = true;
             opacity: 0;
 
+            carta.classList.add("abrindo");
             transform:
                 translateY(50px);
 
+            botao.setAttribute("aria-hidden", "true");
             transition:
                 opacity 1s ease,
                 transform 1s ease;
@@ -374,12 +528,17 @@
                 translateY(0);
         }
 
+            /* Começa a música depois do toque */
         .secao h2 {
             font-size:
                 clamp(28px, 6vw, 45px);
 
+            musica.volume = 0.35;
             font-weight: normal;
 
+            musica.play().catch(() => {
+                console.log("A música não pôde começar automaticamente.");
+            });
             margin:
                 15px 0 25px;
         }
@@ -387,30 +546,42 @@
         .secao p {
             max-width: 600px;
 
+            /* Mostra a mensagem */
             font-size:
                 clamp(17px, 3.5vw, 21px);
 
+            setTimeout(() => {
             line-height: 1.8;
         }
 
+                mensagemCarta.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
         .pequeno {
             font-size: 14px !important;
 
+                carta.classList.add("aberta");
             letter-spacing: 3px;
 
+            }, 900);
             text-transform: uppercase;
 
             opacity: .65;
         }
 
+            /* Liberta o scroll depois da abertura */
 
+            setTimeout(() => {
         /* ============================= */
         /* SETA */
         /* ============================= */
 
+                document.body.classList.add("scroll");
         .seta {
             margin-top: 50px;
 
+            }, 1300);
             font-size: 35px;
 
             animation:
@@ -430,8 +601,10 @@
         }
 
 
+        /* ========================= */
         /* ============================= */
         /* CORAÇÕES */
+        /* ========================= */
         /* ============================= */
 
         .coracoes {
@@ -442,8 +615,12 @@
 
             gap: 40px;
 
+        const coracoes =
+            document.querySelectorAll(".coracao");
             margin-top: 50px;
 
+        const mensagemCoracao =
+            document.getElementById("mensagemCoracao");
             flex-wrap: wrap;
         }
 
@@ -452,17 +629,24 @@
 
             border: none;
 
+        coracoes.forEach(coracao => {
             background: none;
 
+            coracao.addEventListener("click", () => {
             font-size: 65px;
 
+                const texto =
+                    coracao.dataset.mensagem;
             color: #b7838c;
 
+                mensagemCoracao.textContent = texto;
             cursor: pointer;
 
+                mensagemCoracao.classList.remove("mostrar");
             transition:
                 transform .3s ease;
 
+                void mensagemCoracao.offsetWidth;
             touch-action: manipulation;
         }
 
@@ -471,6 +655,7 @@
                 scale(1.2);
         }
 
+                mensagemCoracao.classList.add("mostrar");
         .coracao.clicado {
             animation:
                 coracaoClique .5s ease;
@@ -482,6 +667,7 @@
                     scale(1);
             }
 
+                coracao.classList.add("clicado");
             50% {
                 transform:
                     scale(1.5);
@@ -493,11 +679,16 @@
             }
         }
 
+                setTimeout(() => {
+                    coracao.classList.remove("clicado");
+                }, 500);
 
+            });
         /* ============================= */
         /* MENSAGEM ESCONDIDA */
         /* ============================= */
 
+        });
         #mensagemCoracao {
             min-height: 35px;
 
@@ -506,6 +697,7 @@
             font-size:
                 clamp(17px, 4vw, 23px);
 
+        /* ========================= */
             opacity: 0;
 
             transform:
@@ -526,6 +718,7 @@
 
         /* ============================= */
         /* ESTRELAS */
+        /* ========================= */
         /* ============================= */
 
         .estrelas {
@@ -556,11 +749,15 @@
                 transform .3s ease;
         }
 
+        const estrelas =
+            document.querySelectorAll(".estrela");
         .estrela:nth-child(1) {
             left: 10%;
             top: 20%;
         }
 
+        const efeitoEstrela =
+            document.getElementById("efeitoEstrela");
         .estrela:nth-child(2) {
             left: 45%;
             top: 5%;
@@ -571,29 +768,37 @@
             top: 35%;
         }
 
+        estrelas.forEach(estrela => {
         .estrela:nth-child(4) {
             left: 30%;
             bottom: 10%;
         }
 
+            estrela.addEventListener("click", () => {
         .estrela:nth-child(5) {
             right: 35%;
             bottom: 5%;
         }
 
+                const texto =
+                    estrela.dataset.mensagem;
         .estrela:hover {
             transform:
                 scale(1.4)
                 rotate(15deg);
         }
 
+                efeitoEstrela.textContent = texto;
         #efeitoEstrela {
             min-height: 45px;
 
+                efeitoEstrela.classList.remove("mostrar");
             margin-top: 20px;
 
+                void efeitoEstrela.offsetWidth;
             font-size: 35px;
 
+                efeitoEstrela.classList.add("mostrar");
             opacity: 0;
         }
 
@@ -602,14 +807,17 @@
                 aparecerEstrela .7s ease forwards;
         }
 
+                criarParticulas(estrela);
         @keyframes aparecerEstrela {
             from {
                 opacity: 0;
 
+            });
                 transform:
                     scale(.4);
             }
 
+        });
             to {
                 opacity: 1;
 
@@ -619,34 +827,51 @@
         }
 
 
+        /* ========================= */
         /* ============================= */
         /* PARTÍCULAS */
+        /* ========================= */
         /* ============================= */
 
+        function criarParticulas(elemento) {
         .particula {
             position: absolute;
 
+            for (let i = 0; i < 8; i++) {
             left: 50%;
             top: 50%;
 
+                const particula =
+                    document.createElement("span");
             pointer-events: none;
 
+                particula.classList.add("particula");
             animation:
                 particula .9s ease forwards;
         }
 
+                particula.textContent = "✦";
         @keyframes particula {
             from {
                 opacity: 1;
 
+                particula.style.setProperty(
+                    "--x",
+                    `${(Math.random() - 0.5) * 180}px`
+                );
                 transform:
                     translate(0,0)
                     scale(1);
             }
 
+                particula.style.setProperty(
+                    "--y",
+                    `${(Math.random() - 0.5) * 180}px`
+                );
             to {
                 opacity: 0;
 
+                elemento.appendChild(particula);
                 transform:
                     translate(var(--x),var(--y))
                     scale(.2);
@@ -657,6 +882,9 @@
         /* CONFETE */
         /* ============================= */
 
+                setTimeout(() => {
+                    particula.remove();
+                }, 900);
         .confete {
             position: fixed;
             pointer-events: none;
@@ -686,17 +914,25 @@
             margin:
                 35px auto 0;
 
+        /* ========================= */
+        /* ANIMAÇÕES AO DESCER */
+        /* ========================= */
             border-radius: 22px;
 
+        const elementos =
+            document.querySelectorAll(".secao");
             overflow: hidden;
 
             background:
                 rgba(255, 255, 255, 0.22);
 
+        const observador =
+            new IntersectionObserver(
             box-shadow:
                 0 15px 35px
                 rgba(90, 40, 60, 0.14);
 
+                (entradas) => {
             animation:
                 desenhoFlutuar
                 4s ease-in-out infinite;
@@ -729,11 +965,16 @@
             }
         }
 
+                    entradas.forEach(entrada => {
 
+                        if (entrada.isIntersecting) {
         /* ============================= */
         /* PET */
         /* ============================= */
 
+                            entrada.target.classList.add(
+                                "visivel"
+                            );
         .pet-container {
             margin-top: 40px;
             padding: 30px;
@@ -757,16 +998,19 @@
             overflow: hidden;
         }
 
+                        }
         .pet-area:hover {
             transform: scale(1.05);
         }
 
+                    });
         .pet-area img {
             width: 100%;
             height: 100%;
             object-fit: contain;
         }
 
+                },
         .pet-stats {
             display: flex;
             gap: 20px;
@@ -775,11 +1019,15 @@
             flex-wrap: wrap;
         }
 
+                {
+                    threshold: 0.15
+                }
         .stat {
             text-align: center;
             font-size: 14px;
         }
 
+            );
         .stat-bar {
             width: 80px;
             height: 8px;
@@ -848,9 +1096,11 @@
                 rgba(255,255,255,.15);
         }
 
+        elementos.forEach(elemento => {
         .foto-placeholder p {
             font-size: 17px;
 
+            observador.observe(elemento);
             opacity: .6;
         }
 
@@ -1242,8 +1492,7 @@
         </div>
 
         <p style="margin-top: 30px;">
-            Obrigado por tudo que és para mim. 💗
-            Obrigado por todos os momentos que tivemos juntos. 💗
+            Você chegou no fim, mas ainda há muito mais que quero viver com vc. 💗
         </p>
 
         <div class="assinatura">
@@ -1252,8 +1501,11 @@
 
     </section>
 
+        });
 </main>
 
+    </script>
 <script src="script.js"></script>
 
 </body>
+</html>
